@@ -1,0 +1,115 @@
+<!--pages/order/orderlist.wxml-->
+<view class="container">
+    <view class="status_header">
+        <view class="status_item" catchtap="statuschage"
+        data-status="{{AllStats}}">
+          <image class="status_item_img" src="/image/daiallstate.png" mode="scaleToFill"></image>
+          <text class="status_item_seltext" wx:if="{{orderStatus == AllStats}}">全部</text>
+          <text wx:else>全部</text>
+        </view>
+
+        <view class="status_item" catchtap="statuschage"
+        data-status="{{WaitingPay}}">
+          <text wx:if="{{WaitingPayCount != null && WaitingPayCount.length > 0}}" class="badge">{{WaitingPayCount}}</text>
+          <image class="status_item_img" src="/image/daifukuan.png" mode="scaleToFill"></image>
+           <text class="status_item_seltext" wx:if="{{orderStatus == WaitingPay}}">待付款</text>
+          <text wx:else>待付款</text>
+        </view>
+
+        <view class="status_item" catchtap="statuschage"
+        data-status="{{WaitMakeGroup}}">
+          <text wx:if="{{WaitMakeGroupCount != null && WaitMakeGroupCount.length > 0}}" class="badge">{{WaitMakeGroupCount}}</text>
+          <image class="status_item_img" src="/image/daichengtuan.png" mode="scaleToFill"></image>
+          <text class="status_item_seltext" wx:if="{{orderStatus == WaitMakeGroup}}">待成团</text>
+          <text wx:else>待成团</text>
+        </view>
+
+        <view class="status_item" catchtap="statuschage"
+        data-status="{{OutStock}}">
+          <text wx:if="{{WaitOutStockCount != null && WaitOutStockCount.length > 0}}" class="badge">{{WaitOutStockCount}}</text>
+          <image class="status_item_img" src="/image/daifahuo.png" mode="scaleToFill"></image>
+          <text class="status_item_seltext" wx:if="{{orderStatus == OutStock}}">待发货</text>
+          <text wx:else>待发货</text>
+        </view>
+
+        <view class="status_item" catchtap="statuschage"
+        data-status="{{WaitReceive}}">
+          <text wx:if="{{WaitReceiveCount != null && WaitReceiveCount.length > 0}}" class="badge">{{WaitReceiveCount}}</text>
+          <image class="status_item_img" src="/image/daishouhuo.png" mode="scaleToFill"></image>
+          <text class="status_item_seltext" wx:if="{{orderStatus == WaitReceive}}">待收货</text>
+          <text wx:else>待收货</text>
+        </view>
+
+    </view>
+
+
+    <view class="main_view" wx:if="{{orderlist!=null && orderlist.length>0}}">
+
+    <view class ="order_item" wx:for="{{orderlist}}" wx:for-index="i" wx:for-item="item" catchtap="orderdetail" data-index="{{i}}">
+        <!--<view class="order_list_line"></view>-->
+        <view class="order_item_header">
+            <view class="so_id">订单号:{{item.SOID}}</view>
+            
+            <view class="flag_desc">{{item.FlagDesc}}</view>
+            <!--<view class="flag_desc">已催单</view>-->
+            <view class="so_status">{{item.OrderStatusName}}</view>
+            <image class = "del_button" catchtap="deleteorder" data-index="{{i}}" src="/image/del_button1.png"></image>
+        </view>
+
+        <view class="order_image_row" wx:if="{{item.OrderFromProducts !=null && item.OrderFromProducts.length>0}}">
+
+            <image class="order_image" src="{{item.OrderFromProducts[i].PictureUrl}}" wx:for="{{[0, 1, 2, 3, 4]}}" wx:for-item="i" wx:if="{{item.OrderFromProducts.length>i}}"></image>
+        </view>
+
+        <view class="order_total">
+          <view class="order_count">总价:<text class="order_price">¥{{(item.ProductTotalPrice/100.00)}}</text>  共{{item.ProductCount}}件</view>
+          <view class="order_date">{{item.strRowCreateDate}}</view>
+        </view>
+        <view wx:if="{{item.PTType == 0}}" class="order_buttonview" catchtap="none">
+          <text class="btn_strong"  wx:if="{{item.OrderFromStatus==WaitingPay}}" catchtap="payorder" data-index="{{i}}">去支付</text>
+          <!-- <text class="btn_normal"  wx:if="{{item.OrderFromStatus==WaitingPay || item.OrderFromStatus==Weighing}}" catchtap="cancelorder" data-index="{{i}}">取消订单</text> -->
+
+          <text class="btn_normal"  wx:if="{{item.IsCanCancel}}" catchtap="cancelorder" data-index="{{i}}">取消订单</text>
+
+          <text class="btn_normal"  wx:if="{{ item.OrderFromStatus==Weighing}}" catchtap="refreshorder" data-index="{{i}}">刷新订单</text>
+          <text class="btn_waitself"  wx:if="{{ item.OrderFromStatus==WaitingSelf}}" catchtap="showQCode" data-index="{{i}}">会员码自提</text>
+
+          <text class="btn_normal" wx:if="{{item.IsShowAgain=='1'}}" catchtap="repeatBuy" data-index="{{i}}">再次购买</text>
+          <!--<text class="btn_normal hidden" wx:if="{{item.IsCanReview}}" catchtap="revieworder" data-index="{{i}}">去评论</text>-->
+          <text class="btn_strong" wx:if="{{item.IsShowReminder=='1'}}" catchtap="reminderorder" data-index="{{i}}">催单</text>
+
+          <text class="btn_normal" wx:if="{{item.IsCanAppeal && item.AppealBtnName}}" catchtap="toOrderAppeal" data-index="{{i}}">{{item.AppealBtnName}}</text> 
+
+           <button wx:if="{{item.IsShowContact}}" class="btn_contact" type="primary" open-type="contact" >联系客服</button>
+        </view>
+
+        <view wx:else class="order_buttonview" catchtap="none">
+          <text class="btn_strong"  wx:if="{{item.OrderFromStatus==WaitingPay}}" catchtap="payorder" data-index="{{i}}">去支付</text>
+          
+          <!-- <text class="btn_normal"  wx:if="{{item.OrderFromStatus==WaitingPay || item.OrderFromStatus==Weighing}}" catchtap="cancelorder" data-index="{{i}}">取消订单</text> -->
+
+          <text class="btn_normal"  wx:if="{{item.IsCanCancel}}" catchtap="cancelorder" data-index="{{i}}">取消订单</text>
+
+          <text class="btn_normal"  wx:if="{{ item.OrderFromStatus==Weighing}}" catchtap="refreshorder" data-index="{{i}}">刷新订单</text>
+          <text class="btn_waitself"  wx:if="{{ item.OrderFromStatus==WaitingSelf}}" catchtap="showQCode" data-index="{{i}}">会员码自提</text>
+
+          <text class="btn_normal" wx:if="{{item.IsShowAgain=='1'}}" catchtap="toPTdetail" data-index="{{i}}">再次购买</text>
+
+          <text class="btn_normal" wx:if="{{item.IsShowPTBtn && item.OrderFromStatus > 0}}" catchtap="groupDetail" data-index="{{i}}">团单详情</text>
+
+          <text class="btn_strong" wx:if="{{item.IsShowInvitationBtn && item.OrderFromStatus > 0}}" catchtap="toShare" data-index="{{i}}">邀请好友</text>
+
+          <text class="btn_strong" wx:if="{{item.IsShowReminder=='1'}}" catchtap="reminderorder" data-index="{{i}}">催单</text>
+
+          <text class="btn_normal" wx:if="{{item.IsCanAppeal && item.AppealBtnName}}" catchtap="toOrderAppeal" data-index="{{i}}">{{item.AppealBtnName}}</text> 
+          <button wx:if="{{item.IsShowContact}}" class="btn_contact" type="primary" open-type="contact">联系客服</button>
+        </view>
+        <!--最后一行加底部
+        <view wx:if="{{i==orderlist.length-1}}" class="bottom_view"></view>-->
+    </view>
+    <!--<view wx:if="{{isIPhone}}" class="bottom_view"></view>-->
+  </view>
+  
+</view>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>

@@ -1,0 +1,83 @@
+.searchbar
+{
+    position:fixed;
+    height: 36px;
+    line-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-betSween;
+    text-align: left;
+    background-color: #ffffff;
+    z-index: 50;
+    margin-top: 10px;
+}
+
+.searchtview
+{
+  position: absolute;
+  height: 36px;
+  border:1px #efefef solid;
+  background-color: white;
+  font-size: 15px;
+  width: 540rpx;
+  margin: 0 20rpx;
+}
+
+.searchtext
+{
+  height: 36px;
+  line-height: 36px;
+  width: 460rpx;
+  margin: 0 20rpx;
+}
+
+.clearbutton
+{
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  padding:12px 10rpx;  
+  margin-left: 510rpx;
+  z-index: 100;
+}
+
+.btnSearch{
+  position: absolute;
+  margin-left: 580rpx;
+  width: 150rpx; 
+  height: 36px;
+  line-height: 36px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #F1521B;
+  border-radius:2px;
+  color: #fff;
+}
+
+/* .scanbutton{
+  position: absolute;
+  margin-left: 590rpx;
+  width: 120rpx; 
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+  border:1px #EBEBEB solid;
+} */
+
+.main_view
+{
+  margin-top: 54px;
+  position: fixed;
+} 
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.bottom_view
+{
+    height: 48px;
+    background-color: #fff;
+}

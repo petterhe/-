@@ -1,0 +1,26 @@
+/* pages/people/help.wxss */
+
+.problem
+{
+    padding: 0 20rpx 20rpx 20rpx;
+    font-size: 14px;
+    color: #666;
+}
+
+.title {
+    padding: 30rpx 0 6rpx 0;
+    color:#000;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.problem view 
+{
+    margin: 10rpx;
+}
+
+.phone
+{
+  margin: 0 5px;
+  color: #ff3333;
+}

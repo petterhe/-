@@ -1,0 +1,236 @@
+<!--pages/group/ptgmdetail.wxml-->
+
+<view wx:if="{{PTGMDetailInfo != null}}">
+  <view class="gmdetail_info">
+
+
+    <!--<view class="float_priceview">
+        <view class="float_price">¥{{PTGMDetailInfo.GPrice/100.00}}</view>
+        <view class="float_bprice">¥{{PTGMDetailInfo.BasicPrice/100.00}}</view>
+    </view>-->
+
+    <view class="discount_view" wx:if="{{PTGMDetailInfo.DiscountRate != null && PTGMDetailInfo.DiscountRate.length > 0}}"><text class="discount_text">{{PTGMDetailInfo.DiscountRate}}</text>折</view>
+
+    <!-- <image class="jisuda_view" src="/image/jisuda.png" wx:if="{{PTGMDetailInfo.PTTypeNo==XiaoShiType && PTGMDetailInfo.ShipType==ExpressDelivery && PTGMDetailInfo.SpecsType == 0}}"></image> -->
+
+    <image wx:if="{{PTGMDetailInfo.IsReservation == 1}}" class="tag_view" src="/image/tag_yushou.png"></image>
+
+    <image wx:if="{{PTGMDetailInfo.ShipType == ExpressDelivery}}" class="ship_tag"  src="/image/tag_shiptype1.png"></image>
+
+    <image wx:if="{{PTGMDetailInfo.ShipType == HomeDelivery}}" class="ship_tag"  src="/image/tag_shiptype2.png"></image>
+
+    <!-- <image wx:if="{{PTGMDetailInfo.ScenarioType == InvitationNew || PTGMDetailInfo.ScenarioType == HeadFreeCouponINew}}" class="tag_view" src="/image/tag_yaoxin.png"></image> -->
+
+    
+    <!--商品信息-->
+    <view class="productinfo" wx:if="{{PTGMDetailInfo.ProductSysNo > 0}}">
+      
+        <swiper class="swiper" wx:if="{{PTGMDetailInfo.PictureUrls != null && PTGMDetailInfo.PictureUrls.length> 0}}" indicator-dots="true"
+    autoplay="true" interval="5000" duration="1000">
+        <block wx:for="{{PTGMDetailInfo.PictureUrls}}">
+            <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+            </swiper-item>
+        </block>
+      </swiper>
+
+        <image wx:else class="slide-image" src="{{PTGMDetailInfo.PictureUrl}}"></image>
+
+
+
+        <view class="limitTime_view" wx:if="{{PTGMDetailInfo.IsLimitTime == 1 && limitTime != null && limitTime.length > 0}}">
+          <view wx:if="{{limitTime == '-1'}}">抢购已结束</view>
+          <view wx:else>剩余 {{limitTime}}</view>
+        </view>
+
+        <view class="price_view">
+        <view class="price">
+            <text class="num">¥{{PTGMDetailInfo.GPrice/100.00}}</text>
+            <text class="baseprice">¥{{PTGMDetailInfo.BasicPrice/100.00}}</text>
+
+            <text class="productunit">省{{(PTGMDetailInfo.BasicPrice-PTGMDetailInfo.GPrice)/100.00}}元</text>
+
+        </view>
+
+        <view class="order_desc">{{PTGMDetailInfo.ActorNum}}人团•{{PTGMDetailInfo.OrderDesc}}</view>
+        </view>
+
+        <view class="productName">{{PTGMDetailInfo.CustPName}}</view>
+
+        <!--<view class="productdetail">
+
+            <view class="productprice_view">
+
+                <view class="productgroup">{{PTGMDetailInfo.ActorNum}}人团•已团{{PTGMDetailInfo.OrderCount}}件</view>
+
+                <view class="productprice">¥{{PTGMDetailInfo.GPrice/100.00}}<text class="productbaseprice">¥{{PTGMDetailInfo.BasicPrice/100.00}}</text>
+                <text class="productunit">拼团省{{(PTGMDetailInfo.RetailPrice-PTGMDetailInfo.GPrice)/100.00}}元</text>
+                </view>
+                
+            </view>
+            <view class="productname">{{PTGMDetailInfo.CustPName}}</view>
+        </view>-->
+    </view>
+
+    <!--参团信息-->
+    <view class="avatarinfo" wx:if="{{PTGMDetailInfo.ListAvatarUrl != null && PTGMDetailInfo.ListAvatarUrl.length > 0}}" style="padding: 10px {{(windowWidth - PTGMDetailInfo.ListAvatarUrl.length * 60)/2}}px;">
+        <view class="avatar_item" wx:for="{{PTGMDetailInfo.ListAvatarUrl}}" wx:for-index="i" wx:for-item="avatar">
+            <image class="avatarImage" wx:if="{{avatar != null && avatar.length > 0}}" src="{{avatar}}"/>        
+            <!--<image class="avatarImage" wx:else src="/image/avatar_4_64.png"/>        -->
+
+            <image src="/image/avatarempty.png" class="avatarempty" wx:else></image>
+            
+            <text class="avatarTag" wx:if="{{i==0 && avatar != null && avatar.length > 0}}">团长</text>      
+            <text clsss="avatarMore" wx:if="{{PTGMDetailInfo.ActorNum > 5 && i== 3 && PTGMDetailInfo.LeftActorNum > 0}}">…</text>
+        </view>
+    </view>
+    
+     <!--参团信息-->
+    <view class="avatar_memo">
+        <view wx:if="{{countDownTime != null && countDownTime.length > 0}}">
+        <view>仅剩<text class="share_countdown">{{PTGMDetailInfo.LeftActorNum }}</text>个名额</view>
+        <view class="">剩余<text class="share_countdown">{{countDownTime}}</text>结束</view>
+        <view wx:if="{{canShare}}" class="share_memo2">倒计时结束后人不满将拼团失败</view>
+    </view>
+        <view wx:else>
+            <view>{{PTGMDetailInfo.StatusName}}</view>
+        </view>
+    </view>
+
+    <!--按钮-->
+    <!--<view class="button_view" wx:if="{{PTGMDetailInfo.Status != Failed &&PTGMDetailInfo.BtnName != null && PTGMDetailInfo.BtnName.length > 0}}">
+        <button class="button_info" catchtap="button_click">{{PTGMDetailInfo.BtnName}}</button>
+    </view>-->
+
+    <!--邀群信息-->
+    <view class='wx_group_view'>
+      <imagebtnview  
+        imageUrl='/image/wx_group.png'
+        title='妙粉福利群' 
+        memo='红包免费领起来！ 进了妙粉群还怕拼不成？' 
+        btnImageUrl='/image/wx_group_in.png'
+        bind:buttonClick="_wxGroupInClick">
+      </imagebtnview>
+    </view>
+
+    <!--服务说明-->
+    <view class="serverdesc_info" wx:if="{{PTGMDetailInfo.ServeDesc != null && PTGMDetailInfo.ServeDesc.ListServeItem != null &&PTGMDetailInfo.ServeDesc.ListServeItem.length > 0}}" catchtap="showServeDescView">
+      <image class="serverdesc_flag" src="/image/rightarrow2.png"></image>
+      <view class="serverdesc_list">
+            <view class="serverdesc_item" wx:for="{{PTGMDetailInfo.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item" wx:if="{{i<4}}">
+            <image class="serverdesc_image" src="/image/check3.png"></image>
+            <text>{{item.ItemTitle}}</text>
+            </view>
+      </view>
+    </view>
+
+    <!--拼团须知-->
+    <!--<view class="mustknow_info" wx:if="{{PTGMDetailInfo.ListMustKnow != null && PTGMDetailInfo.ListMustKnow.length > 0}}" catchtap="showHowActorView">
+      <view class="mustknow_title">拼团须知</view>
+      <view class="mustknow_list">
+            <view class="mustknow_item" wx:for="{{PTGMDetailInfo.ListMustKnow}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+      </view>
+    </view>-->
+
+    <!--拼团须知-->
+    <view class="mustknow_info" wx:if="{{PTGMDetailInfo.RuleDesc != null && PTGMDetailInfo.RuleDesc.ListRuleBrief != null && PTGMDetailInfo.RuleDesc.ListRuleBrief.length > 0}}" catchtap="showHowActorView">
+      <image class="mustknow_flag" src="/image/rightarrow2.png"></image>
+      <view class="mustknow_title">{{PTGMDetailInfo.RuleDesc.Title}}</view>
+      <view class="mustknow_list">
+            <view class="mustknow_item" wx:for="{{PTGMDetailInfo.RuleDesc.ListRuleBrief}}" wx:for-index="i" wx:for-item="item" wx:if="{{i<3}}">•{{item}}</view>
+      </view>
+    </view>
+
+    <!--说明图片-->
+    <view class="rowmenu_info" wx:if="{{PTGMDetailInfo.ListPTRowMenu != null && PTGMDetailInfo.ListPTRowMenu.length > 0}}">
+          <view class="rowmenu_item" wx:for="{{PTGMDetailInfo.ListPTRowMenu}}" wx:for-index="i" wx:for-item="item">
+            <image wx:if="{{item.MenuIconUrl != null && item.MenuIconUrl.length > 0}}" class="rowmenu_image" src="{{item.MenuIconUrl}}"/>
+          </view>
+    </view>
+
+</view>
+
+<view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+  <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+    <!--<view class="buttom_empty"></view>
+    <view catchtap="toHome" class="buttom_tohome">去首页看看</view>-->
+    
+     <view class="bottom_home bottom_home_line" catchtap="toHome">
+        <image class="bottom_home_img" src="/image/home_icon.png"></image>
+        <view>首页</view>
+    </view>
+    
+    <view wx:if="{{showOtherGroup}}" class="bottom_showOther" catchtap="showOtherGroup">看看其他团</view>
+    <view wx:else class="bottom_empty"></view>
+
+    <view class="bottom_button" wx:if="{{PTGMDetailInfo.Status != null && PTGMDetailInfo.Status.length > 0 &&PTGMDetailInfo.Status != Failed &&PTGMDetailInfo.BtnName != null && PTGMDetailInfo.BtnName.length > 0}}">
+    <!--分享按钮-->
+    <button wx:if="{{canShare && PTGMDetailInfo.Status == Invitation}}" class="bottom_button"  open-type="share">{{PTGMDetailInfo.BtnName}}</button>
+    <!--其他按钮-->
+    <view wx:else catchtap="button_click">{{PTGMDetailInfo.BtnName}}</view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{showReloadView && PTGMDetailInfo == null}}" class="page_reload">
+  <view class="button_reload" catchtap="refreshData">重新加载</view>
+</view>
+
+<!--遮罩层1-->
+<view wx:if="{{showHowActorView && PTGMDetailInfo != null && PTGMDetailInfo.ListHowActor != null && PTGMDetailInfo.ListHowActor.length > 0}}" class="HowActor_view" style="height:{{windowHeight}}px">
+</view>
+
+<!--如何参加拼团-->
+<!--<view wx:if="{{showHowActorView && PTGMDetailInfo != null && PTGMDetailInfo.ListHowActor != null && PTGMDetailInfo.ListHowActor.length > 0}}" class="HowActor_info" catchtap="hideHowActorView">
+     <image class="HowActor_close" src="/image/close1.png"></image>
+    <view class="HowActor_title">如何参加拼团</view>
+    <view class="HowActor_item" wx:for="{{PTGMDetailInfo.ListHowActor}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+</view>-->
+
+<!--如何参加拼团-->
+<view wx:if="{{showHowActorView && PTGMDetailInfo != null && PTGMDetailInfo.RuleDesc != null && PTGMDetailInfo.RuleDesc.ListRule != null && PTGMDetailInfo.RuleDesc.ListRule.length > 0}}" class="HowActor_info" catchtap="hideHowActorView">
+    <image class="HowActor_close" src="/image/close1.png"></image>
+    <view class="HowActor_title">{{PTGMDetailInfo.RuleDesc.Title}}</view>
+    <view class="HowActor_item" wx:for="{{PTGMDetailInfo.RuleDesc.ListRule}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+</view>
+
+<!--遮罩层-->
+<view wx:if="{{showShareView && countDownTime != null && countDownTime.length > 0 && PTGMDetailInfo != null}}" class="HowActor_view" style="height:{{windowHeight}}px" catchtap="hideShareView">
+</view>
+
+<!--邀请好友-->
+<view wx:if="{{showShareView && countDownTime != null && countDownTime.length > 0 && PTGMDetailInfo != null}}" class="share_info">
+
+        <view class="share_time">剩余<text class="share_countdown">{{countDownTime}}</text></view>
+        
+        <view class="share_count">还差<text class="share_countdown">{{PTGMDetailInfo.LeftActorNum}}</text>人赶快邀请好友来参团吧</view>
+        <view class="share_memo">倒计时结束后人不满将拼团失败</view>
+
+        <image class="share_icon" src="/image/share_icon.png"/>
+
+        <!--<view class="share_memo1">
+            <text>请点击右上角</text>
+            <image class="share_image" wx:if="{{isIPhone}}" src="/image/share_icon_i.png"/>
+            <image class="share_image" wx:else src="/image/share_icon_a.png"/>
+            <text class="share_text1">转发</text><text>邀请好友参团</text>
+        </view> -->
+</view>
+  
+<!--遮罩层2-->
+<view wx:if="{{showServeDescView &&PTGMDetailInfo.ServeDesc != null && PTGMDetailInfo.ServeDesc.ListServeItem != null &&PTGMDetailInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailview" style="height:{{windowHeight}}px">
+</view>
+
+<!--服务说明-->
+<view wx:if="{{showServeDescView && PTGMDetailInfo.ServeDesc != null && PTGMDetailInfo.ServeDesc.ListServeItem != null &&PTGMDetailInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailinfo" catchtap="hideServeDescView">
+
+    <view class="ServeDesc_Detailtitle">{{PTGMDetailInfo.ServeDesc.Title}}</view>
+    <image class="ServeDesc_Detailclose" src="/image/close2.png"></image>
+    <view class="ServeDesc_Detailitem" wx:for="{{PTGMDetailInfo.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item">
+    <image class="ServeDesc_Detailitemimage" src="/image/check3.png"></image>
+    <view class="ServeDesc_DetailitemView">
+        <view class="ServeDesc_DetailitemTitle">{{item.ItemTitle}}</view>
+        <view>{{item.ItemDesc}}</view>
+    </view>
+    </view>
+</view>

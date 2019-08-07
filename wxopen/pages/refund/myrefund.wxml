@@ -1,0 +1,61 @@
+<!--pages/appeal/myappeal.wxml-->
+<view wx:if="{{appeallist != null && appeallist.length > 0}}">
+  <view wx:for="{{appeallist}}" wx:for-index="i" class ="item_view" wx:for-item="item" catchtap="appdealDetail" data-index="{{i}}">
+    <!-- <view wx:if="{{ i > 0 }}" class="line_view"></view> -->
+    <!--  -->
+    <view class="item_title">
+      <view><image class="order_flag" src='/image/order_flag.png'></image>退款单号：</view>
+      <view class="title_right">{{item.RefundSysNo}}<image class="order_right" src="/image/rightarrow3.png"></image></view>
+    </view>
+
+      <view class="bg_radius_left"></view>
+      <view class="bg_radius_right"></view>
+
+      <view class="item_detail">
+        <view class="item_detail_view">
+          <view class="item_detail_left">商品名称：</view>
+          <view class="item_detail_right">{{item.ProductName}}</view>
+        </view>
+
+        <view class="item_detail_view">
+          <view class="item_detail_left">订单号：</view>
+          <view class="item_detail_right">{{item.SOID}}</view>
+        </view>
+
+        <view class="item_detail_view">
+          <view class="item_detail_left">退款金额：</view>
+          <view class="item_detail_right detial_price">{{item.RefundAmt}}</view>
+        </view>
+
+        <view class="item_detail_view">
+          <view class="item_detail_left">申请时间：</view>
+          <view class="item_detail_right">{{item.rowCreateDate}}</view>
+        </view>
+
+        <view class="item_detail_view">
+          <view class="item_detail_left">退款状态：</view>
+          <view class="item_detail_right detial_status">{{item.RefundStatusName}}</view>
+        </view>
+
+        <view class="item_detail_view" wx:if="{{item.RefundTime != null && item.RefundTime.length > 0}}">
+          <view class="item_detail_left">退款时间：</view>
+          <view class="item_detail_right">{{item.RefundTime}}</view>
+        </view>
+        <!-- <view class="item_detail_view">订单号：{{item.SOID}}</view>
+        <view class="item_detail_view">状态：<text class="detial_status">{{item.StatusName}}</text></view>
+        <view class="item_detail_view">申请时间：{{item.rowCreateDate}}</view> -->
+    </view>
+  </view>
+
+</view>
+
+<!--去首页-->
+<!-- <view wx:if="{{fromApp == 1}}" class="home_float" catchtap="toHome" >
+        <image class="home_float_img" src="/image/home_icon.png"></image>
+        <view>首页</view>
+</view>  -->
+
+<!--打开APP-->
+<button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app open_app1" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">返回APP</button>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>

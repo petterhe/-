@@ -1,0 +1,11 @@
+<!--pages/product/productpara.wxml-->
+<view class="para_view" wx:if="{{productAttribute != null && productAttribute.length > 0}}">
+
+     <view class ="para_list" wx:for="{{productAttribute}}" wx:for-index="i" wx:for-item="para">
+        <view class="para_hd">{{para.Attribute1Name}}</view>
+        <view class="para_row" wx:if="{{para.ProductAttributeItem != null && para.ProductAttributeItem.length > 0}}" wx:for="{{para.ProductAttributeItem}}" wx:for-index="i" wx:for-item="item">
+            <view class="para_name">{{item.Attribute2Name}}</view>
+            <view class="para_value">{{item.Attribute2Value}}</view>
+        </view>
+     </view>
+</view>

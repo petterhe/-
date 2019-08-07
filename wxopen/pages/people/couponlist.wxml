@@ -1,0 +1,129 @@
+<!--pages/people/couponlist.wxml-->
+<view wx:if="{{cardCouponInfo && (cardCouponInfo.UnUsedList || cardCouponInfo.UsedList || cardCouponInfo.ExpiredList)}}">
+
+  <!-- <view class="header_tips" wx:if="{{cardCouponInfo.NewsTip!=null && cardCouponInfo.NewsTip.length>0}}" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">{{cardCouponInfo.NewsTip}}</view> -->
+
+
+  <view class="tab_header">
+      <view class="tab_item" catchtap="tabchange"
+      data-index="0">
+        <text class="tab_item_seltext" wx:if="{{selectTabIndex == 0}}">未使用({{cardCouponInfo.UnUsedList.length}})</text>
+        <text wx:else>未使用({{cardCouponInfo.UnUsedList.length}})</text>
+      </view>
+
+      <view class="tab_item" catchtap="tabchange"
+      data-index="1">
+         <text class="tab_item_seltext" wx:if="{{selectTabIndex == 1}}">已使用({{cardCouponInfo.UsedList.length}})</text>
+        <text wx:else>已使用({{cardCouponInfo.UsedList.length}})</text>
+      </view>
+
+      <view class="tab_item" catchtap="tabchange"
+      data-index="2">
+         <text class="tab_item_seltext" wx:if="{{selectTabIndex == 2}}">已过期({{cardCouponInfo.ExpiredList.length}})</text>
+        <text wx:else>已过期({{cardCouponInfo.ExpiredList.length}})</text>
+      </view>
+  </view>
+
+  <view class="coupon_info">
+
+    <!--未使用-->
+    <view wx:if="{{selectTabIndex == 0 && cardCouponInfo.UnUsedList}}">
+      <view class="coupon_list" wx:for="{{cardCouponInfo.UnUsedList}}" wx:for-index="i" wx:for-item="item" catchtap="selectCoupon" data-index="{{i}}" data-type="0">
+
+        <image wx:if="{{selectCouponCode==item.CouponCode}}" class="select_tag" src="/image/tag_select.png"></image>
+      
+        <image wx:if="{{item.Kind==0}}" class="coupon_tag" src="/image/redpacket_corner.png"></image>
+
+        <image wx:if="{{item.Kind==1}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+
+        <image wx:if="{{item.Kind==2}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+      
+        <text wx:if="{{isSelectAction == 0 && item.ShowStyle == 0}}" class="touse_button" catchtap="tousecoupon" data-index="{{i}}" data-couponcode="{{item.CouponCode}}">去使用</text>
+
+        <!--是否可用-->
+        <view wx:if="{{item.ShowStyle != 0}}" class="inv_view"></view>
+
+        <view class="litpic">
+          <!-- <image class="coupon_image" src="/image/coupon.png"></image>
+          <view class="coupon_amt">{{item.CouponAmt}}元</view> -->
+          <view class="couponAmt"><text class="couponFlag">￥</text>{{item.CouponAmt}}</view>
+        </view>
+
+        <view style='width:{{windowWidth-80}}px'>
+          <view class="coupon_title">{{item.CouponName}}</view>
+          <view class="coupon_text">{{item.UseCondition}}</view>
+          <view class="coupon_date">{{item.ValidTimeFrom}}--{{item.ValidTimeTo}}</view>
+        </view>
+      </view>
+      
+    </view>
+
+    <!--已使用-->
+    <view wx:if="{{selectTabIndex == 1 && cardCouponInfo.UsedList}}">
+      <view class="coupon_list" wx:for="{{cardCouponInfo.UsedList}}" wx:for-index="i" wx:for-item="item" data-index="{{i}}" data-type="1">
+
+        <image wx:if="{{selectCouponCode==item.CouponCode}}" class="select_tag" src="/image/tag_select.png"></image>
+      
+        <image wx:if="{{item.Kind==0}}" class="coupon_tag" src="/image/redpacket_corner.png"></image>
+
+        <image wx:if="{{item.Kind==1}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+
+        <image wx:if="{{item.Kind==2}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+      
+        <!--是否可用-->
+        <view class="inv_view"></view>
+
+        <view class="litpic">
+          <!-- <image class="coupon_image" src="/image/coupon.png"></image>
+          <view class="coupon_amt">{{item.CouponAmt}}元</view> -->
+          <view class="couponAmt"><text class="couponFlag">￥</text>{{item.CouponAmt}}</view>
+        </view>
+
+        <view style='width:{{windowWidth-80}}px'>
+          <view class="coupon_title">{{item.CouponName}}</view>
+          <view class="coupon_text">{{item.UseCondition}}</view>
+          <view class="coupon_text">{{item.ValidTimeFrom}}--{{item.ValidTimeTo}}</view>
+        </view>
+      </view>
+
+    </view>  
+  
+    <!--已过期-->
+    <view wx:if="{{selectTabIndex == 2 && cardCouponInfo.ExpiredList}}">
+      <view class="coupon_list" wx:for="{{cardCouponInfo.ExpiredList}}" wx:for-index="i" wx:for-item="item" data-index="{{i}}" data-type="2">
+
+        <image wx:if="{{selectCouponCode==item.CouponCode}}" class="select_tag" src="/image/tag_select.png"></image>
+      
+        <image wx:if="{{item.Kind==0}}" class="coupon_tag" src="/image/redpacket_corner.png"></image>
+
+        <image wx:if="{{item.Kind==1}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+
+        <image wx:if="{{item.Kind==2}}" class="coupon_tag" src="/image/conpon_corner.png"></image>
+      
+        <!--是否可用-->
+        <view class="inv_view"></view>
+
+        <view class="litpic">
+          <!-- <image class="coupon_image" src="/image/coupon.png"></image>
+          <view class="coupon_amt">{{item.CouponAmt}}元</view> -->
+          <view class="couponAmt"><text class="couponFlag">￥</text>{{item.CouponAmt}}</view>
+        </view>
+
+        <view style='width:{{windowWidth-80}}px'>
+          <view class="coupon_title">{{item.CouponName}}</view>
+          <view class="coupon_text">{{item.UseCondition}}</view>
+          <view class="coupon_text">{{item.ValidTimeFrom}}--{{item.ValidTimeTo}}</view>
+        </view>
+      </view>
+    </view> 
+
+  </view>
+</view>
+
+<view wx:else>
+  <!-- <view wx:if="{{showReloadView}}" class="page_reload">
+      <view class="button_reload" catchtap="refreshData">重新加载</view>
+    </view> -->
+
+    <view wx:if="{{dataEmpty}}" class="empty_text">暂无红包卡券</view>
+</view>

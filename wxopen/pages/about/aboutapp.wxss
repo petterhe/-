@@ -1,0 +1,30 @@
+/* pages/about/aboutapp.wxss */
+Page
+{
+  background-color: #EBEBEB;
+}
+
+.page_view
+{
+  width: 750rpx;
+}
+
+.app_download
+{
+  width: 750rpx;
+  height: 1125rpx;
+}
+
+.app_code
+{
+  margin: 160rpx 175rpx 60rpx 175rpx;
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.memo
+{
+  text-align: center;
+  font-size: 13px;
+  color: #444;
+}

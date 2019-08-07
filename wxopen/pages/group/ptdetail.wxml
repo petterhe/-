@@ -1,0 +1,258 @@
+<!--pages/group/PTGPDInfo.wxml-->
+<view class="product_view" wx:if="{{PTGPDInfo != null}}">
+
+  <!--<view class="float_priceview">
+        <view class="float_price">¥{{PTGPDInfo.GPrice/100.00}}</view>
+        <view class="float_bprice">¥{{PTGPDInfo.BasicPrice/100.00}}</view>
+    </view>-->
+
+  <view class="discount_view" wx:if="{{PTGPDInfo.DiscountRate != null && PTGPDInfo.DiscountRate.length > 0}}">
+    <text class="discount_text">{{PTGPDInfo.DiscountRate}}</text>折</view>
+
+  <!-- <image class="jisuda_view" src="/image/jisuda.png" wx:if="{{PTGPDInfo.PTTypeNo==XiaoShiType && PTGPDInfo.ShipType==ExpressDelivery && PTGPDInfo.SpecsType == 0}}"></image> -->
+
+  <image wx:if="{{PTGPDInfo.IsReservation == 1}}" class="tag_view" src="/image/tag_yushou.png"></image>
+
+  <image wx:if="{{PTGPDInfo.ShipType == ExpressDelivery}}" class="ship_tag" src="/image/tag_shiptype1.png"></image>
+
+  <image wx:if="{{PTGPDInfo.ShipType == HomeDelivery}}" class="ship_tag" src="/image/tag_shiptype2.png"></image>
+
+  <!-- <image wx:if="{{PTGPDInfo.ScenarioType == InvitationNew || PTGPDInfo.ScenarioType == HeadFreeCouponINew}}" class="tag_view" src="/image/tag_yaoxin.png"></image> -->
+
+  <swiper class="swiper" wx:if="{{PTGPDInfo.PictureUrls != null && PTGPDInfo.PictureUrls.length > 0}}" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{PTGPDInfo.PictureUrls}}" wx:key="key">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="limitTime_view" wx:if="{{PTGPDInfo.IsLimitTime == 1 && limitTime != null && limitTime.length > 0}}">
+    <view wx:if="{{limitTime == '-1'}}">抢购已结束</view>
+    <view wx:else>剩余 {{limitTime}}</view>
+  </view>
+
+  <!-- <view wx:if="{{PTGPDInfo.CustPSubName != null && PTGPDInfo.CustPSubName.length > 0}}" class="product_promotiontext">{{PTGPDInfo.CustPSubName}}</view> -->
+
+  <view class="price">
+    <!--<view class="order_desc">{{PTGPDInfo.OrderDesc}}</view>-->
+
+    <view class="order_desc">{{PTGPDInfo.ActorNum}}人团•{{PTGPDInfo.OrderDesc}}</view>
+    <text class="num">¥{{PTGPDInfo.GPrice/100.00}}</text>
+    <text class="baseprice">¥{{PTGPDInfo.BasicPrice/100.00}}</text>
+  </view>
+
+  <view class="productName">{{PTGPDInfo.CustPName}}</view>
+  <view wx:if="{{PTGPDInfo.CustPDesc != null && PTGPDInfo.CustPDesc.length > 0}}" class="productdesc">{{PTGPDInfo.CustPDesc}}</view>
+
+  <view wx:if="{{PTGPDInfo.ActorTerm != null && PTGPDInfo.ActorTerm.length > 0}}" class="actorTerm">{{PTGPDInfo.ActorTerm}}</view>
+
+  <view wx:if="{{PTGPDInfo.ListPTGM != null && PTGPDInfo.ListPTGM.length > 0}}" class="listPT">
+    <view class="listPT_title">以下小伙伴正在发起团购，人数不足自动退款</view>
+    <view class="ptgm_item" wx:for="{{PTGPDInfo.ListPTGM}}" wx:for-index="i" wx:for-item="ptgm" wx:key="key" catchtap="actorgroup" data-index="{{i}}">
+      <image class="ptgm_avatarUrl" src="{{ptgm.AvatarUrl}}" />
+      <view class="ptgm_detail" style="width:{{windowWidth - 56}}px">
+        <view class="ptgm_name" style="width:{{windowWidth - 56 - 190}}px">{{ptgm.NickName}}</view>
+        <view class="ptgm_memo">
+          <view class="ptgm_leftnum">还差
+            <text class="ptgm_lefttext">{{ptgm.LeftNum}}</text>人成团</view>
+          <!--<view class="ptgm_lefttime" wx:if="{{timeArray != null && timeArray.length > i}}">{{timeArray[i]}}</view>-->
+          <view class="ptgm_lefttime" wx:if="{{timeArray != null && timeArray.length > i}}">
+            <view wx:if="{{timeArray[i] == null || timeArray[i].lenght == 0 ||timeArray[i] == -1}}">已结束</view>
+            <view wx:else>剩余
+              <text class="ptgm_lefttext">{{timeArray[i]}}</text>结束</view>
+          </view>
+        </view>
+        <view class="ptgm_jointext">去拼单
+          <image class="jointoimg" src="/image/toright.png"></image>
+        </view>
+      </view>
+
+      <!--<image class="ptgm_avatarUrl" src="{{ptgm.AvatarUrl}}"/>
+            <view class="ptgm_detail1" style="width:{{windowWidth - 72}}px">
+
+              <view class="ptgm_jointext1">去参团
+                </view>
+
+                <view class="ptgm_name1">{{ptgm.NickName}}</view>
+                <view class="ptgm_memo1">
+                    <view class="ptgm_leftnum1">还差{{ptgm.LeftNum}}人</view>
+                    <view class="ptgm_lefttime1" wx:if="{{timeArray != null && timeArray.length > i}}">{{timeArray[i]}}</view>
+                </view>         
+            </view>-->
+
+    </view>
+  </view>
+
+  <!--邀群信息-->
+  <view class='wx_group_view'>
+    <imagebtnview imageUrl='/image/wx_group.png' title='妙粉福利群' memo='红包免费领起来！ 进了妙粉群还怕拼不成？' btnImageUrl='/image/wx_group_in.png' bind:buttonClick="_wxGroupInClick">
+    </imagebtnview>
+  </view>
+
+
+  <!--服务说明-->
+  <view class="serverdesc_info" wx:if="{{PTGPDInfo.ServeDesc != null && PTGPDInfo.ServeDesc.ListServeItem != null &&PTGPDInfo.ServeDesc.ListServeItem.length > 0}}" catchtap="showServeDescView">
+    <image class="serverdesc_flag" src="/image/rightarrow2.png"></image>
+    <view class="serverdesc_list">
+      <view class="serverdesc_item" wx:for="{{PTGPDInfo.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item" wx:key="key" wx:if="{{i<4}}">
+        <image class="serverdesc_image" src="/image/check3.png"></image>
+        <text>{{item.ItemTitle}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!--拼团须知-->
+  <!--<view class="mustknow_info" wx:if="{{PTGPDInfo.ListMustKnow != null && PTGPDInfo.ListMustKnow.length > 0}}" catchtap="showHowActorView">
+      <view class="mustknow_title">拼团须知</view>
+      <view class="mustknow_list">
+            <view class="mustknow_item" wx:for="{{PTGPDInfo.ListMustKnow}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+      </view>
+    </view>-->
+
+  <!--拼团须知-->
+  <view class="mustknow_info" wx:if="{{PTGPDInfo.RuleDesc != null && PTGPDInfo.RuleDesc.ListRuleBrief != null && PTGPDInfo.RuleDesc.ListRuleBrief.length > 0}}" catchtap="showHowActorView">
+    <image class="mustknow_flag" src="/image/rightarrow2.png"></image>
+    <view class="mustknow_title">{{PTGPDInfo.RuleDesc.Title}}</view>
+    <view class="mustknow_list">
+      <view class="mustknow_item" wx:for="{{PTGPDInfo.RuleDesc.ListRuleBrief}}" wx:for-index="i" wx:for-item="item" wx:key="key" wx:if="{{i<3}}">•{{item}}</view>
+    </view>
+  </view>
+
+  <!--图文详情-->
+  <view class="para" wx:if="{{canWebView}}" catchtap="toProductGraphic">
+    <view class="para_header">
+      <!-- <image class="para_icon" src="/image/graphic_icon.png"></image> -->
+      <image class="para_icon2" src="/image/rightarrow2.png"></image>
+      图文详情
+    </view>
+  </view>
+
+  <!--商品评价-->
+  <view class="ptcomment" wx:if="{{PTGPDInfo.ProductRemark != null}}" catchtap="toProductReview">
+    <view class="ptcomment_header">
+
+      <image class="ptcomment_icon2" src="/image/rightarrow2.png"></image>
+
+      <view class="ptreview">
+        <text class="ptrank" style="background-image:url({{StarImgUrl}})"><text class="ptinner" style="background-image:url({{StarImgUrl}}); width:{{((PTGPDInfo.ProductRemark.Score==0?10:PTGPDInfo.ProductRemark.Score)*10)}}%;"></text></text> {{item.SalesCount}}
+      </view>
+      商品评价
+    </view>
+
+    <view class="ptcomment_text">{{PTGPDInfo.ProductRemark.Content1}}</view>
+    <view class="ptcomment_memo">
+      <view class="ptcomment_name">{{PTGPDInfo.ProductRemark.NickName}}</view>
+      <view class="ptcomment_time">{{PTGPDInfo.ProductRemark.strRowCreateDate}}</view>
+    </view>
+  </view>
+
+  <!--说明图片-->
+  <view class="rowmenu_info" wx:if="{{PTGPDInfo.ListPTDescRowMenu != null && PTGPDInfo.ListPTDescRowMenu.length > 0}}">
+    <view class="rowmenu_item" wx:for="{{PTGPDInfo.ListPTDescRowMenu}}" wx:for-index="i" wx:for-item="item">
+      <image wx:if="{{item.MenuIconUrl != null && item.MenuIconUrl.length > 0}}" class="rowmenu_image" src="{{item.MenuIconUrl}}" />
+    </view>
+  </view>
+</view>
+<view wx:if="{{showReloadView && PTGPDInfo == null}}" class="page_reload">
+  <view class="button_reload" catchtap="refreshData">重新加载</view>
+</view>
+
+<!--悬浮购物车-->
+<view class="float_cartview">
+  <text class="float_cartbadge {{isIpx?'iphonex-float_cartbadge':''}}" wx:if="{{ShoppingCartCount > 0}}">{{ShoppingCartCount}}</text>
+  <image class="float_cart {{isIpx?'iphonex-float_cart':''}}" catchtap="toCart" src="/image/blackcart.png"></image>
+</view>
+
+<view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+<view class="ptdetail-bottom-group {{isIpx?'iphonex-button':''}}" wx:if="{{PTGPDInfo.ListPTGM.length >0}}">
+  <view class="ptgm_item_group" catchtap="actorgroup" data-index="{{0}}">
+    <image class="ptgm_avatarUrl_group" src="{{PTGPDInfo.ListPTGM[0].AvatarUrl}}" />
+    <view class="ptgm_detail_group" style="width:{{windowWidth - 56}}px">
+      <view class="ptgm_name_group" style="width:{{windowWidth - 56 - 190}}px">{{PTGPDInfo.ListPTGM[0].NickName}}</view>
+      <view class="ptgm_memo_group">
+        <view class="ptgm_leftnum_group">还差
+          <text class="ptgm_lefttext_group">{{PTGPDInfo.ListPTGM[0].LeftNum}}</text>人成团</view>
+        <!--<view class="ptgm_lefttime" wx:if="{{timeArray != null && timeArray.length > i}}">{{timeArray[i]}}</view>-->
+        <view class="ptgm_lefttime_group" wx:if="{{timeArray != null && timeArray.length > 0}}">
+          <view wx:if="{{timeArray[0] == null || timeArray[0].lenght == 0 ||timeArray[0] == -1}}">已结束</view>
+          <view wx:else>剩余
+            <text class="ptgm_lefttext_group">{{timeArray[0]}}</text>结束</view>
+        </view>
+      </view>
+      <view class="ptgm_jointext_group">一键拼单
+        <image class="jointoimg" src="/image/toright.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom {{isIpx?'fix-iphonex-button':''}}" wx:if="{{PTGPDInfo != null}}">
+  <view class="bottom_home bottom_home_line" catchtap="toHome">
+    <image class="bottom_home_img" src="/image/home_icon.png"></image>
+    <view>首页</view>
+  </view>
+
+  <view class="bottom_home" wx:if="{{canShare}}">
+    <button open-type="share" class="bottom_share {{isIpx?'bottom_share_ipx':''}}"></button>
+    <image class="bottom_home_img" src="/image/share_icon1.png"></image>
+    <view>分享</view>
+  </view>
+  <view wx:else class="bottom_empty"></view>
+
+  <view class="bottom_empty1" wx:if="{{PTGPDInfo.IsShowAddCart == null || PTGPDInfo.IsShowAddCart.length == 0 ||PTGPDInfo.IsShowAddCart == 0}}"></view>
+
+  <view wx:else class="retailbuy" catchtap="retailbuy">
+    <view class="retailprice">¥{{PTGPDInfo.RetailPrice/100.00}}</view>
+    <view wx:if="{{PTGPDInfo.SpecsType == 1}}" class="retailbuytext">优惠购买</view>
+    <view wx:else class="retailbuytext">加入购物车</view>
+  </view>
+
+
+  <view wx:if="{{PTGPDInfo.Status == 1}}" class="groupbuy" catchtap="groupbuy">
+    <view class="gprice">¥{{PTGPDInfo.GPrice/100.00}}</view>
+    <view class="groupbuytext">一键开团</view>
+  </view>
+
+  <view wx:else class="ungroupbuy">
+    <view class="gprice">¥{{PTGPDInfo.GPrice/100.00}}</view>
+    <view class="groupbuytext">{{PTGPDInfo.StatusName}}</view>
+  </view>
+
+</view>
+
+<!--遮罩层1-->
+<view wx:if="{{showHowActorView && PTGPDInfo != null && PTGPDInfo.ListHowActor != null && PTGPDInfo.ListHowActor.length > 0}}" class="HowActor_view" style="height:{{windowHeight}}px">
+</view>
+
+<!--如何参加拼团-->
+<!--<view wx:if="{{showHowActorView && PTGPDInfo != null && PTGPDInfo.ListHowActor != null && PTGPDInfo.ListHowActor.length > 0}}" class="HowActor_info" catchtap="hideHowActorView">
+    <image class="HowActor_close" src="/image/close1.png"></image>
+    <view class="HowActor_title">如何参加拼团</view>
+    <view class="HowActor_item" wx:for="{{PTGPDInfo.ListHowActor}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+</view>-->
+
+<!--如何参加拼团-->
+<view wx:if="{{showHowActorView && PTGPDInfo != null && PTGPDInfo.RuleDesc != null && PTGPDInfo.RuleDesc.ListRule != null && PTGPDInfo.RuleDesc.ListRule.length > 0}}" class="HowActor_info" catchtap="hideHowActorView">
+  <image class="HowActor_close" src="/image/close1.png"></image>
+  <view class="HowActor_title">{{PTGPDInfo.RuleDesc.Title}}</view>
+  <view class="HowActor_item" wx:for="{{PTGPDInfo.RuleDesc.ListRule}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+</view>
+
+<!--遮罩层2-->
+<view wx:if="{{showServeDescView &&PTGPDInfo.ServeDesc != null && PTGPDInfo.ServeDesc.ListServeItem != null &&PTGPDInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailview" style="height:{{windowHeight}}px">
+</view>
+
+<!--服务说明-->
+<view wx:if="{{showServeDescView && PTGPDInfo.ServeDesc != null && PTGPDInfo.ServeDesc.ListServeItem != null &&PTGPDInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailinfo" catchtap="hideServeDescView">
+  <view class="ServeDesc_Detailtitle">{{PTGPDInfo.ServeDesc.Title}}</view>
+  <image class="ServeDesc_Detailclose" src="/image/close2.png"></image>
+  <view class="ServeDesc_Detailitem" wx:for="{{PTGPDInfo.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item">
+    <image class="ServeDesc_Detailitemimage" src="/image/check3.png"></image>
+    <view class="ServeDesc_DetailitemView">
+      <view class="ServeDesc_DetailitemTitle">{{item.ItemTitle}}</view>
+      <view>{{item.ItemDesc}}</view>
+    </view>
+  </view>
+</view>

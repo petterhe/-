@@ -1,0 +1,52 @@
+/* pages/store/selectshop.wxss */
+.location_message
+{
+    text-align: center;
+    color: #888;
+    font-size: 15px;
+    padding: 24rpx 0;
+    border-bottom:1px #EBEBEB solid;
+    border-top: 1px #EBEBEB solid; 
+}
+
+.list_header
+{
+    color: #888;
+    background-color: #f3f3f3;
+    font-size: 14px;
+    padding: 6px 20rpx;
+    border-bottom:1px #EBEBEB solid;
+    border-top: 1px #EBEBEB solid; 
+}
+.store_list
+{
+    padding: 10px 20rpx;
+    font-size: 15px;
+    color: #444;
+    border-bottom:1px #EBEBEB solid;
+}
+.store_name
+{
+    
+}
+.store_tag
+{
+    background-color: #448926;
+    border-radius: 4px;
+    padding: 2px 2px;
+    margin-left: 8px;
+    font-size: 13px;
+}
+.store_address
+{
+    color:#888;
+    font-size: 13px;
+    padding-top: 6rpx;
+}
+.store_distance
+{
+    color:#888;
+    float: right;
+    margin-top:20rpx;
+    font-size: 15px;
+}

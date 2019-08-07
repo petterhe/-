@@ -1,0 +1,186 @@
+/**index.wxss**/
+.group_header {
+  position:fixed;
+  height: 40px;
+  top:0;
+  line-height: 40px;
+  background-color:#448926;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-betSween;
+  padding:0 20rpx;
+  width: 750rpx;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  z-index:50;
+}
+
+.storeinfo{
+  height: 32px;
+  line-height: 32px;
+  float:left;
+  width: 680rpx;
+  background-color: #669900;
+  border-radius: 16px;
+  margin-top: 2px;
+  text-align: left;
+  font-size: 13px;
+  padding: 0 15rpx;
+}
+
+.selectaddress
+{
+  font-size: 12px
+}
+
+.pttype_header {
+  position:fixed;
+  height: 40px;
+  top:40px;
+  background-color:#448926;
+  padding:0 20rpx;
+  width: 750rpx;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  z-index:50;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.pttype_view
+{
+  position:fixed;
+  height: 40px;
+  top:40px;
+  background-color:#448926;
+  padding:0 20rpx;
+  width: 750rpx;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: white;
+  z-index:50;
+  display: none;
+}
+
+.pttype_group
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  margin:2px auto;
+  border: 2px #fff solid;
+  border-radius: 4px;
+}
+
+.pttype_item
+{
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.pttype_item_select
+{
+  color: #448926;
+  background-color: #fff;
+}
+
+.ec1_view
+{
+  position:fixed;
+  height: 36px;
+  top:40px;
+  background-color:#fff;
+  color: #444;
+  width: 750rpx;
+  font-size: 14px;
+  border: 1px #f3f3f3 solid;
+  z-index:50;
+}
+
+.ec1_scroll
+{
+  
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.ec1_group
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.ec1_item
+{
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.ec1_select
+{
+  color:#F1521B;
+}
+
+.tab_line
+{
+  position: absolute;
+  top:33px;
+  left: 0px;
+  width: 56px;
+  margin: 0 8px;
+  height: 2px;
+  background-color: #448926;
+}
+
+.list_view
+{
+  margin-top: 76px;
+}
+
+.tips
+{
+  position:fixed;
+  background-color: #FFF8CE;
+  width: 750rpx;
+  padding: 15rpx;
+  text-align: center;
+  font-size: 13px;
+  color: #444444;
+  z-index: 49;
+}
+
+.Buoy_view
+{
+  position:fixed;
+  right: 0;
+  bottom:24px;
+  z-index: 50;
+}
+
+.Buoy_item
+{
+
+}
+
+.Buoy_item:nth-child(1)
+{
+  margin-top: 8px;
+}
+
+.Buoy_image
+{
+  width: 48px;
+  height: 48px;
+}
+

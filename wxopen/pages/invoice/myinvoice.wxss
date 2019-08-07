@@ -1,0 +1,114 @@
+/* pages/invoice/myinvoice.wxss */
+.invoice_view
+{
+  font-size: 14px;
+  color:#444;
+}
+
+.invoice_addinvoice
+{
+    text-align: center;
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom:1px #EBEBEB solid;
+    border-top: 1px #EBEBEB solid; 
+}
+.invoice_addicon
+{
+    position: absolute;
+    margin: 1px -22px;
+    width: 19px;
+    height: 19px;
+}
+
+.invoice_list
+{
+    display: block;
+    border-bottom:1px #EBEBEB solid;
+    font-size: 14px;
+    padding: 10px 10px 0 10px;
+}
+
+
+
+.invoice_itme_view
+{
+
+}
+
+.invoice_item
+{
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-betSween;
+}
+
+.invoice_memo
+{
+  width: 64px;
+}
+
+.invoice_status
+{
+  width: 100px;
+  text-align: right;
+  /* color:#F1521B; */
+}
+
+/* .invoice_title
+{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-betSween;
+} */
+
+.invoice_createtime
+{
+  float: right;
+  width: 200px;
+  text-align: right;
+  color:#888;
+}
+
+.invoice_amt
+{
+   color:#F1521B;
+}
+
+.invoice_checkbox
+{
+    content:'';
+    position:absolute;
+    margin-top: 60rpx;
+    left:20rpx;
+    width:42rpx;
+    height:42rpx;
+    border:2rpx #C3C3C3 solid;
+    border-radius:42rpx;
+    background-color:#fff;
+}
+
+.edit_button
+{
+    float: right;
+    width:66px;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 32rpx;
+    border:1px #C3C3C3 solid;
+    border-radius:2px;
+    text-align: center;
+}
+
+.del_button
+{
+    float: right;
+    width:66px;
+    height: 26px;
+    line-height: 26px;
+    border:1px #C3C3C3 solid;
+    border-radius:2px;
+    text-align: center;
+}

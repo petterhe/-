@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "妙生活",
+  "usingComponents": {
+    "sharedialog": "/components/active/sharedialog",
+    "sharemodal": "/components/common/sharemodal",
+    "regcouponview": "/components/common/regcouponview"
+  }
+}

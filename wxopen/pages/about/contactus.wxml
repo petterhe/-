@@ -1,0 +1,88 @@
+<!--pages/about/contactus.wxml-->
+<view>
+
+  <!--关注公众号-->
+  <view wx:if="{{canAccount}}">
+    <official-account class="account"></official-account>
+    
+    <view class="contact_view1">
+      <view class="contact_item1 contact_item_line" catchtap="copyBusinessNo">
+        <view class="contact_name1">
+          <view>商务合作微信</view><view class="contact_value">{{wxBusinessNo}}</view>
+        </view>
+        <view class="contact_memo">(长按可复制)</view>
+      </view>
+
+      <view class="contact_item1" catchtap="callcontactPhone">
+        <view class="contact_name1">
+          <view>客服电话</view><view class="contact_value">{{contactPhone}}</view>
+        </view>
+        <view class="contact_memo">(长按直接拨打)</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="contact_view">
+    <view class="contact_item contact_item_line" catchtap="copyPublicNo">
+      <view class="contact_name">
+        <view>微信官方公众号：</view><view class="contact_value">{{wxPublicNo}}</view>
+      </view>
+      <view class="contact_memo">(长按可复制)</view>
+    </view>
+
+    <!-- <view class="contact_item" catchtap="copyReturnNo">
+      <view class="contact_name">
+        <view>售后客服微信：</view><view class="contact_value">{{wxReturnNo}}</view>
+      </view>
+      <view class="contact_memo">(长按可复制)</view>
+    </view> -->
+
+    <view class="contact_item contact_item_line" catchtap="copyBusinessNo">
+      <view class="contact_name">
+        <view>商务合作微信号：</view><view class="contact_value">{{wxBusinessNo}}</view>
+      </view>
+      <view class="contact_memo">(长按可复制)</view>
+    </view>
+
+    <view class="contact_item" catchtap="callcontactPhone">
+        <view class="contact_name">
+          <view>客服电话</view><view class="contact_value">{{contactPhone}}</view>
+        </view>
+        <view class="contact_memo">(长按直接拨打)</view>
+      </view>
+  </view>
+
+
+  <button class="contact_online" type = "primary" open-type="contact">联系在线客服</button>
+
+
+  <view class="content2" wx:if="{{customerServiceWorkTime != null && customerServiceWorkTime.length > 0}}">客服在线时间:{{customerServiceWorkTime}}</view>
+
+<!-- 
+ <view class="content1" wx:if="{{wxPublicNo != null && wxPublicNo.length > 0}}">
+    <view class="content1_view1">微信官方公众号<text class="textmemo">(长按可复制)</text></view>
+    <view class="content1_view2" catchtap="copyPublicNo">关注"<text text class="red_text">{{wxPublicNo}}</text>"</view>
+  </view>
+
+  <view class="content1" wx:if="{{wxReturnNo != null && wxReturnNo.length > 0}}">
+    <view class="content1_view1">售后客服微信<text class="textmemo">(长按可复制)</text></view>
+    <view class="content1_view2" catchtap="copyReturnNo">收到货不满意,加微信号"<text text class="red_text">{{wxReturnNo}}</text>"</view>
+  </view>
+
+  <view class="content1" wx:if="{{contactPhone != null && contactPhone.length > 0}}">
+    <view class="content1_view1">客服电话<text class="textmemo">(长按直接拨打)</text></view>
+    <view class="content1_view2"><text catchtap="callcontactPhone" class="red_text">{{contactPhone}}</text></view>
+  </view> -->
+
+<!-- 
+ <contact-button 
+  type="default-dark" 
+  size="27"
+  session-from="weapp"
+  class='contact_test'
+>
+</contact-button> -->
+
+  
+
+</view>

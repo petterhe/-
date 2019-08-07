@@ -1,0 +1,41 @@
+<!--pages/people/index.wxml-->
+<view>
+    <view class="headr_view">
+        <image class="index_bg" mode="scaleToFill" src="/image/index_bg.jpg"></image>
+        
+      <view class="avatar_view">
+          <image wx:if="{{avatarUrl}}" class="avatar_img" src="{{avatarUrl}}"></image>
+
+          <image wx:else class="avatar_img" catchtap="bindPhone" src='/image/avatar_default.jpg'></image>
+
+      </view>
+      
+      <view wx:if="{{isTempCustomer}}" class="bindPhone" catchtap="bindPhone">请点击登录</view>
+      <view wx:else class="customerId">{{customerID}}</view>
+    </view>
+
+    <view wx:if="{{nickName}}" class="nick_name">{{nickName}}</view>
+      
+    <view wx:if='{{canWebView}}' class='qCode' catchtap="showQCode">
+      <image class='qCode_image' src='/image/qcode.png'></image>
+    </view>
+
+    <!--菜单-->
+    <view wx:if="{{listUserMenu!=null && listUserMenu.length>0}}" class="mod_menu">
+      <view class="menu_row" wx:for="{{[0, 1]}}" wx:for-item="r">
+        <view class="menu_item" wx:for="{{[r*4 + 0, r*4 + 1, r*4 + 2, r*4 + 3]}}" wx:for-item="i" wx:if="{{listUserMenu.length>i}}" catchtap="menuopen" data-index="{{i}}">
+           <text wx:if="{{listUserMenu[i].MenuKey == CouponKey && CouponCount != null && CouponCount.length > 0}}" class="badge">{{CouponCount}}</text>
+          <image class="menu_item_img" src="{{listUserMenu[i].MenuIconUrl}}" mode="scaleToFill"></image>
+          <text>{{listUserMenu[i].MenuName}}</text>
+          <!--<view class="rigth_line" wx:if="r%4>0"></view>-->
+        </view>
+      </view>
+    </view>
+
+    <!--下载APP-->
+    <view wx:if="{{downloadUrl}}">
+      <image class='app_download' catchtap='toAboutAPP' src='{{downloadUrl}}'></image>
+    </view>
+    <!--
+    <button wx:if="{{canLaunchApp}}" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>-->
+</view>

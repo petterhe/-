@@ -1,0 +1,106 @@
+<view class="container">
+
+  <!--头部-->
+  <view class="group_header">
+    <view class="storeinfo" bindtap="toSelectAddress">{{storename}}
+      <text class="selectaddress">{{selectaddress}}</text>
+    </view>
+  </view>
+
+  <view class="pttype_view" wx:if="{{ListPTType != null && ListPTType.length > 0}}">
+    <view class="pttype_group" style="width:{{ListPTType.length*72}}px">
+      <view class="pttype_item" style="width:72px" wx:for="{{ListPTType}}" wx:for-index="i" wx:for-item="ptitem" catchtap="pttypechage" data-index="{{i}}" wx:if="{{i<2}}">
+        <view class="pttype_item_select" wx:if="{{i == selectPTIndex}}">{{ptitem.PTTypeName}}</view>
+        <view wx:else>{{ptitem.PTTypeName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="ec1_view" wx:for="{{ListPTType}}" wx:for-index="i" wx:for-item="ptitem" wx:if="{{ListPTType != null && ListPTType.length > 0 && i == selectPTIndex}}">
+    <scroll-view class="ec1_scroll" scroll-x="true" scroll-left="{{scrollLeft}}" wx:if="{{ptitem.ListEC1 != null && ptitem.ListEC1.length > 0}}">
+      <view class="ec1_group" style="width:{{ptitem.ListEC1.length * tabitemwidth}}px">
+        <view class="ec1_item" style="width:{{tabitemwidth}}px" wx:for="{{ptitem.ListEC1}}" wx:for-index="j" wx:for-item="ec1item" catchtap="ec1chage" data-index="{{j}}">
+            <view class="ec1_select" wx:if="{{(i == 0 && j == leftTabIndex) || (i == 1 && j == rightTabIndex)}}">{{ec1item.EC1Name}}</view>
+            <view wx:else>{{ec1item.EC1Name}}</view>
+        </view>
+         <view animation="{{tabAnimationData}}" class="tab_line"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="list_view" wx:for="{{ListPTType}}" wx:for-index="i" wx:for-item="ptitem" wx:if="{{ListPTType != null && ListPTType.length > 0 && i == selectPTIndex}}">
+
+    <view wx:if="{{ptitem.ListEC1 != null && ptitem.ListEC1.length > 0}}" >
+      
+      <view wx:for="{{ptitem.ListEC1}}" wx:for-index="j" wx:for-item="ec1item" catchtap="ec1chage" data-index="{{j}}">
+        <view wx:if="{{((i == 0 && j == leftTabIndex) || (i == 1 && j == rightTabIndex)) && ec1item.ListProduct != null && ec1item.ListProduct.length > 0}}">
+          <view class ="g_list" wx:for="{{ec1item.ListProduct}}" wx:for-index="k" wx:for-item="product" catchtap="productdetail" data-index="{{k}}">
+
+          <!--<view class="float_priceview">
+          <view class="float_price">¥{{product.GPrice/100.00}}</view>
+          <view class="float_bprice">¥{{product.BasicPrice/100.00}}</view>
+        </view>-->
+
+          <view class="discount_view" wx:if="product.DiscountRate != null && product.DiscountRate.length > 0 && product.DiscountRate < 1"><text class="discount_text">{{product.DiscountRate}}</text>折</view>
+
+          <image class="jisuda_view" src="/image/jisuda.png" wx:if="{{ec1item.PTTypeNo==XiaoShiType}}"></image>
+          <!--<image class="jisuda_view" src="/image/jisuda.png"></image>-->
+         
+          <image class="g_list_img" src="{{product.PictureUrl}}" mode="scaleToFill"></image>
+            <text class="g_list_name">{{product.CustPName}}</text>
+            
+            <view class="g_list_priceview">
+
+              <text class="g_list_groupbutton" catchtap="productdetail" data-index="{{k}}">去开团</text>
+              <view class="g_list_price">
+                <text class="g_list_num">¥{{product.GPrice/100.00}}</text>
+                <text class="g_list_baseprice">¥{{product.BasicPrice/100.00}}</text>
+                <text class="g_list_orderdesc">{{product.OrderDesc}}</text>
+              </view>
+            </view>
+          </view> 
+
+           <view class="g_list_line" wx:if="{{k<ec1item.ListProduct.length - 1}}"></view>
+
+        </view>
+      </view>
+    </view>
+ 
+  </view>
+
+
+  <view class="Buoy_view" wx:if="{{ListBuoy != null && ListBuoy.length >0}}">
+    <view class="Buoy_item" wx:for="{{ListBuoy}}" wx:for-index="i" wx:for-item="Buoyitem" wx:if="{{i<2}}">
+       <image class="Buoy_image" src="{{Buoyitem.ImgUrl}}" catchtap="BuoyClick" data-index="{{i}}"></image>
+    </view>
+  </view>
+
+  <!--<scroll-view scroll-x="true" class="ec1_group">
+      <view class="ec1_item">
+         1000
+      </view>
+      <view class="ec1_item">
+         1000
+      </view>
+      <view class="ec1_item">
+         1000
+      </view>
+    </scroll-view>-->
+
+  <!--<view class="ec1_view">
+    <scroll-view scroll-x="true" class="ec1_group">
+      <view class="ec1_item" wx:for="{{ListPTType[0].ListEC1}}" wx:for-index="j" wx:for-item="ec1item">
+          {{ec1item.EC1Name}}
+      </view>
+    </scroll-view>
+
+  </view>-->
+
+  <!--头部-->
+
+  <!--页面详情-->
+  <!--<view class="app_detail">
+
+  </view>-->
+  <!--页面详情-->
+</view>

@@ -1,0 +1,123 @@
+<!--pages/active/givehelp.wxml-->
+<view wx:if="{{activeInfo!=null}}"  style='background:#fff'>
+  <image class="pg_image" src='{{activeInfo.ShareBGImgUrl}}'>
+</image>
+  
+  <view class="time_view_1">剩余 {{timeMemo}}</view>
+  
+  <image catchtap='toHome' class='home_float' src='/image/home_img.png'/> 
+
+  <view class="page_view"> 
+
+    <!-- <image src='/image/give_decorate.png' class="give_decorate"></image> -->
+
+
+    <view class="give_view">
+      <view class='give_memo'>{{giveMemo}}</view>
+
+      <view class='give_people_view' wx:if="{{activeInfo.HelpUserList != null && activeInfo.HelpUserList.length > 0}}">
+
+        <!--前5个-->
+        <view class='give_people_item' wx:for="{{activeInfo.HelpUserList}}" wx:for-index="i" wx:for-item="item" wx:if="{{ i < 5}}">
+          <image class="avatar_image" wx:if="{{item.AvatarUrl != null && item.AvatarUrl.length > 0}}" src="{{item.AvatarUrl}}"/>        
+          <image src="/image/avatarempty.png" class="avatar_empty" wx:else></image>
+          <view wx:if="{{item.IsMaster == 1}}" class='people_item_tag'>团长</view>
+          <view wx:if="{{item.NickName != null && item.NickName.length > 0}}" class='people_item_name'>{{item.NickName}}</view>
+        </view>
+
+          <!--省略号-->
+          <view wx:if="{{activeInfo.HelpUserList.length > 6}}" class="people_item_more" >...</view>
+        
+          <!--最后一个-->
+          <view class='give_people_item' wx:if="{{activeInfo.HelpUserList.length >= 6}}">
+            <image class="avatar_image" wx:if="{{activeInfo.HelpUserList[activeInfo.HelpUserList.length-1].AvatarUrl != null && activeInfo.HelpUserList[activeInfo.HelpUserList.length-1].AvatarUrl.length > 0}}" src="{{activeInfo.HelpUserList[activeInfo.HelpUserList.length-1].AvatarUrl}}"/>        
+            <image src="/image/avatarempty.png" class="avatar_empty" wx:else></image>
+            <view wx:if="{{activeInfo.HelpUserList[activeInfo.HelpUserList.length-1].NickName != null && [activeInfo.HelpUserList.length-1].NickName.length > 0}}" class='people_item_name'>{{activeInfo.HelpUserList[activeInfo.HelpUserList.length-1].NickName}}</view>
+        </view>
+
+      </view>
+      
+      <view class='give_people_view' wx:else>
+
+        <!-- <view class='give_people_item' wx:for="{{[0,1,2]}}" wx:for-index="i" wx:if="{{ i < 6}}">
+        
+          <image src="/image/avatarempty.png" class="avatar_empty"></image>
+          <view class='people_item_tag'>团长</view>
+          <view class='people_item_name'>胡就</view>
+        </view> -->
+
+      </view>
+
+      
+
+      <view class='give_status'>{{statusText}}</view>
+
+      <button class='give_button' wx:if="{{showShareButton}}" open-type='share'>{{buttonText}}</button>
+
+      <button class='give_button' wx:else catchtap='buttonClick'>{{buttonText}}</button>
+
+      <!-- <button class='give_button'>帮他助力</button> -->
+    </view>
+
+    <view class='line_view'></view>
+
+    <view class='give_rule_view'>
+
+      <view class='give_rule_title'>活动规则</view>
+
+      <view class='give_rule_detail'>
+        <view>1. 用户发起助力，需邀请新用户帮忙助力，按页面提示分享给微信好友。</view>
+        <view>2. 在发起助力的有效时间（助力有效时间以
+    活动页面显示为准）内达到成功助力人数
+    即为助力完成，否则无效。</view>
+        <view>3. 助力完成后红包将在24小时内自动发放，
+    可在活动页面中查看。</view>
+        <view>4. 活动期间，每位用户每天仅能发起1
+    次，助力用户每天仅助力{{DailyHelpLimitCount}}次。</view>
+        <view>5. 红包到达账户后，可在妙生活app、小程序购买产
+    品时使用。</view>
+      </view>
+    </view>
+
+    <view class="page_memo">活动最终解释权归妙生活所有</view>
+
+  </view>
+</view>
+
+<!--红包领取弹框-->
+<sharedialog wx:if="{{activeInfo != null}}"  class='sharedialog' id="sharedialog"
+  title='{{shareDialogTitle}}' 
+  content='{{shareDialogContent}}' 
+  buttonText='{{shareDialogbuttonText}}' 
+  isShowShare='{{shareDialogisShowShare}}'
+  bind:closeShareDialog="_closeShareDialog"
+  bind:buttonClick="_buttonClick">
+</sharedialog>
+
+<!--提醒弹框-->
+<sharemodal id="sharemodal"
+  title='{{sharemodalTitle}}' 
+  content='{{sharemodalContent}}' 
+  confirmText='{{sharemodalconfirmText}}'
+  cancelText='{{sharemodalcancelText}}' 
+  isShowShare='{{sharemodalisShowShare}}'
+  bind:confirmModal="_confirmModal"
+  bind:cancelModal="_cancelModal">
+</sharemodal>
+
+
+
+<!-- <sharedialog class='sharedialog' id="sharedialog"
+  title='分享微信群得红包' 
+  content='您已成功分享1个群，继续分享3个群，可得30元红包' 
+  buttonText='立即分享' 
+  bind:cancelEvent="_cancelEvent">
+</sharedialog>
+
+<button type="primary" bindtap="showDialog"> ClickMe! </button> -->
+
+<!--红包展示-->
+<regcouponview wx:if="{{isShowCouponImage}}" 
+  bind:closeView="closeCouponView"
+  bind:buttonClick="couponViewClick">
+</regcouponview>

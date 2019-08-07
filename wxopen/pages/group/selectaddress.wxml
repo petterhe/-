@@ -1,0 +1,34 @@
+<!--pages/order/selectaddress.wxml-->
+<view class="container">
+        <view class="address_addaddress" catchtap="addaddress">
+        <image class="address_addicon" src="/image/add_icon.png"></image>
+        新增收货地址</view>
+
+        <view class="main_view" wx:if="{{listAddress!=null && listAddress.length >0 }}">
+
+        <view class="address_list" wx:for="{{listAddress}}" wx:for-index="i" wx:for-item="item" catchtap="selectaddress" data-index="{{i}}">
+    
+    <!--<view wx:if="{{item.SysNo != selectAddressSysNo}}" class="address_checkbox"></view>
+    <view wx:else class="address_checkbox"></view>-->
+
+        <image wx:if="{{item.SysNo != selectAddressSysNo}}" src="/image/check1.png" class="address_checkbox"></image>
+
+        <image wx:else src="/image/check2.png" class="address_checkbox"></image>
+
+        <text class="edit_button" catchtap="editaddress" data-index="{{i}}">编辑</text>
+
+        <!--<text class="del_button"  catchtap="deladdress" data-index="{{i}}">删除</text>-->
+        
+        <view class="address_text_view">
+            <view class="address_text">{{item.Contact}}</view>
+            <view class="address_text">{{item.CellPhone}}</view>
+            <view class="address_text">{{item.Placemarks}}</view>
+            <view class="address_text">{{item.Address}}</view>
+        </view>
+
+        </view>
+
+    </view>
+
+</view> 
+

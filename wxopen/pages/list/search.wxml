@@ -1,0 +1,107 @@
+<!--<view class="app_header">
+  <view>搜索</view>
+</view>-->
+<view class="container">
+  <view class="searchbar">
+    <view class="searchtview">
+      <input class="searchtext" bindinput="bindKeyInput" placeholder="请输入您需要搜索的内容" value="{{searchValue}}" focus="{{focus}}" />
+    </view>
+    <image wx:if="{{searchValue != null && searchValue.length > 0}}" class="clearbutton" catchtap="clear" mode="scaleToFill" src="/image/close.png"></image>
+    <text class="btnSearch" catchtap="search">搜索</text>
+    <!--<text class="scanbutton" catchtap="scan">扫一扫</text>-->
+  </view>
+
+  <scroll-view class="main_view" style="height:{{listHeight}}px" scroll-y="true" bindscrolltolower="loadmore" wx:if="{{productlist!=null && productlist.length>0}}" enable-back-to-top="true">
+
+    <!-- 列表使用大图 -->
+    <!--
+    <view class ="g_list" wx:for="{{productlist}}" wx:for-index="i" wx:for-item="product" catchtap="productDetail" data-index="{{i}}" data-productsysno="{{product.SysNo}}">
+
+    <image class="jisuda_view1" src="/image/jisuda.png"></image>
+
+    <image class="g_list_img" src="{{product.PictureUrl}}" mode="scaleToFill"></image>
+
+    <view wx:if="{{product.PromotionDesc != null && product.PromotionDesc.length > 0}}" class="g_list_promotiontext">{{product.PromotionDesc}}</view>
+      
+      <view class="g_list_name">{{product.ProductName}}</view>
+      
+      <view class="g_list_priceview">
+
+        <text class="g_list_groupbutton" catchtap="addCart" data-index="{{i}}" data-productsysno="{{product.SysNo}}">加入购物车</text>
+        <view class="g_list_price">
+          <text class="g_list_num">¥{{product.Price/100.00}}</text>
+          <text class="g_list_baseprice">¥{{product.BasicPrice}}</text>
+          <text class="g_list_orderdesc">{{product.SalesCount}}</text>
+        </view>
+      </view>
+    </view> 
+    -->
+    <!-- 列表使用大图 -->
+    
+    <!--<view wx:if="{{isIPhone}}" class="bottom_view"></view>-->
+
+    <!-- 列表使用小图 -->
+    <view class ="p_list" wx:for="{{productlist}}" wx:for-index="i" wx:for-item="product" catchtap="productDetail" data-index="{{i}}" data-productsysno="{{product.SysNo}}">
+      <view class="p_image_view">
+        <!-- <image class="p_list_jisuda_view1" src="/image/jisuda.png"></image> -->
+
+        <!--图片标签-->
+        <image wx:if="{{product.LabelUrl != null && product.LabelUrl.length > 0}}" class="p_list_labelimage" src="{{product.LabelUrl}}"></image>
+
+        <image class="p_list_img" src="{{product.PictureUrl}}" mode="scaleToFill"></image>
+      </view>
+      <view class="p_text_view">
+        <text class="p_list_name">{{product.ProductName}}</text>
+        <text class="p_list_desc">{{product.PromotionDesc}}</text>
+
+        <!--标签-->
+        <view class="p_list_labelview">
+            <view wx:if="{{product.LabelTextList != null && product.LabelTextList.length > 0}}" wx:for="{{product.LabelTextList}}" wx:for-index="i" wx:for-item="labelitem" wx:if="{{i<3}}">
+            <view wx:if="{{labelitem.LabelTextStyle == 1}}" class="p_list_label_item p_list_label_item_yellow">{{labelitem.LabelText}}</view>
+            <view wx:else class="p_list_label_item p_list_label_item_green">{{labelitem.LabelText}}</view>
+          </view>
+        </view>
+        <!--标签-->
+
+      <!-- <view class="p_list_review">{{product.SalesCount}}</view> -->
+        <!-- <view class="p_list_review"><text class="p_list_rank" style="background-image:url({{StarImgUrl}})"><text class="p_list_inner" style="background-image:url({{StarImgUrl}}); width:{{((product.ReviewScore==0?10:product.ReviewScore)*10)}}%;"></text></text> {{product.SalesCount}}
+        </view>      -->
+        
+        <view class="p_list_btn_cart" wx:if="{{product.InvStatus == 0 || product.InvStatusName == null || product.InvStatusName.length ==0}}">
+          <image class="p_list_cart_img" catchtap="addCart" data-index="{{i}}" data-productsysno="{{product.SysNo}}" src='/image/number_p.png'></image>
+        </view>
+        <view wx:else class="p_list_invstatus">{{product.InvStatusName}}</view>
+
+        <!--尊享价-->
+        <view wx:if="{{product.IsShowVIPPrice == 1}}"> 
+          <view class="p_list_n_price">¥{{product.Price/100.00}}</view>
+          <view class="p_list_price">
+            <text class="p_list_num">¥{{product.VIPPrice/100.00}}</text>
+            <text>/{{product.DenominatedUnit}}</text>     
+            <image class="p_list_vip_price_flag" src="/image/vip_price_flag.png"></image>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="p_list_n_price">
+            <text wx:if="{{product.BasicPrice}}" class="p_list_baseprice">¥{{product.BasicPrice}}</text>
+          </view>
+          <view class="p_list_price">
+            <text class="p_list_num">¥{{product.Price/100.00}}</text>
+            <text>/{{product.DenominatedUnit}}</text>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <!-- 列表使用小图 -->
+  </scroll-view>
+
+  <!--悬浮购物车-->
+  <view class="float_cartview" >
+      <text class="float_cartbadge" wx:if="{{ShoppingCartCount > 0}}" >{{ShoppingCartCount}}</text>
+      <image class="float_cart" catchtap="toCart" src="/image/blackcart.png"></image>
+  </view>
+
+</view>
+
+<!-- image class="p_list_btn_cart" src="/image/cartbutton.png" catchtap="addCart" data-index="{{i}}" data-productsysno="{{product.SysNo}}"></image> -->

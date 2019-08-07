@@ -1,0 +1,63 @@
+/* components/common/imagebtnview.wxss */
+.view_class
+{
+  width: 750rpx;
+  height: 160rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;  
+}
+
+.view_image
+{
+  margin: 25rpx 25rpx;
+  height: 120rpx;
+  width:120rpx;
+}
+
+.view_item
+{
+  width: 390rpx;
+}
+
+.view_title
+{
+  margin-top: 25rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.view_memo
+{
+  margin-top: 10rpx;
+  height: 72rpx;
+  line-height: 36rpx;
+  font-size: 13px;
+  color: #888;
+  overflow: hidden;
+}
+
+.image_button
+{
+  margin: 50rpx 25rpx;
+  width: 140rpx;
+  height: 60rpx;
+}
+
+.view_button
+{
+  margin: 50rpx 25rpx;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #F1521B;
+  border-radius:2px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+}
+
+

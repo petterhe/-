@@ -1,0 +1,53 @@
+/* components/common/regcouponview.wxss */
+.regc_bg_view
+{
+  position:fixed;
+  top: 0;
+  z-index:900;
+  width: 754rpx;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+}
+
+.coupon_view
+{
+  position:fixed;
+  top:100rpx;
+  width: 750rpx;
+  border-radius: 5px;
+  z-index: 950;
+  text-align: center;
+}
+
+.coupon_image
+{
+  width: 537rpx;
+  height: 670rpx;
+  margin:12px 106.5rpx 0 106.5rpx; 
+} 
+
+.coupon_button_view
+{
+   margin:-138rpx 163.5rpx 0 193.5rpx;  
+}
+
+.coupon_button
+{
+  width: 393rpx;
+  height: 112rpx;
+}
+
+.coupon_close
+{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 25rpx;
+}
+
+.coupon_close_view
+{
+  margin: 25rpx 310rpx 0 340rpx;
+  width: 100rpx;
+  height: 100rpx;
+}

@@ -1,0 +1,128 @@
+/* pages/refund/orderrefund.wxss */
+Page
+{
+   background-color: #f1f1f1;
+   font-size: 13px;
+}
+
+.list_order
+{
+  margin: 10px 0;
+  padding: 10px 15px;
+  background: #fff;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order_flag
+{
+  float: left;
+  width: 13.5px;
+  height: 16px;
+  margin: 2px 5px 0 0;
+}
+
+.order_id
+{
+  color: #333;
+}
+
+.list_item
+{
+    padding:10px 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    height: 110px;
+    display: flex;
+    flex-direction: row;
+}
+
+.item_product
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.item_img
+{
+  width: 65px;
+  height: 65px;
+  margin-right: 10px;
+  margin-top: 22.5px;
+}
+
+.item_name
+{
+  margin: 0;
+  height: 30px;
+  line-height: 15px;
+  overflow: hidden;
+  color: #333;
+}
+
+.item_data
+{
+  margin-top: 9px;
+  height: 18px;
+  line-height: 18px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.item_price
+{
+    color:#F1521B;
+    font-size: 14px;
+}
+
+.item_num
+{
+   color: #999;
+   font-size: 12px;
+}
+
+.item_button
+{
+  position: absolute;
+  right: 10px;
+  margin-top:-24px;
+  width:70px;
+  height: 26px;
+  line-height: 26px;
+  border-radius:13px;
+  text-align: center;
+  color: #F1521B;
+  border:1px #F1521B solid;
+  font-size: 13px;
+}
+
+.item_button1
+{
+  position: absolute;
+  right: 10px;
+  margin-top:-24px;
+  width:70px;
+  height: 26px;
+  line-height: 26px;
+  border-radius:13px;
+  text-align: center;
+  color: #F39800;
+  border:1px #F39800 solid;
+  font-size: 13px;
+}
+
+.item_button2
+{
+  position: absolute;
+  right: 10px;
+  margin-top:-24px;
+  width:70px;
+  height: 26px;
+  line-height: 26px;
+  border-radius:13px;
+  text-align: center;
+  font-size: 13px;
+}

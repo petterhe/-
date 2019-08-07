@@ -1,0 +1,20 @@
+/* pages/about/tipspage.wxss */
+.tips_info
+{
+  padding: 10px 15px;
+  color:#333;
+}
+
+.title
+{ 
+  margin:10px 0 10px 0;
+  font-size:15px;
+  font-weight: 600;
+}
+
+.contect
+{
+  margin:5px 0 25px 0;
+  font-size: 13px;
+  color: #666;
+}

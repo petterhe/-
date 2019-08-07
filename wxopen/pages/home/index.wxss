@@ -1,0 +1,323 @@
+/**index.wxss**/
+.group_header {
+  position:fixed;
+  height: 40px;
+  top:0;
+  line-height: 40px;
+  background-color:#448926;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  padding:0 10px;
+  width: 750rpx;
+  box-sizing: border-box;
+  font-size: 16px;
+  color:#000;
+  text-align: center;
+  z-index:200;
+}
+
+.storeinfo{
+  height: 32px;
+  line-height: 32px;
+  float:left;
+  width: 580rpx;
+  background-color: #fff;
+  border-radius: 16px;
+  margin-top: 2px;
+  text-align: left;
+  font-size: 13px;
+  padding: 0 15rpx;
+}
+
+.selectaddress
+{
+  font-size: 12px
+}
+
+.searchbutton{
+  position: absolute;
+  right:12px;
+  top:4px;
+  width: 28px; 
+  height: 28px;
+}
+
+/*.ec1_view
+{
+  position:fixed;
+  height: 40px;
+  top:40px;
+  background-color:#fff;
+  color: #444;
+  width: 750rpx;
+  font-size: 15px;
+  border: 1px #f3f3f3 solid;
+  z-index:50;
+}
+
+.ec1_scroll
+{
+  
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.ec1_group
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.ec1_item
+{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.ec1_select
+{
+  color:#F1521B;
+}
+
+.tab_line
+{
+  position: absolute;
+  top:38px;
+  left: 0px;
+  width: 59px;
+  margin: 0 8px;
+  height: 2px;
+  background-color: #448926;
+}
+
+.list_view
+{
+  margin-top: 80px;
+}*/
+
+.ec1_view
+{
+  position:fixed;
+  height: 80px;
+  top:40px;
+  background-color:#fff;
+  color: #444;
+  width: 750rpx;
+  font-size: 14px;
+  z-index:50;
+}
+
+.ec1_view_height1
+{
+  height: 40px;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.ec1_group
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  /* border-bottom: 1px #f3f3f3 solid; */
+}
+
+.ec_view
+{
+  position:fixed;
+  height: 80px;
+  top:40px;
+  z-index:50;
+  /* border-bottom: 1px #f3f3f3 solid; */
+}
+
+.ec1_scroll
+{
+  position:fixed;
+  height: 40px;
+  top:40px; 
+  background-color:#fff;
+  color: #444;
+  font-size: 16px;
+  z-index:50;
+}
+
+
+.ec1_item
+{
+  height: 39px;
+  line-height: 39px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ec1_select
+{
+  color:#F1521B;
+  font-size: 17px;
+}
+
+.ec1_image
+{
+  height: 30px;
+  width: 48px;
+  margin: 0px auto;
+}
+
+.gourp_float
+{
+  position:fixed;
+  top:40px;
+  height: 39px;
+  right: 0px;
+  z-index: 100;
+}
+
+/* .ec1_image1
+{
+  height: 36px;
+  width: 58px;
+  margin: 0px auto;
+} */
+
+.ec1_spprice
+{
+  /* color:#008cee; */
+  color:#448926;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ec1_spprice_select
+{
+  color:#F1521B;
+}
+
+.ec2_scroll
+{
+  position:fixed;
+  height: 40px;
+  top:80px; 
+  background-color:#fff;
+  color: #666;
+  font-size: 14px;
+  z-index:50; 
+  border-bottom: 1px #f3f3f3 solid; 
+}
+
+.ec2_group
+{
+  height: 39px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  font-size: 13px;
+  margin: 0 5px;
+}
+
+.ec2_item
+{
+  margin: 6px 5px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  background:#f1f1f1;
+}
+
+.ec2_select
+{
+  color:#F1521B;
+}
+
+.tab_line
+{
+  position: absolute;
+  /*top:38px;
+  left: 0px;*/
+  /*width: 50px;*/
+  /*margin: 0 4px;*/
+  margin:-5px 4px 0 4px;
+  height: 2px;
+  background-color: #F1521B;
+  /* background-color: #f39800; */
+}
+
+.list_view
+{
+   /* margin-top: 120px; */
+   /* padding-top: 80px; */
+
+}
+
+.list_header_view
+{
+  text-align: center;
+}
+
+.tips
+{
+  position:fixed;
+  background-color: #FFF8CE;
+  width: 750rpx;
+  padding: 15rpx;
+  text-align: center;
+  font-size: 13px;
+  color: #444444;
+  z-index: 49;
+}
+
+.fans_view
+{
+  position:fixed;
+  right: 0;
+  bottom: 48px;
+  z-index: 50;
+}
+
+.fans_image
+{
+  width: 48px;
+  height: 48px;
+}
+
+.Buoy_view
+{
+  position:fixed;
+  right: 0;
+  bottom: 108px;
+  z-index: 50;
+}
+
+.Buoy_item
+{
+
+}
+
+.Buoy_item:nth-child(1)
+{
+  margin-top: 8px;
+}
+
+.Buoy_image
+{
+  width: 48px;
+  height: 48px;
+}
+
+.bottom_view
+{
+    height: 48px;
+    background-color: #fff;
+}
+

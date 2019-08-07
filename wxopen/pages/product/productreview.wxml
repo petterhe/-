@@ -1,0 +1,23 @@
+<!--pages/product/productreview.wxml-->
+<view class="reviewinfo" wx:if="{{listReview != null && listReview.length >0}}">
+  <view class="review_list" wx:for="{{listReview}}" wx:for-index="i" wx:for-item="item">
+
+    <image class="avatar_img" src="/image/avatar_default.jpg"></image>
+
+    <view class="review_detail" style="width:{{windowWidth-60}}px;">
+      <view class="nick_view">
+        <view class="nick_name">{{item.NickName}}</view>
+        <view class="review"><text class="rank" style="background-image:url({{StarImgUrl}})"><text class="inner" style="background-image:url({{StarImgUrl}}); width:{{((item.Score==0?10:item.Score)*10)}}%;"></text></text>
+        </view>
+      </view>
+      <view class="content">{{item.Content1}}</view>
+      <view class="createdate">{{item.strRowCreateDate}}</view>
+
+      <view class="reply_view" wx:if="{{item.ReviewReplyList != null && item.ReviewReplyList.length > 0}}">
+        <view wx:for="{{item.ReviewReplyList}}" wx:for-index="j" wx:for-item="itemReply">
+          <view><text class="reply_name">小妙回复：</text>{{itemReply.ReplyContent}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

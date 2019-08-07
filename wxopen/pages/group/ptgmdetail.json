@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "团单详情",
+  "usingComponents": {
+    "imagebtnview": "/components/common/imagebtnview"
+  }
+}

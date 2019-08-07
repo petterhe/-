@@ -1,0 +1,12 @@
+<!--components/common/imagebtnview.wxml-->
+<!--邀群信息-->
+<view class="view_class">
+  <image class='view_image' src="{{imageUrl}}"></image>
+  <view class="view_item">
+    <view class='view_title'>{{title}}</view>
+    <view class='view_memo'>{{memo}}</view>
+  </view>
+  <image class='image_button' wx:if="{{showImageBtn == 1}}" src="{{btnImageUrl}}" catchtap='_buttonClick'></image>
+  <view wx:else class="view_button" catchtap='_buttonClick'>{{buttonText}}</view>
+</view>
+

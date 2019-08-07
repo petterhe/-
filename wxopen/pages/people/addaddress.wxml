@@ -1,0 +1,102 @@
+<!--pages/people/addaddress.wxml-->
+<!--<view class="address_view">-->
+
+<form bindsubmit="submit" report-submit="true"> <view class="address_view">
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">姓名:</text>
+    <input class="name item_detail" style="width:{{windowWidth-80}}px" bindinput="bindContactInput" placeholder="收货人姓名" value="{{Contact}}" focus="{{namefocus}}" maxlength="50"/>
+  </view>
+
+<view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">姓别:</text>
+    
+    <view wx:if="{{listGender}}" class='gender_view' style="width:{{windowWidth-80}}">
+      <view class="gender_item" catchtap="selectGender" wx:for="{{listGender}}" wx:for-index="i" wx:for-item="item" data-index="{{i}}" data-key="{{item.Key}}">
+          <view wx:if="{{item.Key==Gender}}" class='gender_detail gender_detail_select'>{{item.Value}}</view>
+          <view wx:else class='gender_detail'> {{item.Value}}</view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">电话:</text>
+    <input class="tel item_detail" style="width:{{windowWidth-80}}px" type="number" bindinput="bindCellPhoneInput" placeholder="联系电话" value="{{CellPhone}}" maxlength="16"/>
+  </view>
+  
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">省市:</text>
+    <view class="section item_detail" style="width:{{windowWidth-80}}px">
+    <picker bindchange="bindProvinceChange" value="{{Provinceindex}}" range="{{listProvince}}" range-key="ProvinceName">
+        <view class="picker">{{ProvinceName}}</view>
+    </picker>
+
+    <picker bindchange="bindCityChange" value="{{Cityindex}}" range="{{listCity}}" range-key="CityName">
+        <view class="citypicker">{{CityName}}</view>
+    </picker>
+
+    <view class="location_button" catchtap="chooseLocation">获取当前位置</view>
+    </view>
+  </view>
+  
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">街道小区:</text>
+    <view class="item_detail" style="width:{{windowWidth-80}}px">
+      <view class="placemark_memo " catchtap="searchAddress" wx:if="{{Placemarks ==null || Placemarks.length == 0}}">街道、小区、办公楼等</view>
+      <view class="placemark" catchtap="searchAddress">{{Placemarks}}
+    </view>
+    </view>
+    <image class ="right_icon" src="/image/rightarrow.png"></image>
+  </view>
+    <!--<textarea class="address" bindinput="bindAddressPhoneInput" cursor-spacing="10" auto-height="true" placeholder="请输入楼号、单元、门牌号等详细地址" value="{{Address}}" />-->
+
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">详细地址:</text>
+    <input class="address item_detail" style="width:{{windowWidth-80}}px" bindinput="bindAddressPhoneInput" placeholder="收货详细地址" value="{{Address}}" focus="{{addressfocus}}" maxlength="100"/>
+  </view>
+
+  <view class="item" style="width:{{windowWidth-20}}px">
+    <text class="item_title" style="width:60px">地址类型:</text>
+    <view wx:if="{{listAddressType}}" class='gender_view' style="width:{{windowWidth-80}}">
+      <view class="gender_item" catchtap="selectAddressType" wx:for="{{listAddressType}}" wx:for-index="i" wx:for-item="item" data-index="{{i}}" data-key="{{item.Key}}">
+          <view wx:if="{{item.Key==AddressType}}" class='gender_detail gender_detail_select'>{{item.Value}}</view>
+          <view wx:else class='gender_detail'> {{item.Value}}</view>
+      </view>
+    </view>
+  </view>
+
+
+<!--<button class="save_button" catchtap="saveAddress">保存地址</button>-->
+
+<button form-type="submit" class="save_button">保存地址</button>
+
+</view>
+
+<view class="searchAddress" wx:if="{{searchAddressFlag == 1}}" style="height:{{windowHeight-200}}px">
+     <image class="searchAddress_close" src="/image/close1.png" catchtap="closeSearchAddress"></image>
+    <view class="search_header">
+
+        <image class="searchbutton" mode="scaleToFill" src="/image/search2.png"></image>
+
+        <input class="searchText" bindinput="bindSearchTextInput" placeholder="街道、小区、办公楼" value="{{searchText}}" focus="{{searchfocus}}" />
+    </view>
+    <view class="searchaddress_view" wx:if="{{addressList != null && addressList.length >0}}">
+      <view class="address_memo">请选择收货地址</view>
+      <scroll-view scroll-y="true" style="height:{{windowHeight -300}}px" class="address_list">
+        <view class="address_item" wx:for="{{addressList}}" wx:for-index="i" wx:for-item="item" catchtap="selectAddress" data-index="{{i}}">
+            <view class="item_name">{{item.name}}</view>
+            <view class="item_address">{{item.district}}</view>
+        </view>
+      </scroll-view> 
+    </view>
+</view>
+
+<!--遮罩层2-->
+<view wx:if="{{searchAddressFlag == 1}}" class="ServeDesc_Detailview" style="height:{{windowHeight}}px">
+</view>
+
+</form>
+
+
+
+<!--</view>-->

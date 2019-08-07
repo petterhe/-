@@ -1,0 +1,230 @@
+<!--pages/group/settlement.wxml-->
+<!--<view class="settinfo" wx:if="{{PTSettlementInfo != null}}">-->
+<form bindsubmit="submit" report-submit="true" wx:if="{{PTSettlementInfo != null}}">
+  <view class="settinfo">
+
+    <!--绑定红包提醒-->
+    <view wx:if="{{isTempCustomer}}" class="tempuser_tips" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">
+      <view class="bind_button" catchtap="bindPhone">去登录</view>
+      <view class="bind_memo">您尚未登录，登录后可用红包</view>
+      
+    </view>
+    <!--原tips提示-->
+    <view wx:else>
+      <view wx:if="{{PTSettlementInfo.NewsTip!=null && PTSettlementInfo.NewsTip.length>0}}" class="sett_header_tips" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">{{PTSettlementInfo.NewsTip}}</view>
+    </view>
+
+    <view class="settdetail" style="padding-top: {{scrollPaddingTop}}px;">
+
+      <!--只有一种配送方式-->
+      <!-- <view class='ship_view' wx:if="{{PTSettlementInfo.ListShipTypes && PTSettlementInfo.ListShipTypes.length == 1}}">
+        <view class='shiplist_view1' wx:if="{{ PTSettlementInfo.ListShipTypes.length == 1}}">
+          <view class="ship_item" wx:for="{{PTSettlementInfo.ListShipTypes}}" wx:for-index="i" wx:for-item="item" catchtap="selectShipType" data-index="{{i}}" data-sysno="{{item.SysNo}}" >
+            <view class='ship_item_select' wx:if="{{item.SysNo == selectShipTypeSysNo}}">{{item.ShipTypeName}}</view>
+            <view wx:else>{{item.ShipTypeName}}</view>
+          </view>
+        </view>
+      </view> -->
+
+       <!--多种配送方式-->
+      <view class='ship_view' wx:if="{{PTSettlementInfo.ListShipTypes && PTSettlementInfo.ListShipTypes.length > 1}}">
+        <view class='shiplist_view'>
+          <view class="ship_item" wx:for="{{PTSettlementInfo.ListShipTypes}}" wx:for-index="i" wx:for-item="item" catchtap="selectShipType" data-index="{{i}}" data-sysno="{{item.SysNo}}" >
+            <view class='ship_item_select' wx:if="{{item.SysNo == selectShipTypeSysNo}}">{{item.ShipTypeName}}</view>
+            <view wx:else>{{item.ShipTypeName}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!--送货上门-->
+      <view wx:if="{{selectShipTypeSysNo == ExpressDelivery}}" >
+        <view class="sel_addr_item item_line" catchtap="selectaddress">
+          <!--地址信息-->
+          <view class="item_title">收货信息</view>
+          <view class="address_view" wx:if="{{PTSettlementInfo.CustomerAddress != null && PTSettlementInfo.CustomerAddress.SysNo >0}}">
+                
+                <image class="address_icon address_icon2" src="/image/rightarrow2.png"></image>
+                <view class="address_text">{{PTSettlementInfo.CustomerAddress.Contact}}</view>
+                <view class="address_text">{{PTSettlementInfo.CustomerAddress.CellPhone}}</view>
+                <view class="address_text">{{PTSettlementInfo.CustomerAddress.Placemarks}}</view>
+                <view class="address_text">{{PTSettlementInfo.CustomerAddress.Address}}</view>
+            </view>
+            <view class="address_view address_view_empty" wx:else>
+
+            <image class="address_icon address_icon1" src="/image/rightarrow2.png"></image>请选择收货地址
+          </view>
+        </view>
+
+        <!--配送时段-->
+        <view class="item_node item_line" wx:if="{{PTSettlementInfo.ListTimeNodes != null && PTSettlementInfo.ListTimeNodes.length > 0}}">
+          <view class="item_node_title" style="width:96px">预计送达时间</view>
+          <view class="nodeinfo" style="width:{{windowWidth-96}}px">
+            <picker bindchange="bindTimeNode" value="{{Provinceindex}}" range="{{PTSettlementInfo.ListTimeNodes}}" range-key="NodeName" disabled="{{inputDisabled}}">
+              <view wx:if="{{selectNodeTime}}" class="nodeName">{{selectNodeTime.NodeName}}</view>
+              <view wx:else class="nodeName">请选择预计送达时间</view>
+          </picker>
+        </view>
+        <image class="address_icon node_icon" src="/image/rightarrow2.png"></image>
+        </view>
+      </view>
+
+      <!--自提信息-->
+      <view wx:if="{{selectShipTypeSysNo == HomeDelivery}}">
+        
+        <!--门店信息-->
+        <view class='store_item item_line' wx:if="{{storeInfo != null}}" catchtap="toSelectStore">
+          
+          <view class='store_distance'>{{PTSettlementInfo.DistanceTips}}</view>
+          <view class='store_name'>妙生活（{{storeInfo.StoreName}}）</view>
+
+          <image class="address_icon store_sel_icon" src="/image/rightarrow2.png"></image>
+          <view class='store_address'>{{storeInfo.Address}}</view>
+
+          <view class="store_worktime">营业时间:{{storeInfo.WorkStartTime}}-{{storeInfo.WorkEndTime}}</view> 
+          <view class="store_tel">{{storeInfo.Tel}}</view>
+          
+          <!-- <view>
+            <view>{{storeInfo.Tel}}</view>
+            <view class="store_worktime">营业时间:{{storeInfo.WorkStartTime}}-{{storeInfo.WorkEndTime}}</view> 
+          </view> -->
+        </view>
+
+        <view class="item_phone item_line">
+          <view class="item_node_title">联系电话</view>
+          <!-- <view class='phone_view' style='width:{{windowWidth-96}}px;'> -->
+
+            
+            <input class="receivePhone" style='width:{{windowWidth-160}}px;' type="number" bindinput="receivePhoneInput" placeholder="请输入您的联系电话" value="{{receivePhone}}" disabled="{{inputDisabled}}" maxlength="16"/>
+           
+           <button class='phone_btn' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取</button>
+          <!-- </view> -->
+      </view>
+
+        <!--自提时段-->
+        <view class="item_node item_line" wx:if="{{PTSettlementInfo.ListTimeNodes != null && PTSettlementInfo.ListTimeNodes.length > 0}}">
+          <view class="item_node_title" style="width:96px">自提时间</view>
+          <view class="nodeinfo" style="width:{{windowWidth-96}}px">
+            <picker bindchange="bindTimeNode" value="{{Provinceindex}}" range="{{PTSettlementInfo.ListTimeNodes}}" range-key="NodeName" disabled="{{inputDisabled}}">
+              <view wx:if="{{selectNodeTime}}" class="nodeName">{{selectNodeTime.NodeName}}</view>
+              <view wx:else class="nodeName">请选择自提时间</view>
+            </picker>
+          </view>
+          <image class="address_icon node_icon" src="/image/rightarrow2.png"></image>
+        </view>
+      </view>
+
+
+      <!--商品信息-->
+      <view class="productinfo" wx:if="{{PTSettlementInfo.ProductSysNo > 0}}">
+          <image class="productimg" src="{{PTSettlementInfo.PictureUrl}}"></image>
+          <view class="productdetail">
+              <view class="productname">{{PTSettlementInfo.CustPName}}</view>
+              <view class="productprice"  wx:if="{{PTSettlementInfo.SettType == 3}}">¥{{PTSettlementInfo.RetailPrice/100.00}}<text class="productunit">/件</text></view>
+              <view class="productprice" wx:else>¥{{PTSettlementInfo.GPrice/100.00}}<text class="productunit">/件</text></view>
+        </view>
+      </view>
+
+      <!--购买数量-->
+      <view class="buyinfo">
+          <view class="info_title">购买数量</view>
+          <view class="buy_qtyInfo">
+              <image wx:if="{{PTSettlementInfo.Qty <= minQty}}" class="qty_button_img" src="/image/number_m_b.png"></image>
+              <image wx:else catchtap="subQty" class="qty_button_img" src="/image/number_m.png"></image>
+              <input class="qty_input" maxlength="4" type="number" value = "{{PTSettlementInfo.Qty}}" bindinput="qtyInput" disabled="{{inputDisabled}}"/>
+              <image wx:if="{{PTSettlementInfo.Qty >= maxQty}}" class="qty_button_img" src="/image/number_p_b.png"></image>
+              <image wx:else catchtap="addQty" class="qty_button_img" src="/image/number_p.png"></image>
+          </view>
+      </view>
+
+      <view wx:if="{{PTSettlementInfo.CardCouponV4}}" class="coupon_info" catchtap="toSelectCoupon">
+        <view class="coupon_item">
+          <view class="info_title">红包卡券</view>
+          <view class="coupon_count">{{PTSettlementInfo.CardCouponV4.ValiCouponCount}}张可用</view>
+          <view wx:if="{{PTSettlementInfo.CouponAmt > 0}}" class="coupon_amtview">已优惠<text class="coupon_amt">¥{{PTSettlementInfo.CouponAmt/100.00}}</text></view>
+        </view>
+        <view class="coupon_list" >
+          <image class="address_icon address_icon1" src="/image/rightarrow2.png"></image>
+          
+          <view class="useCoupon" catchtap="useCouponChange">
+            <image wx:if="{{useCoupon==0}}" src="/image/check2.png" class="list_checkbox"></image>
+            <image wx:else src="/image/check1.png" class="list_checkbox"></image>
+            <text>不使用红包卡券</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="transinfo" wx:if="{{PTSettlementInfo.TransFeeInfo != null}}">
+          <view class="info_title">运费信息</view>
+          <view class="transtips">{{PTSettlementInfo.TransFeeInfo.TransFeeTips}}</view>
+      </view>
+
+      <view class="memo_info" >
+          <view class="info_title">订单备注</view>
+          <input wx:if="{{PTSettlementInfo.DefaultNoteShow != null && PTSettlementInfo.DefaultNoteShow.length > 0}}" cursor-spacing="60" class="memo_input" maxlength="200" placeholder="{{PTSettlementInfo.DefaultNoteShow}}" bindinput="memoInput" disabled="{{inputDisabled}}" />
+          <input wx:else cursor-spacing="60" class="memo_input" maxlength="200" placeholder="您对订单有什么特殊需求，请再此备注" bindinput="memoInput" disabled="{{inputDisabled}}" /> 
+      </view>
+    </view>
+
+    <view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+    <!--底部结算-->
+    <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+        <!--<view class="bottom_price">
+            <text>实付款:</text>
+            <text class="totalprice">¥{{PTSettlementInfo.totalAmt/100.00}}</text>
+
+            <text wx:if="{{PTSettlementInfo.TransFee > 0}}">(含运费:<text class="tranfee">¥{{PTSettlementInfo.TransFee/100.00}}</text>)</text>
+            <text wx:else>(免运费)</text>
+        </view>-->
+
+        <view class="button_amtview button_amt" wx:if="{{PTSettlementInfo.TransFee == 0 && PTSettlementInfo.CouponAmt == 0}}">
+            <text>需支付:</text>
+            <text class="amtprice">¥{{PTSettlementInfo.TotalPrice/100.00}}</text>
+        </view>
+
+        <view class="button_amtview" wx:else>
+            <view class="button_amt1">
+                <text>需支付:</text>
+                <text class="amtprice">¥{{PTSettlementInfo.TotalPrice/100.00}}</text>
+            </view>
+            <!--<view class="detail_view">商品总价:{{PTSettlementInfo.ProductTotalPrice/100.00}}+运费{{PTSettlementInfo.TransFee/100.00}}</view>-->
+
+            <view class="detail_view">商品总价:¥{{PTSettlementInfo.ProductTotalPrice/100.00}}<text wx:if="{{PTSettlementInfo.CouponAmt > 0}}">-优惠¥{{PTSettlementInfo.CouponAmt/100.00}}</text><text wx:if="{{PTSettlementInfo.TransFee > 0}}">+运费¥{{PTSettlementInfo.TransFee/100.00}}</text></view>
+        </view>
+
+        <!--<view catchtap="submit" class="submit">立即支付</view>-->
+        <button form-type="submit" class="submit_button">{{submitButtonName}}</button>
+    </view>
+  </view>
+</form>
+<!--</view>-->
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+
+<!--遮罩层-->
+<!--<view wx:if="{{showHowActorView && PTSettlementInfo != null && PTSettlementInfo.ListHowActor != null && PTSettlementInfo.ListHowActor.length > 0}}" class="HowActor_view" style="height:{{windowHeight}}px">
+</view>-->
+
+<!--如何参加拼团-->
+<!--<view wx:if="{{showHowActorView && PTSettlementInfo != null && PTSettlementInfo.ListHowActor != null && PTSettlementInfo.ListHowActor.length > 0}}" class="HowActor_info" catchtap="hideHowActorView">
+    <image class="HowActor_close" src="/image/close1.png"></image>
+    <view class="HowActor_title">如何参加拼团</view>
+    <view class="HowActor_item" wx:for="{{PTSettlementInfo.ListHowActor}}" wx:for-index="i" wx:for-item="item">•{{item}}</view>
+</view>-->
+
+<!--遮罩层2-->
+<!--<view wx:if="{{showServeDescView &&PTSettlementInfo.ServeDesc != null && PTSettlementInfo.ServeDesc.ListServeItem != null &&PTSettlementInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailview" style="height:{{windowHeight}}px">
+</view>-->
+
+<!--服务说明-->
+<!--<view wx:if="{{showServeDescView && PTSettlementInfo.ServeDesc != null && PTSettlementInfo.ServeDesc.ListServeItem != null &&PTSettlementInfo.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailinfo" catchtap="hideServeDescView">
+    <view class="ServeDesc_Detailtitle">{{PTSettlementInfo.ServeDesc.Title}}</view>
+    <image class="ServeDesc_Detailclose" src="/image/close2.png"></image>
+    <view class="ServeDesc_Detailitem" wx:for="{{PTSettlementInfo.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item">
+    <image class="ServeDesc_Detailitemimage" src="/image/check3.png"></image>
+    <view class="ServeDesc_DetailitemView">
+        <view class="ServeDesc_DetailitemTitle">{{item.ItemTitle}}</view>
+        <view>{{item.ItemDesc}}</view>
+    </view>
+    </view>
+</view>-->

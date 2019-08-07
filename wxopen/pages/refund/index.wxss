@@ -1,0 +1,249 @@
+/* pages/refund/index.wxss */
+Page
+{
+  background: #f1f1f1;
+  font-size: 13px;
+  color: #333;
+}
+
+.header_tips
+{
+  position: fixed;
+  background-color: #FFF8CE;
+  width: 750rpx;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  z-index: 50;
+  overflow:hidden;
+}
+
+.item_view
+{
+  /* background: #fff; */
+  margin: 10px 0 0 0;
+}
+
+.order_flag
+{
+  float: left;
+  width: 13.5px;
+  height: 16px;
+  margin: 12px 5px 0 0;
+}
+
+.order_right
+{
+  float: right;
+  width: 7px;
+  height: 12px;
+  margin: 13px 0 0 5px;
+}
+
+.item_title
+{
+  padding: 0 15px;
+  line-height: 40px;
+  background-color: #fff;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title_right
+{
+  color:#f39800;
+}
+
+.type_view
+{
+  margin: 10px 0 10px 0;
+  padding: 10px 0;
+  background-color: #fff;
+  border-bottom:0.5px #f1f1f1 solid;
+}
+
+.type_group
+{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-betSween;
+  margin: 0 auto;
+  border-radius:4px;
+  width: 264px;
+  background-color:#fff;
+  font-size: 15px;
+  border:2px #5CB531 solid; 
+}
+
+.type_item
+{
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  width: 132px;
+}
+
+.type_item_select
+{
+  color: #fff;
+  background-color: #5CB531;
+}
+
+.type_item_left
+{
+   /* border-radius: 4px 0 0 4px; */
+}
+
+.type_item_right
+{
+   /* border-radius: 0 4px 4px 0; */
+}
+
+.order_list
+{
+  background: #fff;
+}
+
+.order_item
+{
+  padding: 10px 15px; 
+  border-bottom:0.5px #f1f1f1 solid;
+}
+
+.order_item_id
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order_flag1
+{
+  float: left;
+  width: 13.5px;
+  height: 16px;
+  margin: 2px 5px 0 0;
+}
+
+.order_item_date
+{
+  color: #999;
+}
+
+.order_item_amtview
+{
+  margin-top: 12px;
+}
+
+.amt_flag
+{
+  float: left;
+  width: 15px;
+  height: 15px;
+  margin: 2px 5px 0 0;
+}
+
+.order_item_price
+{
+  color:#F1521B;
+}
+
+.right_flag
+{
+  float: right;
+  margin-top: -30px;
+}
+
+.search_view
+{
+  padding: 10px 15px;
+  background: #fff;
+}
+
+input
+{
+  border: 1px #ddd solid;
+  padding: 0 6px;
+  height: 38px;
+  line-height: 38px;
+}
+
+.phone
+{
+  margin: 0 0 15px 0;
+}
+
+.toid_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.toid
+{
+  margin: 0 0 15px 0;
+}
+
+.ver_view
+{
+  margin: 0 0 15px 0;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.ver_input
+{
+  /* margin-right: 15px; */
+}
+
+.btn_vercode
+{
+  position: absolute;
+  right: 15px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100px;
+  margin-top: -40px;
+  z-index: 50;
+}
+
+.btn_vercode_show
+{
+  color:#f39800; 
+}
+
+.btn_vercode_hide
+{
+  color: #999;
+}
+
+.search_button
+{
+  background-color: #5CB531;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+}
+
+.TOIDMemoButton
+{
+  /* position: absolute;
+  right: 25px;
+  margin-top: -45px; */
+
+  text-align: center;
+  margin:11px 0px 11px 11px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: #f39800;
+  border: solid #f39800 1px;
+  border-radius: 10px;
+}

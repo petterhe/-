@@ -1,0 +1,163 @@
+<!--pages/cart/cart.wxml-->
+<view class="cart_view" wx:if="{{cartInfo != null && cartInfo.Products != null && cartInfo.Products.length > 0}}" style="padding-top:{{scrollPaddingTop + 36}}px;" >
+
+  <view wx:if="{{cartInfo.CartVIPInfo && cartInfo.CartVIPInfo.CartVIPTipsCStr}}" class="vip_tips"
+  style='height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px; background-image:url({{cartopenvipbg}});-webkit-background-size:100% 100%;background-size:100% 100%;'>
+    <view class='vip_tips_memo'>开通尊享会员，本单可省<text class="vip_tips_amt">{{cartInfo.CartVIPInfo.CartVIPTipsCStr}}</text>元</view>
+    <view class="vip_button" catchtap='toAboutAPP'>去APP开通></view>
+  </view>
+
+      <!--头部-->
+      <view class="cart_header" style='top:{{scrollPaddingTop}}px;'>
+        <image wx:if="{{cartInfo.IsSelectAll}}" src="/image/check2.png" class="cartheader_checkbox" catchtap="selectAll"></image>
+        <image wx:else src="/image/check1.png" class="cartheader_checkbox" catchtap="selectAll"></image>
+        
+        <view class="cart_expect">{{cartInfo.ExpectTime}}</view>
+        <view class="cart_tranfee">{{tranFeeTips}}</view>
+      </view>
+
+      <!--明细-->
+      <view class="cart_item {{product.isTouchMove?'touch-move-active':''}}" wx:for="{{cartInfo.Products}}" wx:for-index="i" wx:for-item="product" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{i}}">
+        <view class="item_content">
+          <!--有货-->
+          <view wx:if="{{product.InvStatus == null || product.InvStatus.length == 0 || product.InvStatus==haveInv}}">
+            <image wx:if="{{product.ShoppingCartTypeId == 1}}" src="/image/check2.png" class="cart_item_checkbox" catchtap="selectItem" data-index="{{i}}"></image>
+            <image wx:else src="/image/check1.png" class="cart_item_checkbox" catchtap="selectItem" data-index="{{i}}"></image>
+          </view>
+
+          <!--无货-->
+          <view wx:else>
+            <image src="/image/check4.png" class="cart_item_checkbox"></image>
+            <view class="product_invstatus">{{product.InvStatusName}}</view>
+          </view>
+
+          <image class="product_image" src="{{product.PictureUrl}}" catchtap="toProductdetail" data-index="{{i}}"></image>
+          
+          <view class="product_info">
+            <view class="product_name">{{product.ProductName}}</view>
+            <!--标签-->
+            <view class="labelview">
+              <view wx:if="{{product.LabelTextList}}" wx:for="{{product.LabelTextList}}" wx:for-index="i" wx:for-item="labelitem" wx:if="{{i<3}}">
+                <view wx:if="{{labelitem.LabelTextStyle == 1}}" class="label_item label_item_yellow">{{labelitem.LabelText}}</view>
+                <view wx:else class="label_item label_item_green">{{labelitem.LabelText}}</view>
+                
+              </view>
+            </view>
+            <!--标签--> 
+
+
+            <!--有货-->
+            <view class="product_numinfo" wx:if="{{product.InvStatus == null || product.InvStatus.length == 0 || product.InvStatus==haveInv}}">
+              <image class="product_num_img" src="/image/number_m.png" catchtap="subNum" data-index="{{i}}"></image>
+              <view class="product_num">{{product.Num}}</view>
+              <image class="product_num_img" src="/image/number_p.png" catchtap="addNum" data-index="{{i}}"></image>
+            </view>
+
+            <!--无货-->
+            <view class="product_numinfo" wx:if="{{product.InvStatus > haveInv}}">
+              <image class="product_num_img" src="/image/number_m.png" catchtap="subNum" data-index="{{i}}"></image>
+              <view class="product_num">{{product.Num}}</view>
+              <image class="product_num_img" src="/image/number_p_b.png"></image>
+            </view>
+
+            <!-- <view>{{product.IsShowVIPPrice}}</view>
+            <view>{{cartInfo.VIPRank}}</view> -->
+        
+            <!--新版本-->
+            <view wx:if="{{cartInfo.VIPRank}}">
+              <!--会员-->
+              <view wx:if="{{cartInfo.VIPRank == 1}}">
+
+                <!--有会员价-->
+                <view wx:if="{{product.IsShowVIPPrice == 1}}"> 
+                    <view class="n_price">¥{{product.NormalPrice/100.00}}</view>
+                    <view class="price">
+                      <text class="num">¥{{product.VIPPrice/100.00}}</text>
+                      <text>/{{product.DenominatedUnit}}</text>  
+                      <image class="vip_price_flag" src="/image/vip_price_flag.png"></image>
+                    </view>
+                  </view>
+                  <view wx:else>
+                    <view class="n_price">
+                      <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="num">¥{{product.NormalPrice/100.00}}</text>
+                      <text>/{{product.DenominatedUnit}}</text>
+                     <!-- <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text> -->
+                    </view>
+                  </view>
+              </view>
+
+              <!--非会员-->
+              <view wx:else>
+
+                <!--有会员价-->
+                <view wx:if="{{product.IsShowVIPPrice == 1}}"> 
+                    <view class="n_price">
+                    <text>¥{{product.VIPPrice/100.00}}</text>
+                    <image class="vip_price_flag" src="/image/vip_price_flag.png"></image></view>
+                    <view class="price">
+                      <text class="num">¥{{product.NormalPrice/100.00}}</text>
+                      <text>/{{product.DenominatedUnit}}</text>  
+                    </view>
+                  </view>
+                  <view wx:else>
+                    <view class="n_price">
+                      <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="num">¥{{product.NormalPrice/100.00}}</text>
+                      <text>/{{product.DenominatedUnit}}</text>
+                      <!-- <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text> -->
+                    </view>
+                  </view>
+              </view>
+
+            </view>
+            <!--老版本-->
+            <view wx:else>
+                <view class="n_price">
+                  <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text>
+                </view>
+                    <view class="price">
+                      <text class="num">¥{{product.Price/100.00}}</text>
+                      <text>/{{product.DenominatedUnit}}</text> 
+                      <!-- <text wx:if="{{product.BasicPrice}}" class="baseprice">¥{{product.BasicPrice}}</text> -->
+                    </view>
+            </view>
+            <!-- <view wx:if="{{product.DisctDesc == null || product.DisctDesc.length == 0}}" class="product_priceview"><text class="product_price">¥{{product.Price/100.0}}</text>/{{product.DenominatedUnit}}</view>
+            <view wx:else>
+              <view class="product_priceview1"><text class="product_price">¥{{product.Price/100.0}}</text>/{{product.DenominatedUnit}}</view>
+              <view class="disct_desc">{{product.DisctDesc}}</view>
+            </view> -->
+
+
+            <!-- <view wx:if="{{product.DisctDesc == null || product.DisctDesc.length == 0}}" class="product_priceview"><text class="product_price">¥{{product.Price/100.0}}</text>/{{product.DenominatedUnit}}</view>
+            <view wx:else>
+              <view class="product_priceview1"><text class="product_price">¥{{product.Price/100.0}}</text>/{{product.DenominatedUnit}}</view>
+              <view class="disct_desc">{{product.DisctDesc}}</view>
+            </view>  -->
+
+          </view>
+        </view>
+        <view class="item_del" catchtap="delitem" data-index="{{i}}">删除</view>
+      </view>
+      
+      <view wx:if="{{cartInfo.ProductCount < 4}}" class="empty_button1" catchtap="showHomeBySpecial">吃吃吃 ^_^ 去凑单</view>
+
+      <!--底部-->
+      <view class="cartbottom">
+        <view class="cartbottom_priceview" style="width:{{windowWidth -120}}px">商品总价<text class="cartbottom_price">¥{{cartInfo.OriginPrice}}</text></view>
+
+        <view class="cartbottom_button" catchtap="settlement">去结算</view>
+      </view>
+</view>
+
+<view class="empty_view" wx:else>
+  <image class="empty_image" src="/image/cart.png"></image>
+  <view class="empty_text">购物车还是空的，去首页看看~</view>
+  <view class="empty_button" catchtap="toHome">去首页看看</view>
+</view>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>

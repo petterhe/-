@@ -1,0 +1,15 @@
+<!--pages/people/searchaddress.wxml-->
+<view class="searchAddress">
+    <view class="app_header">
+         <input class="searchText" bindinput="bindSearchTextInput" placeholder="街道、小区、办公楼" placeholder-style="color:white" value="{{searchText}}" />
+    </view>
+    <view class="address_view">
+      <view class="address_memo">请选择收货地址</view>
+      <view class="address_list" wx:if="{{addressList != null && addressList.length >0}}">
+        <view class="address_item" wx:for="{{addressList}}" wx:for-index="i" wx:for-item="item" catchtap="selectAddress" data-index="{{i}}">
+            <view class="item_name">{{item.name}}</view>
+            <view class="item_address">{{item.district}}</view>
+        </view>
+      </view>
+    </view>
+</view>

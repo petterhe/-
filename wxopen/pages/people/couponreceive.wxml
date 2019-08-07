@@ -1,0 +1,110 @@
+<!--pages/people/couponreceive.wxml-->
+<view style='background:{{bgColor}}'>
+  <image wx:if="{{ReceiveActiveInfo.ShareBGImgUrl != null && ReceiveActiveInfo.ShareBGImgUrl.length > 0}}" class='pg_image' style="height:{{imageA1Height}}rpx;width:100%;" src='{{ReceiveActiveInfo.ShareBGImgUrl}}'></image>
+
+  <image wx:else class='pg_image' style="height:{{imageA1Height}}rpx;width:100%;" src='{{imageHost}}active/coupon/receivebg_20181024.jpg'></image>
+
+  <view class='page_view'>
+
+    <!--红包领取-->
+    <view wx:if="{{ShowSection}}" class="section" style='margin-top:{{sectionTop}}rpx;'>
+      <view class="phone hidden">{{CustomerID}}</view>
+
+      <view wx:if="{{Fail}}" class="btn_enter" catchtap="toHome">去逛逛</view>
+      <view wx:else>
+         <view wx:if="{{showUse}}">
+            <view wx:if="{{ListCoupon != null && ListCoupon.length > 0}}">
+              <view class='coupon_list_item' wx:for="{{ListCoupon}}" wx:for-index="i" wx:for-item="item">
+                <image class='coupon_item_bg' src='/image/coupon_bg.png'></image>
+                
+                <view class='coupon_item_view'>
+                  <view class='coupon_item_header'>
+                    <view class='coupon_amt_view'>¥<text class='coupon_amt_text'>{{item.CouponAmt}}</text></view>
+                    <view class='coupon_detail_view'>
+                      <view class='coupon_detail_name'>{{item.CouponName}}</view>
+                      <view class='coupon_detail_desc'>{{item.UseCondition}}</view>
+                    </view>
+                  </view>
+                  
+                  <view class='coupon_item_buttom'>
+                    <view class='coupon_detail_date'>{{item.ValidTimeFrom}}—{{item.ValidTimeTo}}</view>
+                    <view wx:if="{{item.Status == 1 || item.Status == 3}}" class='coupon_detail_button' catchtap="toCouponList">立即使用</view>
+                    <view wx:if="{{item.Status == 2}}" class='coupon_detail_status'>已使用</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            
+            <view wx:else class="btn_enter" catchtap="toCouponList">立即使用</view>
+         </view>
+
+        <view wx:else>
+          <!-- <view wx:if="{{canShare && ReceiveActiveInfo !=null && ReceiveActiveInfo.ShareType == AfterShareReceive}}">
+            <button open-type="share" class="share_button">分享领红包</button>
+          </view>
+          <view wx:else class="btn_enter hidden" catchtap="receiveCoupon">领取红包</view> -->
+          <view class="btn_enter hidden" catchtap="receiveCoupon">领取红包</view>
+        </view>
+      </view>
+
+      <view class="message">{{Message}}</view>
+    </view>
+
+    <!--红包列表-->
+    <view class="receive_list" wx:if="{{ReceiveListItem != null && ReceiveListItem.length >0}}">
+      <view class="receive_list_line">
+        <image class="line_image" style='width:{{(windowWidth- 120 - 20)/2}}px' src='/image/line.png'></image>
+        <view class="receive_list_title" style='width:120px;'>看看谁领取了红包</view>
+        <image class="line_image" style='width:{{(windowWidth- 120 - 20)/2}}px' src='/image/line.png'></image>
+      </view>
+
+      <view class="coupon_list" wx:for="{{ReceiveListItem}}" wx:for-index="i" wx:for-item="item">
+        <view class="receive_list_item">
+          
+            <image class="avatar_img" wx:if="{{item.HeadImgUrl != null && item.HeadImgUrl.length >0 }}" src="{{item.HeadImgUrl}}"/>
+            <image class="avatar_img" wx:else src="/image/avatar_default.jpg"/>
+          
+          <view style='width:{{windowWidth-150}}px;'>
+            <view wx:if="{{item.NickName != null && item.NickName.length > 0}}"  class="receive_list_item_name">{{item.NickName}}</view>
+
+            <view wx:else class="receive_list_item_name">{{item.Phone}}</view>
+
+            <view class="receive_list_item_time">{{item.ReceiveTime}}</view>
+          </view>
+
+          <view class="receive_list_item_amtview">
+          <view class="receive_list_item_amt">{{item.CouponAmt}}</view>
+        
+        <view wx:if="{{item.IsMaxCoupon}}" class="item_zuijia_view"><image class="item_zuijia_img" src='/image/zuijia.png'></image>手气最佳</view>
+          </view>
+        </view>
+
+        <image wx:if="{{i < ReceiveListItem.length -1}}" class="item_line_image" style='width:{{(windowWidth-20)}}px' src='/image/line.png'></image>
+      </view>
+    </view>
+
+    <view class='receive_message' wx:if="{{ReceiveMsg}}">{{ReceiveMsg}}</view>
+
+    <!--红包说明-->
+    <view class='coupon_memo' wx:if="{{showMemo}}">
+      <view class="coupon_memo_line">
+      <image class="line_image" style='width:{{(windowWidth- 70 - 20)/2}}px' src='/image/line.png'></image>
+      <view class="coupon_memo_title" style='width:70px;'>活动规则</view>
+      <image class="line_image" style='width:{{(windowWidth- 70 - 20)/2}}px' src='/image/line.png'></image>
+    </view>
+
+      <view class='coupon_memo_item'>1、红包新老用户同享。</view>
+      <view class='coupon_memo_item'>2、使用红包时的下单手机号需为抢红包时使用的手机号。</view>
+      <view class='coupon_memo_item'>3、若用户使用领取的红包下单，订单取消后，红包将会失效。</view>
+      <view class='coupon_memo_item'>4、若分享用户取消订单，则由该订单分享出的红包将会消失。</view>
+      <view class='coupon_memo_item'>5、发放至手机号的红包需在app用手机号注册、或将手机号绑
+      定妙生活账户后才能使用。</view>
+      <view class='coupon_memo_item'>6、发放至妙生活账户的红包登录后即可使用。</view>
+      <view class='coupon_memo_item'>7、红包仅限在线支付时使用，每张订单仅限使用一张红包，红包不兑现，不找零。</view>
+      <view class='coupon_memo_item'>8、妙生活保留法律范围内允许的对活动的解释权。</view>
+    </view>
+  </view>
+</view>
+
+<!--打开APP-->
+  <button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>

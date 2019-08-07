@@ -1,0 +1,132 @@
+<!--pages/refund/index.wxml-->
+  <!-- <input value='{{wxopenid}}'></input> -->
+  <view class="header_tips" wx:if="{{soRefundMemo !=null && soRefundMemo.length > 0}}" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">{{soRefundMemo}}</view>
+
+<view style="padding-top: {{scrollPaddingTop}}px;" >
+  <!--最新退款单-->
+  <view wx:if="{{appeallist != null && appeallist.length > 0}}">
+    <view wx:for="{{appeallist}}" wx:for-index="i" class ="item_view" wx:for-item="item" catchtap="appdealList" data-index="{{i}}">
+    <view class="item_title">
+      <view><image class="order_flag" src='/image/order_flag.png'></image>最新退款单号：{{item.RefundSysNo}}</view>
+      <view class="title_right">{{item.RefundStatusName}}<image class="order_right" src="/image/rightarrow3.png"></image></view>
+    </view>
+    </view>
+  </view>
+
+   <!--类型选择-->
+  <view class="type_view">
+    <view class="type_group" wx:if="{{selecttype == customerOrderType}}">
+      <view class="type_item type_item_left type_item_select" catchtap="selectMytype" data-index="0">当前用户订单</view>
+      <view class="type_item type_item_right" catchtap="selectMytype" data-index="1">收货手机检索</view>
+        </view>
+
+    <view class="type_group" wx:else>
+      <view class="type_item type_item_left" catchtap="selectMytype" data-index="0">当前用户订单</view>
+      <view class="type_item type_item_right type_item_select" catchtap="selectMytype" data-index="1">收货手机检索</view>
+   </view>
+  </view>
+
+  <!--用户订单列表-->
+  <view wx:if="{{selecttype == customerOrderType}}">
+
+    <!--订单list-->
+    <view wx:if="{{listCustomerOrder != null && listCustomerOrder.length > 0}}" class="order_list">
+
+       <view class="order_item" wx:for="{{listCustomerOrder}}" wx:for-index="i" wx:for-item="item" catchtap="selectItem" data-index="{{i}}" data-sosysno="{{item.SOSysNo}}">
+        <view class="order_item_id">
+          <view class="order_item_soid"><image class="order_flag1" src='/image/order_flag.png'></image>订单号：{{item.SOID}}</view>
+          <view
+view class="order_item_date">{{item.OrderDate}}</view>
+        </view>
+        
+        <view class="order_item_amtview">
+          <view><image class="amt_flag" src='/image/amt_flag.png'></image>支付金额：<text class="order_item_price">{{item.TotalAmt}}</text><text class="order_item_count">（共{{item.ItemCount}}件）</text></view>
+          <view class="right_flag"><image class="order_right" src="/image/rightarrow3.png"></image></view>
+        </view>
+      </view>
+
+    </view>
+
+    <!--空列表-->
+    <view wx:else class='empty_view'>
+      <image class="empty_avatar" src='/image/empty_avatar.png'></image>
+      <view class="empty_text">暂无可申请订单</view>
+    </view>
+  </view>
+
+  <!--收货手机检索-->
+  <view wx:else>
+
+    <!--手机检索view-->
+    <view class="search_view">
+       <input class="phone" type="number" focus="{{PhoneFocus}}" bindinput="bindPhoneInput" placeholder="请输入收货手机号" value="{{Phone}}" />
+       
+   <view class="ver_view">
+    <input class="ver_input" type="number" focus="{{VerificationCodeFocus}}" bindinput="bindVerificationCodeInput" placeholder="请输入验证码" value="{{VerificationCode}}" />
+   
+     <view wx:if="{{HideVerButton == false}}" class="btn_vercode btn_vercode_show" catchtap="getVerificationCode">{{showButtomName}}</view>
+    <view wx:else class="btn_vercode btn_vercode_hide">{{hideButtomName}}</view>
+  </view>
+
+  <view class="toid_view">
+    <input class="toid" type="number" style='width:{{windowWidth-72}}px' focus="{{ThridOrderIDFocus}}" bindinput="bindThridOrderIDInput" placeholder="号码保护订单请输入外卖平台订单号" value="{{ThridOrderID}}" />
+
+    <view class="TOIDMemoButton" catchtap="showTOIDMemo">?</view>
+  </view>
+
+  <view class="search_button" catchtap="search">搜 索</view>
+    </view>
+
+    <view wx:if="{{listPhoneOrder != null && listPhoneOrder.length > 0}}" class="order_list">
+
+      <view class="order_item" wx:for="{{listPhoneOrder}}" wx:for-index="i" wx:for-item="item" catchtap="selectItem" data-index="{{i}}" data-sosysno="{{item.SOSysNo}}">
+        <view class="order_item_id">
+          <view class="order_item_soid"><image class="order_flag1" src='/image/order_flag.png'></image>订单号：{{item.SOID}}</view>
+          <view
+view class="order_item_date">{{item.OrderDate}}</view>
+        </view>
+        
+        <view class="order_item_amtview">
+          <view><image class="amt_flag" src='/image/amt_flag.png'></image>支付金额：<text class="order_item_price">{{item.TotalAmt}}</text><text class="order_item_count">（共{{item.ItemCount}}件）</text></view>
+          <view class="right_flag"><image class="order_right" src="/image/rightarrow3.png"></image></view>
+        </view>
+      </view>
+
+    </view>
+
+    <!--空列表-->
+    <view wx:if="{{isDoSearch && (listPhoneOrder == null || listPhoneOrder.length == 0)}}" class='empty_view'>
+      <image class="empty_avatar" src='/image/empty_avatar.png'></image>
+      <view class="empty_text">暂无可申请订单</view>
+    </view>
+
+  </view>
+
+</view>
+
+ <button class="open_contact" type = "primary" open-type="contact" app-parameter="wechat">在线客服</button>
+
+ <!-- <view wx:if="{{showReloadView && (listinvoice == null || listinvoice.length == 0)}}" class="page_reload">
+    <view class="button_reload" catchtap="refreshData">重新刷新</view>
+  </view>
+
+</view> -->
+
+
+<!-- <view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view> -->
+
+
+<!--遮罩层1-->
+<view wx:if="{{showTOIDMemoView}}" class="HowActor_view" style="height:{{windowHeight}}px">
+</view>
+
+<!--如何参加拼团-->
+<view wx:if="{{showTOIDMemoView}}" class="HowActor_info" catchtap="hideTOIDMemo">
+    <image class="HowActor_close" src="/image/close1.png"></image>
+    <view class="HowActor_title">获取外卖平台订单号方法</view>
+    <view class="HowActor_item">1、打开您的下单平台（美团或饿了么）</view>
+    <view class="HowActor_item">2、选择订单，打开订单详情</view>
+    <view class="HowActor_item">3、找到订单信息=>订单号=>点击"复制"</view>
+    <view class="HowActor_item">4、返回退款页面=>点击外卖平台订单号输入框=>长按=>点击"粘贴"</view>
+</view>
+

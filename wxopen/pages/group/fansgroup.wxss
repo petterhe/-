@@ -1,0 +1,176 @@
+/* pages/group/fansgroup.wxss */
+.back_image
+{
+  /* position:relative; */
+  width: 750rpx;
+  height: 650rpx;
+  margin-top: -5rpx;
+}
+
+.image_text
+{
+  position: absolute;
+  top:28rpx;
+  width: 750rpx;
+  text-align: center;
+  color: white;
+}
+
+.image_title
+{
+  font-size: 18px;
+  margin-bottom: 25rpx;
+}
+
+.image_memo{
+  font-size: 14px;
+}
+
+.fans_detail
+{
+  margin-top: 24rpx;
+  width: 750rpx;
+}
+
+.fans_title
+{
+  width: 750rpx;
+  text-align: center;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fans_title_img
+{
+  width: 64rpx;
+  height: 1rpx;
+  margin:25rpx 10rpx 0 10rpx;
+}
+
+.fans_join
+{
+  margin: 36rpx 80rpx;
+  width:590rpx;
+  height:88rpx;
+  line-height:88rpx;
+  background:#44CA4F;
+  border-radius:44rpx;
+  text-align: center;
+  font-size:18px;
+  font-family:PingFang-SC-Bold;
+  font-weight:500;
+  color:#fff;
+}
+
+.fans_home
+{
+  margin: 0 80rpx 20rpx 80rpx;
+  width:590rpx;
+  height:88rpx;
+  line-height:88rpx;
+  background:#fff;
+  border:2rpx solid #44CA4F;
+  border-radius:44rpx;
+  text-align: center;
+  font-size:18px;
+  font-family:PingFang-SC-Bold;
+  font-weight:500;
+  color:#44CA4F;
+}
+
+.fans_detial_list
+{
+  margin-top: 36rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fans_detial_item
+{
+  width: 180rpx;
+  text-align: center;
+  font-size:13px;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  color:#333;
+  line-height:50rpx;
+  overflow: hidden;
+}
+
+.wel_image
+{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.contact_background
+{
+  position:fixed;
+  top: 0;
+  z-index:100;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+  width:100%;
+  height: 100%;
+}
+
+.contact_view
+{
+  position:fixed;
+  width: 487rpx;
+  height: 487rpx;
+  margin-left: 131.5rpx;
+  top:300rpx;
+  border-radius: 5px;
+  z-index: 120;
+}
+
+.contact_image
+{ 
+  width: 487rpx;
+  height: 487rpx;
+} 
+
+.contact_detail
+{
+  margin-left: 95rpx;
+  margin-top: -320rpx;
+  width: 320rpx;
+  text-align: center;
+}
+
+.contact_memo
+{
+  margin:0 38rpx;
+  width:256rpx;
+  height:132rpx;
+  font-size:18px;
+  font-family:HiraginoSansGB-W6;
+  font-weight:500;
+  color:rgba(18,95,0,1);
+  line-height:66rpx;
+}
+
+.contant_num
+{
+  color: #F6FF02;
+  font-size: 24px;
+}
+
+.contact_button
+{
+  margin-top: 48rpx;
+  width: 320rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size:18px;
+  font-family:PingFang-SC-Bold;
+  font-weight:500;
+  color:#fff;
+  background-color:#FF6B54;
+  border-radius:36rpx;
+}

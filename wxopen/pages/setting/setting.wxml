@@ -1,0 +1,17 @@
+<!--pages/setting/setting.wxml-->
+<view class="bg_view" style='height:{{windowHeight}}px'>
+</view>
+
+<view class="set_view" >
+  <image class="set_close" catchtap="closeSetting" src="/image/close1.png"></image>
+
+  <view wx:if="{{setuser == 1}}">
+    <view class='set_message'>{{message}}</view>
+    <button class='set_button' type='primary' open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">允许授权</button> 
+  </view>
+ 
+  <view wx:else>
+    <view class='set_message'>{{message}}</view>
+    <button class='set_button' type='primary' open-type="openSetting" bindopensetting="openSetting">允许授权</button>
+  </view> 
+</view>

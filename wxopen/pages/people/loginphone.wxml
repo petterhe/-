@@ -1,0 +1,67 @@
+<!--pages/people/loginphone.wxml-->
+<form bindsubmit="submit" report-submit="true">
+<view class="pageInfo">
+  <!--<view class="memo">密码由6-16位数字或字母组成</view>-->
+  <view class="memo1"></view>
+  <input class="phone" type="number" focus="{{PhoneFocus}}" bindinput="bindPhoneInput" placeholder="请输入您的手机号" value="{{Phone}}" />
+
+  <!--<input class="phone" type="password" focus="{{PwdFocus}}"
+  bindinput="bindPwdInput" placeholder="请输入密码" value="{{Pwd}}" />-->
+
+  <view class="ver_view">
+    <input class="ver_input" type="number" focus="{{VerificationCodeFocus}}" style="width:{{(windowWidth-55)/2}}px" bindinput="bindVerificationCodeInput" placeholder="请输入验证码" value="{{VerificationCode}}" />
+
+    <button wx:if="{{isNotAuth}}" class="btn_vercode btn_vercode_show" open-type="getUserInfo" style="width:{{(windowWidth-55)/2}}px"bindgetuserinfo="onGotUserInfo">{{showButtomName}}</button>
+    <view wx:else>
+      <view wx:if="{{HideVerButton == false}}" class="btn_vercode btn_vercode_show" style="width:{{(windowWidth-55)/2}}px" catchtap="getVerificationCode">{{showButtomName}}</view>
+      <view wx:else class="btn_vercode btn_vercode_hide" style="width:{{(windowWidth-55)/2}}px">{{hideButtomName}}</view>
+    </view>
+  </view>
+
+  <!--<input class="phone" type="number" placeholder-style="color:#F1521B" bindinput="bindInvitationCodeInput" placeholder="请输入邀请码(选填)" value="{{InvitationCode}}" />-->
+  
+  
+  <button wx:if="{{isNotAuth}}" class="save_button" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登 录</button>
+
+  <button wx:else class="save_button" form-type="submit" catchtap='save'>登 录</button>
+</view>
+
+<!--极速绑定-->
+<view wx:if="{{isShowfast}}" class="fast_bg_view" style='height:{{windowHeight}}px'>
+</view>
+
+<view wx:if="{{isShowfast}}" class="fast_view" style='top:{{(windowHeight - windowWidth)/2 - 72}}px' >
+
+  <image class="fast_close" catchtap="closefast" src="/image/close1.png"></image>
+
+  <image class="fast_image" style='width:{{windowWidth}}px;height:{{windowWidth}}px' src='{{FastBindImgUrl}}'></image>
+
+  <button wx:if="{{isNotAuth}}" class='fast_button' style='width:{{windowWidth * 0.6}}px' open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">极速登录</button>
+
+  <button wx:else class='fast_button' style='width:{{windowWidth * 0.6}}px' open-type="getPhoneNumber" form-type="submit" bindgetphonenumber="getPhoneNumber">极速登录</button>
+  
+</view>
+
+
+<!--红包展示-->
+
+<!-- <view wx:if="{{isShowCouponImage}}" class="fast_bg_view" style='height:{{windowHeight}}px'>
+</view>
+
+<view wx:if="{{isShowCouponImage}}" class="coupon_view" style='top:{{(windowHeight - windowWidth)/2 - 72}}px' >
+
+  <image class="coupon_close" catchtap="closeCoupon" src="/image/close1.png"></image>
+
+  <image class="coupon_image" src='{{RegCouponImageUrl}}'></image>
+
+  <button class='coupon_button' catchtap="ShowCouponList">去使用</button>
+
+</view> -->
+
+<!--红包展示-->
+<regcouponview wx:if="{{isShowCouponImage}}" 
+  bind:closeView="closeCouponView"
+  bind:buttonClick="couponViewClick">
+</regcouponview>
+
+</form>

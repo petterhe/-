@@ -1,0 +1,104 @@
+/* pages/product/productreview.wxss */
+.reviewinfo
+{
+  color: #444;
+  font-size: 14px;
+}
+
+.review_list
+{
+   display: flex;
+   flex-direction: row;
+   margin: 0 10px;
+   padding: 10px 0;
+   border-bottom:1px #EBEBEB solid;
+}
+
+.avatar_img
+{
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border:1px #DCDCDC solid;
+}
+
+.review_detail
+{
+  padding-left: 10px;
+}
+
+.nick_view
+{
+   display: flex;
+   flex-direction: row;
+}
+
+.nick_name
+{
+  margin-right: 4px;
+}
+
+.review 
+{
+    font-size: 12px;
+    color:#888;
+    height:12px;
+    margin: 2px 6px 0 0;
+}
+
+.review .rank,
+.review .rank .inner 
+{
+    display:inline-block;
+    width:75px;
+    height:12px;
+    font-size:0;
+    -webkit-background-size:75px 24px;
+    background-size:75px 24px;
+}
+
+.review .rank .inner 
+{
+    float:left;
+    background-position:left -12px;
+    background-color:#fff;
+}
+
+.rank .inner 
+{
+    display:inline-block;
+    width:75px;
+    height:12px;
+    font-size:0;
+    -webkit-background-size:75px 12px;
+    background-size:75px 12px;
+}
+
+.rank .inner 
+{
+    float:left;
+    background-position:left -12rpx;
+    background-color:#fff;
+}
+
+.content
+{
+  margin-top: 10px;
+}
+
+.createdate
+{
+  margin-top: 10px;
+  color: #888;
+  font-size: 13px;
+}
+
+.reply_view
+{
+  margin-top: 10px;
+}
+
+.reply_name
+{
+  font-weight: 600;
+}

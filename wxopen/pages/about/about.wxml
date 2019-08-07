@@ -1,0 +1,81 @@
+<!--pages/people/about.wxml-->
+
+<view class="image_view">
+  <image src="{{imageHost}}AboutUs/20180803_01.jpg" mode="widthFix" />
+  <image src="{{imageHost}}AboutUs/20180803_02.jpg"  mode="widthFix" />
+  <image src="{{imageHost}}AboutUs/20180803_03.jpg"  mode="widthFix" />
+  <image src="{{imageHost}}AboutUs/20180803_04.jpg"  mode="widthFix" />
+  <image src="{{imageHost}}AboutUs/20180803_05.jpg"  mode="widthFix" />
+  <image src="{{imageHost}}AboutUs/20180803_06.jpg"  mode="widthFix" />
+</view>
+<!--内容-->
+<view class="content">
+    <!--
+    <view class="title">妙生活，新零售态的全渠道社区生鲜便利店，为消费者提供优质生鲜美食、热忱到店体验和1小时极速到家服务。</view>
+    <image src="{{imageHost}}AboutUs/016.jpg" mode="widthFix" />
+    
+    <view class="content_main">
+    妙生活零售商品以各类生鲜为主，包括当季果鲜、健康时蔬、奶制品、冷饮、海鲜水产、休闲食品、酒水饮料等类别。我们探索寻找国内外各类优质商品产地，并严格筛选。对每个产品精挑细选，确保健康与安全。
+    </view>
+    
+    <view class="group">
+        <view class="group_title">优势：</view>
+        <view>● 我们拥有一支专业的、全球化的采购团队，不断为消费者寻找安全、美味、高品质的生鲜商品</view>
+        <view>● 我们自建专用冷库、冷藏物流，最大程度上保证生鲜商品的美味、品质与新鲜度。</view>
+        <view>● 我们充分结合信息化和移动互联技术，自建“最后一公里”物流团队，让顾客随时随地都可以购买到各类商品。</view>
+    </view>
+    <image src="{{imageHost}}AboutUs/013.jpg" mode="widthFix" />
+    
+    <view class="group">
+        <view class="group_title">承诺：</view>
+        <view>● 无条件退换货</view>
+        <view>● 1小时送达</view>
+        <view>● 30秒极速退款</view>
+    </view>
+    
+    <view class="group">
+        <view class="group_title">愿景：</view>
+        <view>妙生活致力于随时随地将生鲜美食及时送达，成为中国消费者首选的生鲜连锁品牌</view>
+    </view>
+    <image src="{{imageHost}}AboutUs/014.jpg" mode="widthFix" />
+    
+    <view class="group">
+        <view class="group_title">全体员工使命：</view>
+        <view>细心管理，用心服务，让顾客放心享受美食，愉快享受生活。</view>
+    </view>
+    <view class="group">
+        <view class="group_title">我们的经营理念：</view>
+        <view>精细管理，平等互助，热忱服务，合作共赢。</view>
+    </view>
+    <view class="group">
+        <view class="group_title">妙生活员工特质：</view>
+        <view>热爱生活，诚实守信，勤劳快速。</view>
+    </view>
+    
+    <image src="{{imageHost}}AboutUs/015.jpg" mode="widthFix" />
+-->
+
+  <view wx:if="{{ContactPhone}}">
+    <view class="phone_group">客服电话</view>
+    <view class="phone_detail">{{ContactPhone}}</view>
+  </view>
+
+  <view class="store_group">门店信息</view>
+  <view wx:if="{{listStore != null && listStore.length > 0}}">
+      <view class="store_info" wx:for="{{listStore}}" wx:for-index="i" wx:for-item="item">
+          <!--行政区域-->
+          <view class="store_District" wx:if="{{i == 0 || listStore[i-1].District != item.District}}">{{item.District}}</view>
+
+          <view>{{item.StoreName}}</view>
+          <view>{{item.Address}}</view>
+          <view>{{item.Tel}}</view>
+      </view>
+  </view>
+</view>
+
+<!--也要条件，一直显示 wx:if="{{fromShare==1}}"-->
+ <view class="home_float" catchtap="toHome" >
+        <image class="home_float_img" src="/image/home_icon.png"></image>
+        <view>首页</view>
+</view> 
+<!--/内容-->

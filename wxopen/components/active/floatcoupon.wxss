@@ -1,0 +1,64 @@
+/* components/active/floatcoupon.wxss */
+
+.float_coupon
+{
+  width: 64px;
+}
+
+.coupon_img
+{
+  margin-left: 4px;
+  height: 45px;
+  width: 53px;
+}
+
+.coupon_amt
+{
+  text-align: center;
+  font-size: 16px;
+  margin-top: -36px;
+  margin-left: 12px;
+  color: #fff48d;
+  height: 32px;
+  line-height: 32px;
+  width: 34px;
+  overflow: hidden;
+  word-wrap:break-word;
+  word-break:break-all;
+}
+
+.status_view
+{
+  margin-top:10px;
+  width:56px;
+  font-size: 11px;
+  overflow: hidden;
+  word-wrap:break-word;
+  word-break:break-all;
+}
+
+.status_view_3
+{
+  font-size: 13px;
+  height: 20px;
+  line-height: 20px;
+  background-color:#ff4545;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+}
+
+.status_view_2
+{
+  height: 20px;
+  line-height: 20px;
+  background-color:#ff4545;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+}
+
+.status_view_count
+{
+  color: #fff48d;
+}

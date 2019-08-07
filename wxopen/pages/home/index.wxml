@@ -1,0 +1,195 @@
+<view class="container">
+
+  
+
+  <!--头部-->
+  <view class="group_header">
+    <view class="storeinfo" style="width:{{windowWidth - 80}}px" catchtap="toSelectAddress">{{storename}}
+      <text class="selectaddress">{{selectaddress}}</text>
+    </view>
+
+    <image class="searchbutton" mode="scaleToFill" src="/image/search.png" catchtap="toSearch"></image>
+  </view>
+
+  <view wx:if="{{ListEC1 != null && ListEC1.length > 0}}">
+    <scroll-view class="ec1_scroll" scroll-x style='margin-top:{{ec1view_margintop}}px;' enable-back-to-top="true" scroll-into-view="{{EC1_intoView}}">
+      <view class="ec1_group" style='width:{{tabitemwidth*ListEC1.length}}px'>
+        <view class="ec1_item" style="width:{{tabitemwidth}}px" wx:for="{{ListEC1}}" wx:for-item="ec1item" wx:for-index="i" catchtap="ec1change" data-index="{{i}}" id="EC1_{{i}}">
+            <view class="ec1_select" wx:if="{{i == selectTabIndex}}">
+              <!-- <image class="ec1_image" wx:if="{{ec1item.ECategoryType==6}}" src='/image/group_icon.png'></image> 
+              <text wx:else>{{ec1item.EC1Name}}</text>-->
+              <text>{{ec1item.EC1Name}}</text>
+              <text class="tab_line" style="width:{{tabitemwidth - 8}}px;top:{{tablinetop}}px;left:{{tablineleft}}px;"></text>
+            </view>
+            <view wx:else>
+              <!-- <image class="ec1_image" wx:if="{{ec1item.ECategoryType==6}}" src='/image/group_icon.png'></image> 
+              <text wx:else>{{ec1item.EC1Name}}</text>-->
+              <text>{{ec1item.EC1Name}}</text>
+            </view>
+          </view>
+      </view>
+    </scroll-view>
+
+    <!-- <view class="gourp_float" wx:if="{{groupIndex > 0}}" style="width:{{tabitemwidth}}px;margin-top:{{ec1view_margintop}}px;" catchtap="ec1change" data-index="{{groupIndex}}">
+      <image class="ec1_image" src='/image/group_icon.png'></image>
+    </view> -->
+
+   <scroll-view class="ec2_scroll" scroll-x style='margin-top:{{ec1view_margintop}}px;'>
+        <view class="ec2_group" style='width:{{ec1item.EC2GroupLength}}px'>
+        
+        <view wx:for="{{ec1item.ListEC2}}" wx:for-index="j" wx:for-item="ec2item" data-index="{{j}}">
+          <view  wx:if="{{j == ec1item.selectEC2Index}}" class='ec2_item ec2_select' style='width:{{ec2item.EC2NameLength}}px' catchtap="ec2change" data-index="{{j}}">{{ec2item.EC2Name}}</view> 
+
+          <view wx:else class='ec2_item' style='width:{{ec2item.EC2NameLength}}px' catchtap="ec2change" data-index="{{j}}">{{ec2item.EC2Name}}</view> 
+        </view>
+      </view>
+    </scroll-view>
+    <!-- </view> -->
+
+    <!--商品列表-->
+
+    <!--swiper-->
+    <!-- <swiper class="list_view" style="height:{{listHeight}}px;margin-top:{{listViewMarginTop}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" bindchange="swiperchange" current="{{selectTabIndex}}" duration = "{{swiperDuration}}" >
+      <block wx:for="{{ListEC1}}" wx:for-index="i" wx:for-item="ec1item">
+        <swiper-item> -->
+
+    <view class="list_view" style="height:{{listHeight}}px;margin-top:{{listViewMarginTop}}px;">
+      <!-- class="{{i==selectTabIndex?'':'hidden'}}" -->
+      <!-- wx:if="{{i==selectTabIndex}}" -->
+      <scroll-view scroll-y="true" wx:if="{{ec1item.ListEC2 != null && ec1item.ListEC2.length > 0}}" style="height:{{listHeight}}px" bindscroll="onScroll" enable-back-to-top="true" scroll-into-view="{{ec1item.IntoView}}">
+        <view wx:for="{{ec1item.ListEC2}}" wx:for-index="j" wx:for-item="ec2item" data-index="{{j}}" id="EC2_{{ec2item.EC2SysNo}}">
+          <!--拼团-->
+          <view wx:if="{{ec1item.BuyType == PT && ec2item.ListPT != null && ec2item.ListPT.length > 0}}">
+
+            <!--列表使用小图-->
+            <view class ="p_list" wx:for="{{ec2item.ListPT}}" wx:for-index="k" wx:for-item="product" catchtap="planDetail" data-index="{{k}}" data-plansysno="{{product.PlanSysNo}}">
+
+            <view class="p_image_view">
+              <view class="p_list_discount_view" wx:if="{{product.DiscountRate != null && product.DiscountRate.length > 0}}"><text class="p_list_discount_text">{{product.DiscountRate}}</text>折</view>
+
+              <image wx:if="{{product.IsReservation == 1}}" class="p_list_tag_view" src="/image/tag_yushou.png"></image>
+
+              <image wx:if="{{product.ShipType == ExpressDelivery}}" class="p_list_ship_tag"  src="/image/tag_shiptype1.png"></image>
+
+              <image wx:if="{{product.ShipType == HomeDelivery}}" class="p_list_ship_tag"  src="/image/tag_shiptype2.png"></image>
+
+              
+                <!-- <image wx:if="{{product.ScenarioType == InvitationNew || product.ScenarioType == HeadFreeCouponINew}}" class="p_list_tag_view" src="/image/tag_yaoxin.png"></image>  -->
+
+              <image class="p_list_img" src="{{product.PictureUrl}}" mode="scaleToFill"></image>
+            </view>
+            <view class="p_text_view">
+              <text class="p_list_name">{{product.CustPName}}</text>
+              <text class="p_list_desc">{{product.CustPSubName}}</text>
+              <!--标签-->
+              <view class="p_list_labelview"></view>
+              <!--标签-->
+
+              <!--不显示已售多少件-->
+              <!-- <view class="p_list_review">{{product.OrderDesc}}</view> -->
+
+              <text wx:if="{{product.Status == 1}}" class="p_list_groupbutton" catchtap="planDetail" data-index="{{K}}" data-plansysno="{{product.PlanSysNo}}">去开团</text>
+            <text wx:else class="p_list_group_gpstatus">{{product.StatusName}}</text>
+
+              <view class="p_list_n_price">
+                 <text wx:if="{{product.BasicPrice}}"  class="p_list_baseprice">¥{{product.BasicPrice/100.00}}</text>
+              </view>
+              <view class="p_list_price">
+                <text class="p_list_num">¥{{product.GPrice/100.00}}</text>
+                <!-- <text class="p_list_baseprice">¥{{product.BasicPrice/100.00}}</text> -->
+              </view>
+            </view>
+          </view>
+            <!--列表使用小图-->
+          </view>
+
+          <!--商品-->
+          <view wx:if="{{ec1item.BuyType == ShoppingCart && ec2item.ListProduct != null && ec2item.ListProduct.length > 0}}">
+
+            <view wx:if="{{ec1item.ECategoryType != JingXuanType}}" class="g_list_header">——•<text class="g_list_header_text">{{ec2item.EC2Name}}</text>•——</view> 
+            
+            <!--列表使用小图-->
+            
+            <view class ="p_list"  wx:for="{{ec2item.ListProduct}}" wx:for-index="k" wx:for-item="product" catchtap="productDetail" data-index="{{k}}" data-productsysno="{{product.SysNo}}">
+              <view class="p_image_view">
+              
+                <!--图片标签-->
+                <image wx:if="{{product.LabelUrl != null && product.LabelUrl.length > 0}}" class="p_list_labelimage" src="{{product.LabelUrl}}"></image>
+
+                <image class="p_list_img" src="{{product.PictureUrl}}" mode="scaleToFill"></image>
+              </view>
+              <view class="p_text_view">
+                <text class="p_list_name">{{product.ProductName}}</text>
+                <text class="p_list_desc">{{product.PromotionDesc}}</text>
+
+                <!--标签-->
+                <view class="p_list_labelview">
+                    <view wx:if="{{product.LabelTextList != null && product.LabelTextList.length > 0}}" wx:for="{{product.LabelTextList}}" wx:for-index="i" wx:for-item="labelitem" wx:if="{{i<3}}">
+                    <view wx:if="{{labelitem.LabelTextStyle == 1}}" class="p_list_label_item p_list_label_item_yellow">{{labelitem.LabelText}}</view>
+                    <view wx:else class="p_list_label_item p_list_label_item_green">{{labelitem.LabelText}}</view>
+                  </view>
+                </view>
+                <!--标签--> 
+
+                <!--不显示已售多少件-->
+                <!-- <view class="p_list_review">{{product.SalesCount}}
+                </view> -->
+
+                <view class="p_list_btn_cart" wx:if="{{product.InvStatus == 0 || product.InvStatusName == null || product.InvStatusName.length ==0}}">
+                  <image class="p_list_cart_img" catchtap="addCart" data-index="{{i}}" data-productsysno="{{product.SysNo}}" src='/image/number_p.png'></image>
+                </view>
+                 <view wx:else class="p_list_invstatus">{{product.InvStatusName}}</view>
+                <!--尊享价-->
+                <view wx:if="{{product.IsShowVIPPrice == 1}}"> 
+                  <view class="p_list_n_price">¥{{product.Price/100.00}}</view>
+                  <view class="p_list_price">
+                    <text class="p_list_num">¥{{product.VIPPrice/100.00}}</text>
+                    <text>/{{product.DenominatedUnit}}</text>     
+                    <image class="p_list_vip_price_flag" src="/image/vip_price_flag.png"></image>
+                  </view>
+                </view>
+                <view wx:else>
+                  <view class="p_list_n_price">
+                    <text wx:if="{{product.BasicPrice}}" class="p_list_baseprice">¥{{product.BasicPrice}}</text>
+                  </view>
+                  <view class="p_list_price">
+                    <text class="p_list_num">¥{{product.Price/100.00}}</text>
+                    <text>/{{product.DenominatedUnit}}</text>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+            <!--列表使用小图-->
+
+          </view>
+        </view>
+      </scroll-view>
+    </view>  
+        <!-- </swiper-item>
+      </block>
+    </swiper> -->
+  </view>
+
+  <!--配送中-->
+  <view class="Buoy_view" wx:if="{{ListBuoy != null && ListBuoy.length >0}}">
+    <view class="Buoy_item" wx:for="{{ListBuoy}}" wx:for-index="i" wx:for-item="Buoyitem" wx:if="{{i<2}}">
+        <image class="Buoy_image" src="{{Buoyitem.ImgUrl}}" catchtap="BuoyClick" data-index="{{i}}"></image>
+    </view>
+  </view>
+
+
+ <!--粉丝群-->
+  <view class="fans_view">
+      <image class="fans_image" src="/image/wx_group.png" catchtap="fansClick"></image>
+  </view>
+
+  <!--打开APP-->
+  <button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>
+
+  <!-- <view wx:if="{{showReloadView && (ListEC1 == null || ListEC1.length == 0)}}" class="page_reload">
+    <view class="button_reload" catchtap="refreshData">重新加载</view>
+  </view> -->
+
+</view>
+

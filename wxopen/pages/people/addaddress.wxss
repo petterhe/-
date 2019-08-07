@@ -1,0 +1,243 @@
+/* pages/people/addaddress.wxss */
+.address_view
+{
+    padding: 2px 10px;
+    font-size: 14px;
+}
+
+.item
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  width: 710rpx;
+  margin: 14px 0;
+}
+
+
+.item_title
+{
+  width: 60px;
+  font-size: 13px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.item_detail
+{
+  width: 560rpx;
+  height: 24px;
+  line-height: 24px;
+}
+
+.name
+{
+    /* margin: 14px 0; */
+    border-bottom:1rpx #EBEBEB solid;
+}
+
+.tel
+{
+    /* margin: 14px 0; */
+    border-bottom:1rpx #EBEBEB solid;
+}
+
+.section
+{
+    /* margin: 14px 0; */
+}
+
+.picker{
+  float: left;
+  width: 75px;
+}
+
+.citypicker
+{
+  float: left;
+  width: 75px;
+}
+
+.location_button
+{
+  width: 90px;
+  height: 20px;
+  line-height: 20px;
+  float: right;
+  text-align: right;
+  color: #FF3333;
+}
+
+.placemark_memo
+{
+    /* margin: 14px 0; */
+    height: 24px;
+    line-height: 24px;
+    color: #888;
+}
+
+.placemark
+{
+    /* margin: 14px 0; */
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+}
+
+.right_icon
+{
+  float: right;
+  width: 6px;
+  height: 12px;
+  margin-top: 5px;
+}
+
+.address{
+    /* margin: 14px 0; */
+    border-bottom:1rpx #EBEBEB solid;
+}
+
+.save_button
+{
+    margin: 40px 0 0 0;
+    font-size: 16px;
+    background-color: #448926;
+    color: #fff;
+}
+
+.searchAddress
+{
+  position:fixed;
+  top: 50px;
+  left: 50rpx;
+  width: 650rpx;
+  font-size: 13px;
+  color: #444;
+  border-radius: 5px;
+  background: #fff;
+  z-index: 160;
+
+}
+
+.searchAddress_close
+{
+    position: relative;
+    width: 36px;
+    height: 36px;
+    float: right;
+    margin: -18px -18px 0 0;
+    z-index: 240;
+}
+
+
+.search_header {
+  position:fixed;
+  height: 50px;
+  line-height: 50px;
+  /*background-color:#7BD88C;*/
+  /*display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;*/
+  padding:0 20rpx;
+  width: 650rpx;
+  box-sizing: border-box;
+  font-size: 16px;
+  /*color: white;*/
+  color: #444;
+  text-align: center;
+  z-index:180;
+  border-bottom: #aaa solid 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.searchbutton{
+  position: absolute;
+  right: 12px;
+  top:16px;
+  width: 20px; 
+  height: 20px;
+  z-index: 220;
+}
+
+.searchText
+{
+  /*position:fixed;*/
+  height: 32px;
+  line-height: 32px;
+  width: 600rpx;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+  margin-top: 10px;
+  padding-left: 10rpx;
+  text-align: left;
+  z-index: 200;
+  /*font-size: 14px;*/
+}
+
+.searchaddress_view
+{
+  padding: 50px 25rpx 0 25rpx;
+}
+
+.address_memo
+{
+  padding: 10px 0;
+  text-align: center;
+  color: #888;
+  border-bottom:1rpx #EBEBEB solid;
+}
+
+.address_list
+{
+
+}
+
+.address_item
+{
+  padding: 10px 10px;
+  border-bottom:1rpx #EBEBEB solid;
+}
+
+.item_name
+{
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.item_address
+{
+  color: #888;
+}
+
+.gender_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.gender_item
+{
+  margin-right: 8px;
+  width: 54px; 
+  height: 24px;
+  line-height: 24px;
+}
+
+.gender_detail
+{
+  width: 54px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border:1rpx #EBEBEB solid;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.gender_detail_select
+{
+   background-color: #448926;
+}

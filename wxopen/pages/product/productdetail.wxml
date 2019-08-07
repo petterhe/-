@@ -1,0 +1,218 @@
+<!--pages/product/productdetail.wxml-->
+<view class="product_view" wx:if="{{tabIndex == 0 && productDetail != null}}">
+  <swiper class="swiper" wx:if="{{productDetail.PictureUrls != null && productDetail.PictureUrls.length}}> 0" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{productDetail.PictureUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='detail_view'>
+    <view class="name_view" wx:if="{{productDetail != null}}">
+
+      <view class="productName" style="width:{{windowWidth-80}}px">{{productDetail.Product.ProductName}}</view>
+    </view>
+
+    <view wx:if="{{productDetail != null && productDetail.Product != null}}">
+      <!--尊享价-->
+      <view wx:if="{{productDetail.Product.IsShowVIPPrice == 1}}">
+        <view class="n_price">¥{{productDetail.Product.Price/100.00}}</view>
+        <view class="price">
+          <text class="num">¥{{productDetail.Product.VIPPrice/100.00}}</text>
+          <text>/{{productDetail.Product.DenominatedUnit}}</text>
+          <image class="vip_price_flag" src="/image/vip_price_flag.png"></image>
+        </view>
+      </view>
+      <view wx:else>
+        <view class="n_price"></view>
+        <view class="price">
+          <text class="num">¥{{productDetail.Product.Price/100.00}}</text>
+          <text>/{{productDetail.Product.DenominatedUnit}}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="productdesc" wx:if="{{productDetail.ProductDesc != null && productDetail.ProductDesc.length > 0}}">{{productDetail.ProductDesc}}</view>
+
+  <!--服务说明-->
+  <view class="serverdesc_info1" wx:if="{{productDetail.ServeDesc != null && productDetail.ServeDesc.ListServeItem != null &&productDetail.ServeDesc.ListServeItem.length > 0}}" catchtap="showServeDescView">
+    <image class="serverdesc_flag1" src="/image/rightarrow2.png"></image>
+    <view class="serverdesc_list">
+      <view class="serverdesc_item" wx:for="{{productDetail.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item" wx:if="{{i<4}}">
+        <image class="serverdesc_image" src="/image/check3.png"></image>
+        <text>{{item.ItemTitle}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:if="{{showOpenVip==1}}" class="vip_group">
+    <view wx:if="{{productDetail.ShowOpenVIPMemo == 1}}" class="vip_view" style="background-image:url({{privigecardbg}});-webkit-background-size:100% 100%;background-size:100% 100%;">
+      <image class="vip_card" src='/image/vip_card.png'></image>
+      <view class="vip_memo">
+        <view>{{productDetail.OpenVIPPriceMemo}}</view>
+        <view>{{productDetail.OpenVIPDisMemo}}</view>
+      </view>
+
+      <view class="vip_button" catchtap='toAboutAPP'>去APP开通></view>
+    </view>
+  </view>
+
+  <!--邀群信息-->
+  <view class='wx_group_view'>
+    <imagebtnview imageUrl='/image/wx_group.png' title='妙粉福利群' memo='红包免费领起来，妙粉群福利多多，优惠多多！' btnImageUrl='/image/wx_group_in.png' bind:buttonClick="_wxGroupInClick">
+    </imagebtnview>
+  </view>
+
+  <!--商品参数-->
+  <!-- <view class="para" catchtap="toProductPara">
+    <view class="para_header">
+      <image class="para_icon" src="/image/para_icon.png"></image>
+
+      <image class="para_icon2" src="/image/rightarrow2.png"></image>
+      商品参数
+    </view>
+  </view> -->
+
+  <!--图文详情-->
+  <view class="para" wx:if="{{canWebView}}" catchtap="toProductGraphic">
+    <view class="para_header">
+      <image class="para_icon" src="/image/graphic_icon.png"></image>
+
+      <image class="para_icon2" src="/image/rightarrow2.png"></image>
+      图文详情
+    </view>
+  </view>
+
+  <!--商品评价-->
+  <view class="comment" wx:if="{{productDetail.ProductRemark != null}}" catchtap="toProductReview">
+    <view class="comment_header">
+      <image class="comment_icon" src="/image/comment_icon1.png"></image>
+
+      <image class="comment_icon2" src="/image/rightarrow2.png"></image>
+
+      <view class="review">
+        <text class="rank" style="background-image:url({{StarImgUrl}})"><text class="inner" style="background-image:url({{StarImgUrl}}); width:{{((productDetail.ProductRemark.Score==0?10:productDetail.ProductRemark.Score)*10)}}%;"></text></text> {{item.SalesCount}}
+      </view>
+      商品评价
+    </view>
+
+    <view class="comment_text">{{productDetail.ProductRemark.Content1}}</view>
+    <view class="comment_memo">
+      <view class="comment_name">{{productDetail.ProductRemark.NickName}}</view>
+      <view class="comment_time">{{productDetail.ProductRemark.strRowCreateDate}}</view>
+    </view>
+  </view>
+
+  <!--直播暂时不显示-->
+  <!--<view wx:if="{{productDetail.ListSeek != null && productDetail.ListSeek.length > 0}}" >
+        <view class="other_header">美味直播</view>
+        
+        <view class="seek_image_list" wx:if="{{productDetail.ListSeek[0].ListItem != null && productDetail.ListSeek[0].ListItem.length==1}}">
+          <image class="seek_image1" src="{{productDetail.ListSeek[0].ListItem[0].ImgM3Url}}"></image>
+        </view>
+
+        <view class="seek_image_list" wx:if="{{productDetail.ListSeek[0].ListItem != null &&(productDetail.ListSeek[0].ListItem.length==2|| productDetail.ListSeek[0].ListItem.length==4)}}">
+          <view class="seek_image_row" wx:for="{{[0, 1]}}" wx:for-item="i">
+            <image class="seek_image2" src="{{productDetail.ListSeek[0].ListItem[2*i].ImgM3Url}}" wx:if="{{productDetail.ListSeek[0].ListItem.length>2*i}}"></image>
+            <image class="seek_image2" src="{{productDetail.ListSeek[0].ListItem[2*i+1].ImgM3Url}}" wx:if="{{productDetail.ListSeek[0].ListItem.length>2*i+1}}"></image>
+          </view>
+        </view>
+
+        <view class="seek_image_list" wx:if="{{productDetail.ListSeek[0].ListItem != null && (productDetail.ListSeek[0].ListItem.length==3|| productDetail.ListSeek[0].ListItem.length>4)}}">
+          <view class="seek_image_row" wx:for="{{[0, 1, 2]}}" wx:for-item="i">
+            <image class="seek_image3" src="{{productDetail.ListSeek[0].ListItem[3*i].ImgUrl}}" wx:if="{{productDetail.ListSeek[0].ListItem.length>3*i}}"></image>
+            <image class="seek_image3" src="{{productDetail.ListSeek[0].ListItem[3*i+1].ImgUrl}}" wx:if="{{productDetail.ListSeek[0].ListItem.length>3*i+1}}"></image>
+            <image class="seek_image3" src="{{productDetail.ListSeek[0].ListItem[3*i+2].ImgUrl}}" wx:if="{{productDetail.ListSeek[0].ListItem.length>3*i+2}}"></image>
+          </view>
+        </view>
+    </view>-->
+  <view class='mc_recommon_view' wx:if="{{productDetail.SeeProducts != null && productDetail.SeeProducts.length > 0}}">
+    <view class="mc_other_header">
+      <text class='mc_other_header_title'>买过该商品还看过 </text> 
+    </view>
+    <view class="mc_see_item"  wx:for="{{productDetail.SeeProducts}}" wx:key="key" wx:for-item="item" catchtap="toProductDetail" data-index="{{index}}">
+      <view class='mc_see_item_img_view'>
+        <image class="mc_see_item_img" src="{{item.PictureUrl}}"></image>
+      </view>
+      <view class="mc_see_item_name">{{item.ProductName}}</view>
+      <view class="mc_see_item_price_view">
+        <text class='mc_see_item_price'>¥{{item.Price/100.00}}</text>
+        <image class="mc_list_addcart_img" catchtap="addCartSee" data-index="{{index}}" data-productsysno="{{item.SysNo}}" src='/image/number_p.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+<view class="product_bottom {{isIpx?'fix-iphonex-button':''}}">
+  <view class="bottom_home bottom_home_line" catchtap="toHome">
+    <image class="bottom_home_img" src="/image/home_icon.png"></image>
+    <view>首页</view>
+  </view>
+
+  <view class="bottom_home bottom_home_line" wx:if="{{canShare && productDetail != null && productDetail.Product != null}}">
+    <button open-type="share" class="bottom_share {{isIpx?'bottom_share_ipx':''}}"></button>
+    <image class="bottom_home_img" src="/image/share_icon1.png"></image>
+    <view>分享</view>
+  </view>
+  <view wx:else class="bottom_home">
+  </view>
+
+  <view class="bottom_price" wx:if="{{productDetail != null && productDetail.Product != null}}">
+    <text class="num">¥{{productDetail.Product.Price/100.00}}</text>
+    <text>/{{productDetail.Product.DenominatedUnit}}</text>
+  </view>
+
+  <view wx:if="{{productDetail != null && productDetail.Product != null}}">
+
+    <view wx:if="{{productDetail.Product.InvStatus == 0 || productDetail.Product.InvStatusName == null || productDetail.Product.InvStatusName.length ==0}}" class="bottom_addcart" catchtap="addCart">加入购物车</view>
+    <view wx:else class="bottom_discart">{{productDetail.Product.InvStatusName}}</view>
+  </view>
+</view>
+
+<!--悬浮购物车-->
+<view class="float_cartview">
+  <text class="float_cartbadge" wx:if="{{ShoppingCartCount > 0 && !showServeDescView}}">{{ShoppingCartCount}}</text>
+  <image class="float_cart" catchtap="toCart" src="/image/blackcart.png"></image>
+</view>
+
+<!--打开APP-->
+<button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app open_app1" type="mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>
+
+<!--红包悬浮-->
+<floatcoupon wx:if="{{activeInfo != null}}" class='coupon_float' id="floatcoupon" ActAmt='{{activeInfo.ActAmt}}' ActNeedTimes='{{activeInfo.ActNeedTimes}}  
+  ActJoinTimes=' {{activeInfo.ActJoinTimes}} '
+  ActStatus='{{activeInfo.ActStatus}} '
+  bind:clickEvent="_folatcoupon_click">
+</floatcoupon>
+
+<!--红包分享弹框-->
+<sharedialog wx:if="{{activeInfo != null}}"  class='sharedialog ' id="sharedialog"
+  title='{{shareDialogTitle}} ' 
+  content='{{shareDialogContent}} ' 
+  buttonText='{{shareDialogbuttonText}} ' 
+  isShowShare='{{shareDialogisShowShare}} '
+  bind:closeShareDialog="_closeShareDialog"
+  bind:buttonClick="_buttonClick">
+</sharedialog>
+
+<!--遮罩层2-->
+<view wx:if="{{showServeDescView && productDetail != null && productDetail.ServeDesc != null && productDetail.ServeDesc.ListServeItem != null &&productDetail.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailview" style="height:{{windowHeight}}px">
+</view>
+
+<!--服务说明-->
+<view wx:if="{{showServeDescView && productDetail != null &&productDetail.ServeDesc != null && productDetail.ServeDesc.ListServeItem != null &&productDetail.ServeDesc.ListServeItem.length > 0}}" class="ServeDesc_Detailinfo" catchtap="hideServeDescView">
+    <view class="ServeDesc_Detailtitle">{{productDetail.ServeDesc.Title}}</view>
+    <image class="ServeDesc_Detailclose" src="/image/close2.png"></image>
+    <view class="ServeDesc_Detailitem" wx:for="{{productDetail.ServeDesc.ListServeItem}}" wx:for-index="i" wx:for-item="item">
+    <image class="ServeDesc_Detailitemimage" src="/image/check3.png"></image>
+    <view class="ServeDesc_DetailitemView">
+        <view class="ServeDesc_DetailitemTitle">{{item.ItemTitle}}</view>
+        <view>{{item.ItemDesc}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<!--components/active/sharedialog.wxml-->
+<view class="share_background" hidden="{{!isShow}}"></view>
+
+<view class='share_dialog_container' hidden="{{!isShow}}">
+  <view class='share_dialog'>
+    <view class='share_dialog_title'>{{title}}</view>
+    <view class='share_dialog_content'>{{content}}</view>
+    <view class='share_close_view' catchtap='_closeShareDialog'><image class='share_close' src='/image/close3.png'></image>
+    </view>
+
+    <button wx:if="{{isShowShare}}" class="share_button" open-type='share'>{{buttonText}}</button>
+    <button wx:else class="share_button" catchtap='_buttonClick'>{{buttonText}}</button>
+
+    <image class='share_img' src='/image/share_dialog_coupon.png'></image>
+  </view>
+</view>

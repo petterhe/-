@@ -1,0 +1,162 @@
+/* pages/people/loginphone.wxss */
+.pageInfo
+{
+  padding: 15px;
+  font-size: 15px;
+  color: #444;
+}
+
+.memo
+{
+  color:#888;
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+.memo
+{
+  height: 20px;
+}
+
+input
+{
+  border: 1px #EBEBEB solid;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.ver_view
+{
+  margin: 15px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ver_input
+{
+  margin-right: 15px;
+}
+
+.btn_vercode
+{
+   /* padding: 11px; */
+  height: 42px;
+  line-height: 42px;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.btn_vercode_show
+{
+  background-color: #448926;
+}
+
+.btn_vercode_hide
+{
+  background-color: #aaa;
+}
+
+.phone
+{
+  margin: 15px 0;
+}
+
+.save_button{
+  background-color: #448926;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  /* padding: 10px; */
+  border-radius: 4px;
+}
+
+.fast_bg_view
+{
+  position:fixed;
+  top: 0;
+  z-index:100;
+  width: 754rpx;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+}
+
+.fast_view
+{
+  position:fixed;
+  width: 750rpx;
+  border-radius: 5px;
+  z-index: 120;
+}
+
+.fast_image
+{
+
+} 
+
+.fast_button
+{
+  margin-top: -40px;
+  background-color:#ffe938;
+  border-radius: 4px;
+  color: #ff3357;
+  font-size: 18px;
+}
+
+.fast_close
+{
+  width: 36px;
+  height: 36px;
+  float: right;
+  margin: 0 20px 0 0;
+}
+
+
+.coupon_bg_view
+{
+  position:fixed;
+  top: 0;
+  z-index:100;
+  width: 754rpx;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+}
+
+.coupon_view
+{
+  position:fixed;
+  width: 750rpx;
+  border-radius: 5px;
+  z-index: 120;
+}
+
+.coupon_image
+{
+  width: 470rpx;
+  height: 610rpx;
+  margin:12px 140rpx 0 140rpx;
+} 
+
+.coupon_button
+{
+  margin: 10px 155rpx 0 155rpx;
+  background-color:#ffe938;
+  border-radius: 4px;
+  color: #ff3357;
+  font-size: 18px;
+  width: 440rpx;
+}
+
+.coupon_close
+{
+  width: 36px;
+  height: 36px;
+  float: right;
+  margin: 30px 20px 0 0;
+}

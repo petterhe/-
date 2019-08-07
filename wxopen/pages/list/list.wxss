@@ -1,0 +1,18 @@
+/* pages/group/ptlist.wxss */
+.header_tips
+{
+  position: fixed;
+  background-color: #FFF8CE;
+  width: 750rpx;
+  text-align: center;
+  font-size: 13px;
+  color: #444444;
+  z-index: 50;
+  overflow:hidden;
+  /*white-space: nowrap;
+  overflow:-webkit-marquee;
+  -webkit-marquee-direction:left;
+  -webkit-marquee-speed:normal;
+  -webkit-marquee-style:scroll;
+  -webkit-marquee-repetition:1;*/
+}

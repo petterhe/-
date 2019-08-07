@@ -1,0 +1,13 @@
+/* pages/base/bardetail.wxss */
+.sharedialog
+{
+  position: absolute;
+  z-index: 200;
+}
+
+.coupon_float
+{
+  position:fixed;
+  right: 0;
+  bottom: 160px;
+}

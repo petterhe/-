@@ -1,0 +1,46 @@
+<!--pages/appeal/orderappeal.wxml-->
+<view class="list_view" wx:if="{{orderAppealInfo != null && orderAppealInfo.Products != null && orderAppealInfo.Products.length > 0}}">
+
+  <view class ="list_order">
+    <view><image class="order_flag" src='/image/order_flag.png'></image>订单号：</view>
+    <view class="order_id">{{orderAppealInfo.SOID}}</view>
+  </view>
+
+  <view class ="list_item" wx:for="{{orderAppealInfo.Products}}" wx:for-index="i" wx:for-item="item">
+      <image class="item_img" src="{{item.PictureUrl}}" mode="scaleToFill"></image>
+
+    <view style="width:{{windowWidth-90}}px;">
+        <view class="item_name">{{item.ProductName}}</view>
+
+        <view class="item_data"><text class="item_price">{{item.Price}}</text><text class="item_num">/{{item.DenominatedUnit}} × {{item.ReceiveNum}}</text></view>
+
+        <view class="item_data">
+          <view>小计:<text class="item_price">¥{{item.ProductPrice/100.00}}</text></view>
+          <view wx:if="{{item.DiscountAmt > 0}}">-优惠:<text class="item_price">¥{{item.DiscountAmt/100.00}}</text></view>
+          <view wx:if="{{item.ItemPointPayAmt > 0}}">-积分:<text class="item_price">¥{{item.ItemPointPayAmt/100.00}}</text></view>
+        </view>
+
+        <view class="item_data">实 付:<text class="item_price">¥{{item.Amt/100.00}}</text></view>
+
+        <text wx:if="{{item.Status == CanAppeal}}" class="item_button" catchtap="reportAppela" data-index="{{i}}">我要退款</text>
+
+        <text wx:if="{{item.Status == InAppeal}}" class="item_button1" catchtap="showAppeal" data-index="{{i}}">退款详情</text>
+
+        <button wx:if="{{item.Status == CanNotAppeal}}" class="item_button2" type="primary" open-type="contact" >联系客服</button>
+
+    </view>
+  </view>
+</view>
+
+<!--去首页-->
+<!-- <view wx:if="{{fromApp == 1}}" class="home_float" catchtap="toHome" >
+        <image class="home_float_img" src="/image/home_icon.png"></image>
+        <view>首页</view>
+</view>  -->
+
+<!--打开APP-->
+<button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app open_app1" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">返回APP</button>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+
+

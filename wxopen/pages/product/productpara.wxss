@@ -1,0 +1,41 @@
+/* pages/product/productpara.wxss */
+.para_view
+{
+   padding: 0 0;
+   font-size: 14px;
+   color: #666;
+   
+}
+
+.para_list
+{
+  margin-bottom: 10px;
+}
+
+.para_hd
+{
+    padding: 6px 15rpx;
+    background-color: #EBEBEB;
+    border-top: 1px #CCC solid;
+    border-bottom: 1px #CCC solid;
+}
+
+.para_row
+{
+    border-bottom: 1px #f3f3f3 solid;
+    padding: 12px 15rpx;
+    display: flex;
+    flex-direction:row;
+}
+
+.para_name
+{
+    width: 200rpx;
+    padding-right: 20rpx;
+}
+
+.para_value
+{
+    width: 520rpx;
+    color: #444;
+}

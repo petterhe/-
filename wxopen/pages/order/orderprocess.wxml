@@ -1,0 +1,65 @@
+<!--pages/order/deliveryinfo.wxml-->
+<!--
+<view class="searchbar">
+    <view class="searchtview">
+      <input class="searchtext" bindinput="bindKeyInput" placeholder="请输入您需要查询的订单" value="{{searchValue}}" focus="{{focus}}" type="number" maxlength="10"/>
+    </view>
+    <image wx:if="{{searchValue != null && searchValue.length > 0}}" class="clearbutton" catchtap="clear" mode="scaleToFill" src="/image/close.png"></image>
+    <text class="btnSearch" catchtap="search">查询</text>
+  </view>-->
+
+<view class="process_list" wx:if="{{soProcessInfo!= null}}">
+
+    <view class="process_hd">订单信息</view>
+    <view class="order_data">
+        <image src="{{soProcessInfo.PImgUrl}}"/>
+        <view class="order_info">
+            <view><text>订单号：</text>{{soProcessInfo.SOID}}</view>
+            <view><text>订单状态：</text>{{soProcessInfo.StatusName}}</view>
+        </view>
+    </view>
+
+    <view wx:if="{{soLocation != null}}">
+        <view class="process_hd">配送信息</view>
+        <view class="distinct_view">距离您还有<text class="distinct_text">{{soLocation.Distinct}}</text>米</view>
+        <map class="map_info" bindtap="orderLocatinInfo" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" scale="{{scale}}" >
+        </map>
+
+        <view class="user_info">
+            <view class="user_name"><text>配送员：</text><text>{{soLocation.FreightUserName}}</text></view>
+            <view class="user_phone">
+                <text>{{soLocation.FreightUserPhone}}</text>
+                <image catchtap="calldeliveryphone" class="callphone" src="/image/callphone.png"></image>
+            </view>
+        </view>
+    </view>
+     <view class="process_hd">订单进度</view>
+     <view wx:if="{{soProcessInfo.ListProcess != null && soProcessInfo.ListProcess.length > 0}}">
+        <view  class="process_detail" wx:for="{{soProcessInfo.ListProcess}}" wx:for-index="i" wx:for-item="item">
+        
+            <view wx:if="{{i == 0}}" class="process_info">
+
+                <view wx:if="{{soProcessInfo.ListProcess.length > 1}}" class="process_line_top process_line_color"></view>
+
+                <view wx:else class="process_line_top"></view>
+
+                <view class="process_dot_now"></view>
+            </view>
+
+        <view wx:elif="{{i == soProcessInfo.ListProcess.length - 1 && soProcessInfo.ListProcess.length > 1}}" class="process_info">
+            <view class="process_line_bottom process_line_color"></view>
+            <view class="process_dot"></view>
+        </view>
+
+        <view wx:else class="process_info">
+            <view class="process_line process_line_color"></view>
+            <view class="process_dot"></view>
+        </view>
+
+        <view class="process_status">
+            <view>{{item.StatusDesc}}</view>
+            <view>{{item.OptTime}}</view>
+        </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,51 @@
+<!--pages/invoice/myinvoice.wxml-->
+<view class="container">
+  <view wx:if="{{isShowAdd}}" class="invoice_addinvoice" catchtap="addinvoice">
+    <image class="invoice_addicon" src="/image/add_icon.png"></image>
+      新增发票申请</view>
+
+  <view class="main_view" wx:if="{{listinvoice!=null && listinvoice.length >0 }}">
+    <view class="invoice_list" wx:for="{{listinvoice}}" wx:for-index="i" wx:for-item="item" catchtap="editinvoice" data-index="{{i}}">
+      
+      <view class="invoice_itme_view">
+
+        <view class="invoice_item">
+          <view class="invoice_memo">申请单号:</view>
+          <view style="width:{{windowWidth-184}}px">{{item.ReqSysNo}}</view>
+          <view class="invoice_status">{{item.StatusName}}</view>
+        </view>
+
+        <view class="invoice_item">
+          <view class="invoice_memo">发票抬头:</view>
+          <view style="width:{{windowWidth-84}}px">{{item.InvoiceName}}</view>
+        </view>
+
+        <!-- <view class="invoice_item">
+          <view class="invoice_memo">电子邮箱:</view>
+          <view style="width:{{windowWidth-84}}px">{{item.Email}}</view>
+        </view> -->
+
+        <view class="invoice_item">
+          <view class="invoice_memo">开票金额:</view>
+          <view class="invoice_amt" style="width:{{windowWidth-284}}px">¥{{item.InvoiceAmt}}</view>
+          <view class="invoice_createtime">{{item.CreateTime}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showReloadView && (listinvoice == null || listinvoice.length == 0)}}" class="page_reload">
+    <view class="button_reload" catchtap="refreshData">重新刷新</view>
+  </view>
+
+</view>
+
+<!--去首页-->
+<!-- <view wx:if="{{fromApp == 1}}" class="home_float" catchtap="toHome" >
+        <image class="home_float_img" src="/image/home_icon.png"></image>
+        <view>首页</view>
+</view>  -->
+
+
+<!--打开APP-->
+<button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app open_app1" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">返回APP</button>

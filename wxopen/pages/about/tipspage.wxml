@@ -1,0 +1,9 @@
+<!--pages/about/tipspage.wxml-->
+
+<view class='tips_info' wx:if="{{tipsInfo && tipsInfo.TipsItemList}}">
+  <view wx:for="{{tipsInfo.TipsItemList}}" wx:for-index="i" wx:for-item="item">
+    <view class="title">{{i + 1}}、{{item.Title}}</view>
+    <text class="contect">{{item.Content}}</text>
+  </view>
+
+</view>

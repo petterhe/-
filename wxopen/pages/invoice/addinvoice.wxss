@@ -1,0 +1,465 @@
+/* pages/invoice/addinvoice.wxss */
+.pageInfo
+{
+  /*background-color: #fff;*/
+  font-size: 14px;
+  color: #444;
+  padding: 0 0 48px 0;
+}
+
+/* .invtype_view
+{
+  height: 40px;
+  background-color:#448926;
+  padding:0 20rpx;
+  width: 750rpx;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: white;
+  z-index:50;
+  display: none;
+} */
+
+.get_titleview
+{
+  height: 40px;
+  line-height: 40px;
+  width: 750rpx;
+  text-align: left;
+  font-size: 15px;
+  border-bottom:1px #EBEBEB solid;
+  background-color: #FFF8CE;
+}
+
+.orderlist_title_memo
+{
+  height: 16px;
+  line-height: 16px;
+  text-align: right;
+  color: #F1521B;
+}
+
+.orderlist_title_memo1
+{
+  float: right;
+  text-align: center;
+  margin-left: 4px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border: solid #F1521B 1px;
+  border-radius: 9px;
+}
+
+.get_titletext
+{
+  margin: 0px 10px;
+}
+
+.get_titleicon{
+  float: right;
+  width: 12px;
+  height: 21px;
+  margin: 9px 5px 0 0;
+}
+
+.invoice_title
+{
+  padding: 10px 10px 0 10px;
+}
+
+.invtype_group
+{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-betSween;
+  margin:2px auto;
+  border: 2px #448926 solid;
+  border-radius: 4px;
+  width: 144px;
+  background-color:#fff;
+}
+
+.invtype_item
+{
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  width: 72px;
+}
+
+.invtype_item_select
+{
+  color: #fff;
+  background-color: #448926;
+}
+
+.title_item
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  width: 710rpx;
+  margin: 14px 0;
+}
+
+.title_memo
+{
+  width: 60px;
+  font-size: 13px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.title_detail
+{
+  width: 560rpx;
+  height: 24px;
+  line-height: 24px;
+  border-bottom:1px #EBEBEB solid;
+}
+
+.TaxMemoButton
+{
+  text-align: center;
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: #FFD700;
+  border: solid #FFD700 1px;
+  border-radius: 10px;
+}
+
+.governmen_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.governmen_view_item
+{
+  padding-right: 24px;
+}
+
+.governmen_checkbox
+{
+    float: left;
+    width:20px;
+    height:20px;
+    margin-right: 5px;
+}
+
+.orderlist_title
+{
+   border-bottom:1px #EBEBEB solid;
+}
+
+.orderlist_title_line
+{
+  height: 10px;
+  background-color: #f3f3f3;
+}
+
+.orderlist_title_text
+{
+  height: 36px;
+  line-height: 36px;
+  padding-left: 10px;
+}
+
+
+
+.invoice_orderlist
+{
+   
+}
+
+.order_item
+{
+  background-color: #fff;
+  height: 60px;
+  display:block;
+  overflow:hidden;
+  border-bottom: 1px #EBEBEB solid;
+}
+
+
+.order_item_checkbox
+{
+    float: left;
+    margin: 20px 10px;
+    width:20px;
+    height:20px;
+}
+
+.order_item_text
+{
+  margin-top: 8px;
+}
+
+.order_item_date
+{
+  float: right;
+  margin-right: 10px;
+  color: #888;
+}
+
+.order_item_price
+{
+  color:#F1521B;
+}
+
+.order_item_count
+{
+  margin-left: 6px;
+}
+
+.bottom
+{
+    position:fixed;
+    height: 48px;
+    display: flex;
+    background-color: #f3f3f3;
+    z-index: 50;
+    bottom: 0;
+    width: 750rpx;
+    flex-direction:row;
+    color: #444;
+    font-size: 14px;
+    /*border-right:1rpx #EBEBEB solid;*/
+}
+
+/* .bottom_price
+{
+    line-height: 48px;
+    width: 710rpx;
+    text-align: right;
+    padding: 0 5px;
+} */
+
+.button_amtview
+{
+    width: 300rpx;
+    padding: 4px 8px;
+}
+
+.button_amt
+{
+    height: 24px;
+    line-height: 24px;
+}
+
+.amtprice
+{
+    font-size: 18px;
+    color:#F1521B;
+    margin: auto 4px;
+}
+
+.detail_memo
+{
+    font-size: 13px;
+    height: 16px;
+    line-height: 16px;
+}
+
+.nvoiceDesc_button
+{
+    width: 200rpx;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    background-color: #ff8888;
+    font-weight: 600;
+}
+
+.submit
+{
+    width: 254rpx;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    background-color: #ff3333;
+    font-weight: 600;
+}
+
+.submit_button
+{
+    width: 244rpx;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    background-color: #ff3333;
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.submit_disbutton
+{
+    width: 244rpx;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    background-color: #aaa;
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.submitType
+{
+  padding: 10px;
+  border-bottom:1rpx #EBEBEB solid;
+}
+
+
+.submitType_group
+{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-betSween;
+  margin:2px auto;
+  border: 2px #448926 solid;
+  border-radius: 4px;
+  width: 200px;
+  background-color:#fff;
+}
+
+.submitType_item
+{
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  width: 100px;
+}
+
+.submitType_item_select
+{
+  color: #fff;
+  background-color: #448926;
+}
+
+.addorder_view
+{
+  padding: 0 20px;
+}
+
+/*************tab************/
+.tabtype_header{
+    display: flex;
+    z-index: 50;
+    flex-direction: row;
+    /*padding: 5px 0;*/
+     border-bottom: 1px #f3f3f3 solid;
+    /* background-color: #f3f3f3; */
+}
+
+.tabtype_item{
+  height: 40px;
+  line-height: 40px;
+  width: 375rpx;
+  color: #444;
+  text-align: center;
+  font-size: 14px;
+}
+
+.tabtype_line{
+  height: 24px;
+  line-height: 24px;
+  margin: 8px 0;
+  width: 1px;
+  background-color: #ccc;
+}
+
+.tabtype_text{
+  
+}
+
+.tabtype_select
+{
+    color:#F1521B;
+}
+/*************tab************/
+
+/*开票说明*/
+.InvoiceDesc_Detailview
+{
+    position:fixed;
+    top: 0;
+    z-index:100;
+    background-color: #000;
+    filter: Alpha(Opacity=60, Style=0);
+    opacity: 0.60;
+    width:750rpx;
+}
+
+.InvoiceDesc_Detailinfo
+{
+    position:fixed;
+    bottom: 0;
+    width: 750rpx;
+    z-index:120;
+    background-color: #fff;
+    color:#666;
+    font-size: 13px;
+}
+
+.InvoiceDesc_Detailtitle
+{
+    font-size: 15px;
+    font-weight: 600;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    color: #444;
+    text-align: center;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.InvoiceDesc_Detailitem
+{
+    padding: 5px 10px;
+    line-height: 18px;
+}
+
+.InvoiceDesc_DetailitemView
+{
+    margin-left: 10px;
+}
+
+.InvoiceDesc_DetailitemTitle
+{
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+    margin:5px 0;
+}
+
+.InvoiceDesc_Detailitemimage
+{
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin-top: 12px;
+}
+
+
+.InvoiceDesc_Detailitem:last-child
+{
+    margin-bottom: 40px;
+}
+
+.InvoiceDesc_Detailclose
+{
+    float: right;
+    width: 32px;
+    height: 32px;
+    margin: -56px 5px 0 0;
+}
+
+/*开票说明*/

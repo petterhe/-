@@ -1,0 +1,10 @@
+<!--pages/about/aboutapp.wxml-->
+<view class='page_view'>
+  <view wx:if="{{downloadUrl}}">
+    <image class='app_download' src='{{downloadUrl}}'></image>
+  </view>
+  <view wx:else> 
+    <image class='app_code' src='{{codeUrl}}'></image>
+    <view class='memo'>扫一扫上面二维码，下载APP享更多福利！</view>
+  </view>
+</view>

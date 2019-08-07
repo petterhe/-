@@ -1,0 +1,189 @@
+<!--pages/order/orderdetail.wxml-->
+<wxs module="method" src="../../utils/method.wxs"></wxs>
+
+<view class="order_detail" wx:if="{{orderDetailInfo != null}}">
+    <view class="status_header">
+        <image class="status_img" src="{{orderDetailInfo.StatusImgUrl}}"></image>
+        <view class="status_text">{{orderDetailInfo.StatusDesc}}</view>
+        <view class="status_memo" wx:if="{{orderDetailInfo.ShipType == 1 && (orderDetailInfo.Status == WaitingPay || orderDetailInfo.Status == WaitingOutStock || orderDetailInfo.Status == OutStock || orderDetailInfo.Status == WaitReceive) &&  orderDetailInfo.ExpectDeliveryDate != null && orderDetailInfo.ExpectDeliveryDate.length > 0}}">预计 {{orderDetailInfo.ExpectDeliveryDate}} 送达
+        </view>
+        <!--自提-->
+        <view class="status_memo" wx:if="{{orderDetailInfo.ShipType == 2 && (orderDetailInfo.Status == WaitingPay || orderDetailInfo.Status == WaitingOutStock || orderDetailInfo.Status == OutStock || orderDetailInfo.Status == WaitingSelf) && orderDetailInfo.ExpectDeliveryDate != null && orderDetailInfo.ExpectDeliveryDate.length > 0}}">请于 {{orderDetailInfo.ExpectDeliveryDate}} 到门店“出示会员码”提货，仅限本人领取，不得代领</view>
+    </view>
+
+    <view wx:if="{{orderDetailInfo.ShipType != HomeDelivery && orderDetailInfo.ReceiveInfo != null}}">
+        <view class="data_info" wx:if="{{orderDetailInfo.SaleType != VirtualProduct}}">
+          <image class="info_icon" src="/image/address_icon.png"></image>
+          <view class="info_view">
+              <view>{{orderDetailInfo.ReceiveInfo.ReceiveName}}<text class="reigth_text">{{orderDetailInfo.ReceiveInfo.ReceivePhone}}</text></view>
+              <view>{{orderDetailInfo.ReceiveInfo.ReceiveAddress}}</view>
+          </view>
+        </view>
+         <view wx:else class="detail rec_phone">
+            <view class="detail_memo">收货电话</view>
+            <view class="detail_text">{{orderDetailInfo.ReceiveInfo.ReceivePhone}}</view>
+        </view>
+    </view>
+    
+    <view class="data_info" wx:if="{{orderDetailInfo.ShipType == HomeDelivery && orderDetailInfo.ReceiveInfo != null}}">
+      <image class="info_icon1" src="/image/address_icon.png"></image>
+      <view class="info_view">
+        <view>联系电话<text class="reigth_text">{{orderDetailInfo.ReceiveInfo.ReceivePhone}}</text></view>
+        <!-- <view>联系电话<text class="reigth_text">
+        {{orderDetailInfo.ReceiveInfo.ReceivePhone}}</text>
+        </view> -->
+      </view>
+    </view>
+
+    <view class="data_info1" wx:if="{{orderDetailInfo.ShipType == ExpressDelivery && orderDetailInfo.DeliveryUserInfo != null && orderDetailInfo.SaleType != VirtualProduct}}">
+        <image class="info_icon" src="/image/delivery_icon.png"></image>
+
+        <image catchtap="calldeliveryphone" class="callphone" src="/image/callphone.png"></image>
+        <view class="info_view1">
+            <view>{{orderDetailInfo.DeliveryUserInfo.DeliveryUserName}}</view>
+            <view>{{orderDetailInfo.DeliveryUserInfo.DeliveryUserPhone}}</view>
+        </view>
+    </view>
+
+    <view class="data_info1" wx:if="{{orderDetailInfo.StoreInfo != null && orderDetailInfo.SaleType != VirtualProduct}}">
+
+        <image class="info_icon" src="/image/store_icon.png"></image>
+        <image catchtap="callstorephone" class="callphone" src="/image/callphone.png"></image>
+        <view class="info_view1">
+            <view>{{orderDetailInfo.StoreInfo.StoreName}}<text class="reigth_text">{{orderDetailInfo.StoreInfo.Tel}}</text></view>
+            <view>{{orderDetailInfo.StoreInfo.Address}}</view>
+        </view>
+    </view>
+    
+    <!--订单信息-->
+    <view class="detail_info">
+        <view class="detail">
+            <view class="detail_memo">订单号</view>
+            <view class="detail_text">{{orderDetailInfo.SOID}}
+            </view>
+        </view>
+
+        <view class="detail">
+            <view class="detail_memo">订单状态</view>
+            <view class="detail_text">{{orderDetailInfo.OrderStatusName}}</view>
+        </view>
+
+        <view class="detail">
+            <view class="detail_memo">配送方式</view>
+            <view class="detail_text">{{orderDetailInfo.ShipTypeName}}</view>
+        </view>
+
+        <view class="detail">
+            <view class="detail_memo">下单时间</view>
+            <view class="detail_text">{{orderDetailInfo.strRowCreateDate}}</view>
+        </view>
+
+        <view class="detail">
+            <view wx:if="{{orderDetailInfo.ShipType == 1}}" class="detail_memo">预计送达</view>
+            <view wx:else class="detail_memo">预计自提</view>
+            <view class="detail_text">{{orderDetailInfo.ExpectDeliveryDate}}</view>
+        </view>
+
+        <view class="detail">
+            <view class="detail_memo">支付方式</view>
+            <view class="detail_text">{{orderDetailInfo.PayTypeName}}</view>
+        </view>
+
+        <view class="detail">
+          <view class="detail_memo">商品总额</view>
+          <view class="detail_text">¥{{method.toFix(orderDetailInfo.SOAmt/100.00)}}</view>
+      </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.CouponAmt > 0}}">
+        <view class="detail_memo">优惠金额</view>
+        <view class="detail_text">-¥{{method.toFix(orderDetailInfo.CouponAmt/100.00)}}</view>
+        </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.PointPayAmt && orderDetailInfo.PointPayAmt > 0}}">
+          <view class="detail_memo">积分</view>
+          <view class="detail_text">-¥{{method.toFix(orderDetailInfo.PointPayAmt/100.00)}}</view>
+        </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.TransFee > 0}}">
+          <view class="detail_memo">运费</view>
+          <view class="detail_text">+¥{{method.toFix(orderDetailInfo.TransFee/100.00)}}</view>
+        </view>
+
+        <view class="detail">
+          <view class="detail_memo">实付</view>
+          <view class="detail_text amt_price">¥{{method.toFix(orderDetailInfo.ProductTotalPrice/100.00)}}</view>
+        </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.DeliveryMemo != null && orderDetailInfo.DeliveryMemo.length > 0}}">
+            <view class="detail_memo">配送说明</view>
+            <view class="detail_text">{{orderDetailInfo.DeliveryMemo}}</view>
+        </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.ReturnDesc !=null && orderDetailInfo.ReturnDesc.length>0}}">
+            <view class="detail_memo">退款说明</view>
+            <view class="detail_text">{{orderDetailInfo.ReturnDesc}}</view>
+        </view>
+
+        <view class="detail" wx:if="{{orderDetailInfo.Memo !=null && orderDetailInfo.Memo.length>0}}">
+            <view class="detail_memo">备注信息</view>
+            <view class="detail_text">{{orderDetailInfo.Memo}}</view>
+        </view>
+    </view>
+
+    
+
+    <!--提示-->
+  <!--<view wx:if="{{orderDetailInfo.ReturnDesc !=null && orderDetailInfo.ReturnDesc.length>0}}" class="return_desc" style="width:{{windowWidth-32}}px">{{orderDetailInfo.ReturnDesc}}</view>-->
+
+    <!--商品金额-->
+    <!-- <view class="amt_info">
+      <view class="coupon_view">商品金额:¥{{orderDetailInfo.SOAmt/100.00}}<text  wx:if="{{orderDetailInfo.CouponAmt > 0}}">-优惠¥{{orderDetailInfo.CouponAmt/100.00}}</text><text  wx:if="{{orderDetailInfo.TransFee > 0}}">+运费¥{{orderDetailInfo.TransFee/100.00}}</text><text wx:if="{{orderDetailInfo.PointPayAmt > 0}}">-积分¥{{orderDetailInfo.PointPayAmt/100.00}}</text></view>
+      <view class="amt_view">实付:<text class="amt_price">¥{{orderDetailInfo.ProductTotalPrice/100.00}}</text></view>
+
+    </view> -->
+
+    <!--商品列表-->
+    <view class="list_view" wx:if="{{orderDetailInfo.OrderFromProducts !=null && orderDetailInfo.OrderFromProducts.length>0}}">
+
+        <view class ="list_item" wx:for="{{orderDetailInfo.OrderFromProducts}}" wx:for-index="i" wx:for-item="item">
+        
+            <image class="item_img" src="{{item.PictureUrl}}" mode="scaleToFill"></image>
+            <view style="width:{{windowWidth-85}}px;">
+                <view class="item_name">{{item.ProductName}}</view>
+                <view><text class="item_price">¥{{item.Price/100.00}}</text><text> × {{item.ReceiveNum}}</text></view>
+            </view>
+        </view>
+    </view>
+
+
+    <!--底部结算-->
+    <!--<view class="bottom" wx:if="{{orderDetailInfo.OrderFromStatus == WaitingPay || orderDetailInfo.OrderFromStatus == Finished}}">-->
+
+    <view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+    <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+        <view wx:if="{{orderDetailInfo.OrderFromStatus == WaitingPay}}" class="btn_strong" catchtap="toPay">去支付</view>
+        <!-- <view wx:if="{{orderDetailInfo.OrderFromStatus == WaitingPay}}" class="btn_normal" catchtap="cancelOrder">取消订单</view> -->
+
+        <text class="btn_normal" wx:if="{{orderDetailInfo.IsCanCancel}}" catchtap="cancelorder" data-index="{{i}}">取消订单</text>
+
+        <view wx:if="{{orderDetailInfo.IsShowInvitationBtn && orderDetailInfo.OrderFromStatus > 0}}" class="btn_strong" catchtap="toShare">邀请好友</view>
+
+        <view wx:if="{{orderDetailInfo.IsShowPTBtn && orderDetailInfo.OrderFromStatus > 0}}" class="btn_normal" catchtap="groupDetail">团单详情</view>
+
+ <text class="btn_normal" wx:if="{{orderDetailInfo.IsShowAgain=='1'}}" catchtap="repeatBuy">再次购买</text>
+
+        <view class="btn_normal" catchtap="showDeliveryInfo">订单跟踪</view>
+    </view>
+</view>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+
+<!--遮罩层-->
+<!--<view wx:if="{{showShareView}}" class="share_view" style="height:{{windowHeight}}px">
+</view>-->
+
+<!--邀请好友-->
+<!--<view wx:if="{{showShareView}}" class="share_info">
+    <view class="share_text">赶快邀请小伙伴来参团吧</view>
+</view>-->

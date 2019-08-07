@@ -1,0 +1,298 @@
+/* pages/appeal/reportappeal.wxss */
+Page
+{
+  background-color: #f1f1f1;
+  font-size: 13px;
+}
+
+.header_tips
+{
+  position: fixed;
+  background-color: #FFF8CE;
+  width: 750rpx;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  z-index: 50;
+  overflow:hidden;
+}
+
+.data_view
+{
+  padding-bottom: 48px;
+}
+
+.list_item
+{
+  /* padding:10px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+   justify-content: space-betSween;  */
+
+  padding:10px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+}
+
+.item_img
+{
+  width: 65px;
+  height: 65px;
+  margin-right: 10px;
+  margin-top: 22.5px;
+}
+
+
+.item_name
+{
+  margin: 2px 0;
+  height: 30px;
+  line-height: 15px;
+  overflow: hidden;
+}
+
+.item_data
+{
+  margin-top: 8px;
+  height: 18px;
+  line-height: 18px;
+  display: flex;
+  /* flex-direction: row;
+  justify-content: space-between; */
+}
+
+.item_price
+{
+  color:#F1521B;
+  font-size: 14px;
+}
+
+.item_num
+{
+   color: #666;
+   font-size: 12px;
+}
+
+.item_amt
+{
+  color:#F1521B;
+  font-size: 14px;
+}
+
+.refund_view
+{
+  padding: 12px 0 0 15px;
+  margin-bottom: 10px;
+  background:#fff;
+}
+
+.refund_amt
+{
+  color:#F1521B;
+  font-size: 15px;
+}
+
+.refund_amtview
+{
+  padding: 12px 15px 12px 15px;
+  margin-top: 5px;
+  border-bottom:0.5px #f1f1f1 solid;    
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.refundAmt_item
+{
+  height: 18px;
+  background: #ccc;
+  border-radius: 3px;
+  padding:3px 9px;
+  font-size: 13px;
+  text-align: center;
+  color: #fff;
+}
+
+.amt_select
+{
+  background:#f39800;
+}
+
+.refund_reason
+{
+  padding: 12px 15px 12px 0;  
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
+}
+
+.refund_right
+{
+  color: #666;
+}
+
+.refund_flag
+{
+  float: right;
+  width: 7px;
+  height: 12px;
+  margin: 3.5px 0 0 5px;
+}
+
+.refund_reasonview
+{
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.refund_reasonitem
+{
+  height: 40px;
+  line-height: 40px;
+  display:block;
+  overflow:hidden;
+}
+
+.reason_input
+{
+  width: 225px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 5px;
+  border:1px #f1f1f1 solid;
+  border-radius: 5px;
+}
+
+.item_checkbox
+{
+  float: left;
+  margin: 10px;
+  width:20px;
+  height:20px;
+}
+
+
+.amt_flag
+{
+  float: left;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.reason_flag
+{
+  float: left;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.img_flag
+{
+  float: left;
+  width: 19px;
+  height: 14px;
+  margin-top: 4px;
+  margin-right: 5px;
+}
+
+.image_list
+{
+  padding: 10px 15px;
+  background:#fff;
+  border-bottom:1px #f1f1f1 solid;
+  margin-bottom: 20px;
+}
+
+.image_title
+{
+  font-size: 15px;
+  color: #000;
+  margin-right: 15px;
+}
+
+.title_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+
+.image_memo
+{
+  font-size: 12px;
+  color: #666;
+}
+
+.image_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  box-sizing: border-box;
+  width: 750rpx;
+  margin: 0 0;
+}
+
+.image_item_view
+{
+  margin: 10px 5px;
+}
+
+.image_item
+{
+  width: 80px;
+  height: 80px;
+}
+
+.delete_flag
+{
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  margin-left: 70px;
+  margin-top: -5px;
+}
+
+.image_add
+{
+  margin: 10px 5px;
+}
+
+.reason_text
+{
+   border:1px #f3f3f3 solid;
+   height: 80px;
+   margin: 10px 0 0 0;
+   padding: 5px;
+}
+
+.submit_button
+{
+  height: 50px;
+  width: 770rpx;
+  margin: 0 -10rpx; 
+  background-color: #448926;
+  font-size: 18px;
+  color: #fff;
+}
+
+.bottom
+{
+    position:fixed;
+    height: 48px;
+    display: flex;
+    background-color: #448926;
+    z-index: 50;
+    bottom: 0;
+    width: 750rpx;
+    flex-direction:row;
+}

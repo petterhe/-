@@ -1,0 +1,42 @@
+<!--pages/group/fansgroup.wxml-->
+<view class='page_view'>
+  <view class='image_view'>
+    <view class='image_text'>
+      <view class='image_title'>妙生活妙粉群</view>
+      <view class='image_memo'>偷偷告诉你，进群有专属福利哦~</view>
+    </view>
+    <image class='back_image' src='{{backImage}}'></image>
+  </view>
+
+  <view class='fans_detail'>
+    <view class='fans_title'>
+      <image class='fans_title_img' src='/image/line2.png'/>
+      <view>妙粉进群专属优惠</view>
+      <image class='fans_title_img' src='/image/line2.png'/>
+    </view>
+
+    <view class='fans_detial_list' wx:if="{{listWelfare}}" >
+      <view class="fans_detial_item" wx:for="{{listWelfare}}"   wx:for-index="i" wx:for-item="item">
+        <image class='wel_image' src='{{item.Memo}}'/>
+        <view>{{item.Value}}</view>
+      </view>
+    </view>
+
+    <view class='fans_join' catchtap='showContact'>立即加入</view>
+
+    <view class='fans_home' catchtap='toHome'>随便逛逛</view>
+  </view>
+</view>
+
+<view wx:if="{{showContact}}" class='contact_background' catchtap='hideContact'></view>
+
+<view wx:if="{{showContact}}" class="contact_view">
+
+  <image class="contact_image" src='{{contactImage}}'></image>
+
+  <view class='contact_detail'>
+    <view class='contact_memo'>回复"<text class="contant_num">{{groupContactNum}}</text>"获得入群二维码</view>
+    <button class='contact_button' open-type="contact">立刻回复</button>
+  </view>
+  
+</view>

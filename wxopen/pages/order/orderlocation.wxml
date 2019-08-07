@@ -1,0 +1,6 @@
+<!--pages/order/orderlocation.wxml-->
+ <view wx:if="{{soLocation != null}}">
+        <view class="distinct_view">距离您还有<text class="distinct_text">{{soLocation.Distinct}}</text>米</view>
+        <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" scale="{{scale}}" style="width: 100%; height: {{Height}}px;">
+        </map>
+</view>

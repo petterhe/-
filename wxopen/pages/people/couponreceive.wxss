@@ -1,0 +1,414 @@
+/* pages/people/couponreceive.wxss */
+/*
+.section
+{
+  position: absolute;
+  width: 750rpx;
+  text-align: center;
+}
+
+.btn_enter 
+{
+  width: 200px;
+  margin: 0 auto;
+  height:40px;
+  line-height:39px;
+  text-align:center;
+  color: #fff;
+  font-size: 18px; 
+  font-family:PingFang-SC-Bold;
+  letter-spacing:2px;
+  background-color: #e6113e;
+  border-radius:5px
+}
+
+.share_info
+{
+  width: 750rpx;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 36px;
+}
+
+.share_view
+{
+  float: right;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  color: #F1521B;
+  font-size: 18px; 
+}
+
+.share_button
+{
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  filter: Alpha(Opacity=0, Style=0);
+  opacity: 0; 
+}
+
+.share_text{
+  margin-top: -40px;
+  text-align: center;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.message
+{
+  margin: 8px 10px;
+}
+*/
+page
+{
+  /* background-color: #002114; */
+  color: #fff;
+}
+
+.section
+{
+  position: relative;
+  width: 750rpx;
+  text-align: center;
+  z-index: 100;
+}
+
+.phone
+{
+  width:180px;
+  margin:0 auto;
+  height: 36px;
+  line-height: 36px;
+  border:1px #EBEBEB solid;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.coupon_list_item
+{
+  display: block;
+}
+
+.coupon_item_bg
+{
+  width:732rpx;
+  height:292rpx;
+}
+
+.coupon_item_view
+{
+  position: absolute;
+  margin-top: -292rpx;
+  margin-left: 20rpx;
+  width:690rpx;
+  height:248rpx;
+  /* background-color: #fff; */
+  border-radius:10px;
+  /* box-shadow:5px 10px 29px #1D1B16; */
+ 
+}
+
+.coupon_item_header
+{
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+}
+
+.coupon_amt_view
+{
+  color: #C80808;
+  font-family:PingFang-SC-Bold;
+  font-size: 20px;
+  height: 200rpx;
+  width: 200rpx;
+  line-height: 200rpx;
+  overflow: hidden;
+}
+
+.coupon_amt_text
+{
+  font-size: 32px;
+}
+
+.coupon_detail_view
+{
+  width: 470rpx;
+  text-align: left;
+  margin-top: 30rpx;
+}
+
+.coupon_detail_name
+{
+  height:60rpx;
+  font-size:17px;
+  font-family:PingFang-SC-Bold;
+  font-weight:bold;
+  line-height:60rpx;
+  margin-top:10rpx;
+  overflow: hidden;
+}
+
+.coupon_detail_desc
+{
+  margin-top:10rpx;
+  height:60rpx;
+  font-size:14px;
+  font-family:PingFang-SC-Medium;
+  color:#999;
+  line-height:60rpx;
+  overflow: hidden;
+}
+
+.coupon_item_buttom
+{
+  text-align: left;
+  margin: 0 0 0 36rpx;
+}
+
+.coupon_detail_date
+{
+  height:60rpx;
+  font-size:12px;
+  font-family:PingFang-SC-Medium;
+  color:#999;
+  line-height:60rpx;
+  overflow: hidden;
+}
+
+.coupon_detail_button
+{
+  width:170rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  background-color:#C80808;
+  border-radius:30rpx;
+  text-align: center;
+  font-size:14px;
+  font-family:PingFang-SC-Medium;
+  color:#fff;
+  margin-right: 20rpx;
+  margin-top: -64rpx;
+  float: right;
+}
+
+.coupon_detail_status
+{
+  width:170rpx;
+  height:60rpx;
+  text-align: right;
+  font-size:12px;
+  font-family:PingFang-SC-Medium;
+  color:#999;
+  margin-right: 0rpx;
+  margin-top: -50rpx;
+  float: right;
+}
+
+.btn_enter 
+{
+  width: 180px;
+  margin: 30px auto 0 auto;
+  height:40px;
+  line-height:39px;
+  text-align:center;
+  color: #fff;
+  font-size: 18px; 
+  font-family:PingFang-SC-Bold;
+  letter-spacing:2px;
+  background-color: #e6113e;
+  border-radius:5px
+}
+
+.share_button
+{
+  width: 180px;
+  margin: 30px auto 0 auto;
+  height:40px;
+  line-height:39px;
+  text-align:center;
+  color: #fff;
+  font-size: 18px; 
+  font-family:PingFang-SC-Bold;
+  letter-spacing:2px;
+  background-color: #e6113e;
+  border-radius:5px;
+  /* filter: Alpha(Opacity=0, Style=0); */
+  /* opacity: 0;  */
+}
+
+.share_button_text
+{
+  width: 180px;
+  margin: -40px auto 0 auto;
+  height:40px;
+  line-height:39px;
+  text-align:center;
+  color: #fff;
+  font-size: 18px; 
+  font-family:PingFang-SC-Bold;
+  letter-spacing:2px;
+  background-color: #e6113e;
+  border-radius:5px
+}
+
+.message
+{
+  margin: 10px;
+  font-size: 14px;
+}
+
+.receive_list
+{
+  margin-top: 30px;
+}
+
+.receive_list_line
+{
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.line_image
+{
+  margin-top: 20px;
+  height: 1px;
+}
+
+.receive_list_title 
+{
+  height: 40px;
+  line-height:40px;
+  text-align:center;
+  font-size:15px;
+  font-weight: 500;
+  color:#fff;
+}
+
+.receive_list_item
+{
+  margin: 0 15px;
+  height: 55px;
+  line-height: 55px; 
+  /* border-bottom:1px solid rgba(255, 255, 255, 0.3);  */
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+}
+
+.avatar_img
+{
+  margin: 9px 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border:1rpx #fff solid;
+}
+
+.receive_list_item_name
+{
+  height: 24px;
+  line-height: 24px;
+  margin-left: 8px;
+  margin-top: 7px;
+  color: #fff;
+}
+
+.receive_list_item_time
+{
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+  margin-left: 8px;
+  color: #fff;
+}
+
+.receive_list_item_amtview
+{
+  font-size:16px;
+  font-weight: 500;
+  color: #fff;
+  width: 80px;
+}
+
+.receive_list_item_amt
+{
+  margin-top: 14px;
+  height: 24px;
+  line-height: 24px;
+  font-size:16px;
+  font-weight: 500;
+  color: #fff;
+  width: 80px;
+  text-align: right;
+}
+
+.item_zuijia_img
+{
+  width: 10px;
+  height: 12.5px;
+}
+
+.item_zuijia_view
+{
+  height: 14px;
+  line-height: 14px;
+  text-align: right;
+  font-size: 10px;
+  color: #FFD801;
+}
+
+.item_line_image
+{
+  height: 1px;
+  margin: 0 10px;
+  position: absolute;
+}
+
+.coupon_memo
+{
+  font-size: 12px;
+  margin: 0 10px;
+  padding: 30px 0;
+}
+
+.coupon_memo_line
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  margin-bottom: 10px;
+}
+
+.coupon_memo_title 
+{
+  height: 40px;
+  line-height:40px;
+  text-align:center;
+  font-size:15px;
+  font-weight: 500;
+  color:#fff;
+}
+
+.coupon_memo_item
+{
+  line-height: 20px;
+}
+
+.receive_message
+{
+  margin-top: 20px;
+  width: 750rpx;
+  font-size: 15px;
+  text-align: center;
+  font-family:PingFang-SC-Medium;
+  color: #FFD801;
+}

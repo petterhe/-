@@ -1,0 +1,11 @@
+<!--components/active/floatcoupon.wxml-->
+<view class="float_coupon" catchtap='_clickEvent'>
+  <image class="coupon_img" src='/image/coupon_img.png'></image>
+  <view class="coupon_amt">{{ActAmt}}</view>
+  <view class="status_view">
+    <!-- <view class='status_view_3' wx:if="{{ActStatus == NoComplete}}">(<text class="status_view_count">{{ActJoinTimes}}</text>/{{ActNeedTimes}})</view> -->
+    <view class='status_view_2' wx:if="{{ActStatus == NoComplete}}">分享领取</view>
+    <view class='status_view_2' wx:if="{{ActStatus == Received}}">立即使用</view>
+    <view class='status_view_2' wx:if="{{ActStatus == Complete}}">立即领取</view>
+  </view>
+</view>

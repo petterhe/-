@@ -1,0 +1,90 @@
+/* components/active/sharedialog.wxss */
+.share_dialog_container
+{
+ 
+}
+
+.share_background
+{
+  position:fixed;
+  top: 0;
+  z-index:600;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+  width:750rpx;
+  height: 100%;
+}
+
+.share_dialog{
+  position: fixed;
+  z-index: 5000;
+  width: 80%;
+  max-width: 600rpx;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
+  word-wrap:break-word;
+  word-break:break-all;
+}
+
+.share_img
+{
+  width: 592rpx;
+  height: 750rpx;
+}
+
+.share_close_view
+{
+  position: absolute;
+  right: 0;
+  top:0;
+  width: 38px;
+  height: 38px;
+}
+
+.share_close
+{
+  width: 14px;
+  height: 14px;
+  margin: 12px;
+}
+
+.share_dialog_title
+{
+  position: absolute;
+  width: 540rpx;
+  margin: 0 26rpx; 
+  top: 24px;
+  font-size:22px;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.share_dialog_content
+{
+  position: absolute;
+  width: 540rpx;
+  margin: 0 26rpx; 
+  top: 60px;
+  font-size: 18px;
+}
+
+.share_button
+{
+  position: absolute;
+  top:600rpx;
+  width: 500rpx;
+  margin: 0 46rpx;
+  background-color: #ffb70a;
+  color: #fff;
+  border-radius: 24px;
+  /* font-size: 24px; */
+}
+

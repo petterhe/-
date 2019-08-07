@@ -1,0 +1,2 @@
+<!--pages/product/productgraphic.wxml-->
+<web-view src="{{webUrl}}"></web-view>

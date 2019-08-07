@@ -1,0 +1,57 @@
+/* pages/people/searchaddress.wxss */
+.searchAddress
+{
+  font-size: 13px;
+  color: #444;
+}
+
+.searchText
+{
+  position:fixed;
+  height: 32px;
+  line-height: 32px;
+  float:left;
+  width: 700rpx;
+  background-color: #669900;
+  border-radius: 16px;
+  margin-top: 2px;
+  padding-left: 16rpx;
+  text-align: left;
+  font-size: 14px;
+}
+
+.address_view
+{
+  padding-top: 40px;
+}
+
+.address_memo
+{
+  padding: 10px 0;
+  text-align: center;
+  color: #888;
+  border-bottom:1px #EBEBEB solid;
+}
+
+.address_list
+{
+
+}
+
+.address_item
+{
+  padding: 10px 10px;
+  border-bottom:1px #EBEBEB solid;
+}
+
+.item_name
+{
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.item_address
+{
+  color: #888;
+}

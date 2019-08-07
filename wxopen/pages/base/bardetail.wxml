@@ -1,0 +1,26 @@
+<!--pages/base/bardetail.wxml-->
+
+<!--打开APP-->
+<!-- <button wx:if="{{canLaunchApp && fromApp == 1}}" class="open_app open_app1" type = "mini" open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button> -->
+
+<!--红包悬浮-->
+<!-- <floatcoupon wx:if="{{activeInfo != null}}"
+  class='coupon_float' id="floatcoupon"
+  ActAmt='{{activeInfo.ActAmt}}' 
+  ActNeedTimes='{{activeInfo.ActNeedTimes}}  
+  ActJoinTimes='{{activeInfo.ActJoinTimes}}'
+  ActStatus='{{activeInfo.ActStatus}}'
+  bind:clickEvent="_folatcoupon_click">
+</floatcoupon> -->
+
+<!--红包分享弹框-->
+<sharedialog wx:if="{{activeInfo != null}}"  class='sharedialog' id="sharedialog"
+  title='{{shareDialogTitle}}' 
+  content='{{shareDialogContent}}' 
+  buttonText='{{shareDialogbuttonText}}' 
+  isShowShare='{{shareDialogisShowShare}}'
+  bind:closeShareDialog="_closeShareDialog"
+  bind:buttonClick="_buttonClick">
+</sharedialog>
+
+<web-view wx:if="{{shareDialogShow == false}}" src="{{url}}" bindload="loadSuccess" binderror="loadFail"></web-view>

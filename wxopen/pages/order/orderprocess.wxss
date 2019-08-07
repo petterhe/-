@@ -1,0 +1,228 @@
+/* pages/order/deliveryinfo.wxss */
+.process_list
+{
+  /* padding-top: 56px; */
+  background-color: #fff;
+  font-size:13px;
+}
+
+.map_info
+{
+    width: 750rpx;
+    height: 400rpx;
+}
+
+.process_hd {
+    
+    height:30px;
+    padding:0 10px;
+    line-height:29px;
+    background-color:#F3F3F3;
+    border-top:1px #CDCDCD solid;
+    border-bottom:1px #CDCDCD solid;
+}
+
+.order_data 
+{ 
+    height: 80px;
+    /*border-bottom:1px #CDCDCD solid;*/
+}
+
+.order_data image 
+{
+    width:68px;
+    height:68px;
+    margin: 6px;
+    float: left;
+}
+
+.order_info 
+{
+    float: left; 
+    display: block;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.order_info view 
+{
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.order_info view text 
+{
+    display: -moz-inline-box;
+    display:inline-block;
+    width:68px;
+}
+
+.distinct_view
+{
+    margin: 5px 20rpx;
+    height: 30px;
+    line-height: 30px;
+}
+
+.distinct_text
+{
+    margin: 0 2px;
+    font-size: 16px;
+    color: #F1521B;
+}
+
+.user_info {
+    margin: 8px 20rpx 5px 20rpx;
+    height: 30px; 
+    font-size: 15px;
+}
+
+.user_name {
+    float: left; 
+    height: 30px;
+    line-height: 30px;
+}
+
+.user_phone { 
+    height: 30px; 
+    line-height: 30px;
+    text-align: right;
+    color: red;
+}
+
+.callphone
+{
+    float: right;
+    height: 24px;
+    width: 24px;
+    margin-left: 10px;
+}
+
+.process_info { 
+    padding-top: 12px;
+    padding-bottom: 20px;
+    background: #fff
+}
+
+.process_detail {
+    height: 60px;
+    padding-left: 20px;
+}
+
+.process_status{ 
+    float: left; 
+    display: block; 
+    font-size: 13px; 
+    margin-top: -16px; 
+    margin-left: 20px
+}
+.process_status view 
+{ 
+    margin-top: 5px
+}
+
+.process_line_color
+{ 
+    border-left: 1px #CDCDCD solid;
+}
+
+.process_line
+{ 
+    height: 60px;
+    margin-left: 8px; 
+    float: left;
+}
+
+.process_line_top{ 
+    height: 30px; 
+    margin-top: 30px;
+    margin-left: 8px;
+    float: left;
+}
+.process_line_bottom{  
+    height: 30px; 
+    margin-bottom: 30px; 
+    margin-left: 8px; 
+    float: left;
+}
+.process_dot {
+    margin-top: 22px;
+    margin-left: 2px;
+    position: absolute; 
+    float: left; 
+    width: 12px; 
+    height: 12px; 
+    background-color: #777;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px; 
+}
+
+.process_dot_now 
+{
+    margin-top: 20px;
+    position: absolute; 
+    float: left; 
+    width: 16px; 
+    height: 16px;
+    background-color: #ff0000; 
+    border-radius: 8px; 
+    -moz-border-radius: 8px; 
+    -webkit-border-radius: 8px; 
+}
+
+.searchbar
+{
+  position: fixed;
+  height: 56px;
+  line-height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-betSween;
+  text-align: left;
+  background-color: #ffffff;
+  z-index: 50;
+  margin-top: 10px;
+}
+
+.searchtview
+{
+  position: absolute;
+  height: 36px;
+  border:1px #efefef solid;
+  background-color: white;
+  font-size: 15px;
+  width: 540rpx;
+  margin: 0 20rpx;
+}
+
+.searchtext
+{
+  height: 36px;
+  line-height: 36px;
+  width: 460rpx;
+  margin: 0 20rpx;
+}
+
+.clearbutton
+{
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  padding:12px 10rpx;  
+  margin-left: 510rpx;
+  z-index: 100;
+}
+
+.btnSearch{
+  position: absolute;
+  margin-left: 580rpx;
+  width: 150rpx; 
+  height: 36px;
+  line-height: 36px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #F1521B;
+  border-radius:2px;
+  color: #fff;
+}

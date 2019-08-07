@@ -1,0 +1,79 @@
+/* components/active/sharemodal.wxss */
+
+.share_background
+{
+  position:fixed;
+  top: 0;
+  z-index:600;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+  width:750rpx;
+  height: 100%;
+}
+
+.share_modal{
+  margin-top: -30px;
+  position: fixed;
+  z-index: 5000;
+  width: 600rpx;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #444;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
+  word-wrap:break-word;
+  word-break:break-all;
+}
+
+
+.title
+{
+  width: 520rpx;
+  margin: 40rpx 40rpx; 
+  font-size:18px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.content
+{
+  width: 520rpx;
+  margin: 40rpx 40rpx; 
+  font-size: 16px;
+  color: #888;
+}
+
+.button_view
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: 1rpx solid #ccc;
+}
+
+.button_c
+{
+  border-right: 1rpx solid #ccc;
+}
+
+.button
+{
+  width: 300rpx;
+  background-color: #fff;
+  color: #444;
+}
+
+.button_confirm
+{
+  color: #3cc51f;
+}
+
+button::after{
+  border-radius: 0;
+  border:none;
+}

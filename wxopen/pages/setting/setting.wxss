@@ -1,0 +1,47 @@
+/* pages/setting/setting.wxss */
+Page
+{
+  color: #444;
+}
+
+.bg_view
+{
+  width: 754rpx;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+}
+
+.set_view
+{
+  position:fixed;
+  top: 120px;
+  left: 80rpx;
+  width: 590rpx;
+  height: 280px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.set_message
+{
+  margin:40px 20px 20px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  height: 144px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.set_button
+{
+  margin: 20px;
+}
+
+.set_close
+{
+  width: 36px;
+  height: 36px;
+  float: right;
+  margin: -16px -16px 0 0;
+}

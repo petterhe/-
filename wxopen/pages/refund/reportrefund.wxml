@@ -1,0 +1,105 @@
+<!--pages/appeal/reportappeal.wxml-->
+
+
+<form bindsubmit="submit" report-submit="true">
+
+<view class="header_tips" wx:if="{{reportAppealMemo}}" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">{{reportAppealMemo}}</view>
+
+  <view class='data_view' style="padding-top: {{scrollPaddingTop}}px;">
+
+    <!-- <view class ="list_item" wx:if="{{item != null}}">
+      <image class="item_img" src="{{item.PictureUrl}}" mode="scaleToFill"></image>
+      <view>
+          <view class="item_name">{{item.ProductName}}</view>
+          <view class="item_data" style='width:{{windowWidth-105}}px'>
+            <view class="item_price">{{item.Price}}<text class="item_num">/{{item.DenominatedUnit}} × {{item.ReceiveNum}}</text></view>
+            <view class="item_amt">小计：¥{{item.Amt/100.00}}</view>
+          </view>
+      </view>
+    </view> -->
+
+    <view class ="list_item" wx:if="{{item != null}}">
+      <image class="item_img" src="{{item.PictureUrl}}" mode="scaleToFill"></image>
+
+     <view style="width:{{windowWidth-90}}px;">
+        <view class="item_name">{{item.ProductName}}</view>
+
+        <view class="item_data"><text class="item_price">{{item.Price}}</text><text class="item_num">/{{item.DenominatedUnit}} × {{item.ReceiveNum}}</text></view>
+
+        <view class="item_data">
+          <view>小计:<text class="item_price">¥{{item.ProductPrice/100.00}}</text></view>
+          <view wx:if="{{item.DiscountAmt > 0}}">-优惠:<text class="item_price">¥{{item.DiscountAmt/100.00}}</text></view>
+          <view wx:if="{{item.ItemPointPayAmt > 0}}">-积分:<text class="item_price">¥{{item.ItemPointPayAmt/100.00}}</text></view>
+          </view>
+
+        <view class="item_data">实 付:<text class="item_price">¥{{item.Amt/100.00}}</text></view>
+    </view>
+  </view>
+
+  <!-- <view class="line_view"></view> -->
+
+    <view class="refund_view">
+      <view class="image_title title_view">
+        <view>
+          <image class="amt_flag" src='/image/amt_flag.png'></image>退款金额：<text class="refund_amt">¥{{refundAmt/100.00}}</text>
+        </view>
+        <view wx:if="{{item.ItemPointPay>0}}">返还积分数：<text class="refund_amt">{{refundPoint}}</text></view>
+      </view>
+
+      <view class="refund_amtview">
+          <view wx:for="{{listRefundAmtType}}" wx:for-index="i"  wx:for-item="refundAmt" catchtap="clickRefundAmtType" data-index="{{i}}">
+            <view class ="refundAmt_item amt_select" wx:if="{{selectRefundAmtTypeIndex==i}}">{{refundAmt.Memo}}</view>
+            <view class ="refundAmt_item" wx:else>{{refundAmt.Memo}}</view>
+          </view>
+      </view>
+
+      <view class="refund_reason">
+        <view class="image_title"><image class="reason_flag" src='/image/reason_flag.png'></image>退款原因：</view>
+
+        <view class="refund_reasonview">
+          <view class="refund_reasonitem" wx:for="{{listRefundReasonType}}" wx:for-index="i"  wx:for-item="refundReason" catchtap="clickRefundReasonType" data-index="{{i}}">
+            <image wx:if="{{i == selectRefundReasonTypeIndex}}" src="/image/check2.png" class="item_checkbox"></image>
+              <image wx:else src="/image/check1.png" class="item_checkbox"></image>
+                <view wx:if="{{refundReason.Key==RefundOtherReasonType}}" >
+                <input class="reason_input" cursor-spacing="60" maxlength="100" placeholder="其他原因" focus='{{reasonFocus}}' value="{{reasonValue}}" bindinput="bindReasonInput"></input></view>
+              <view wx:else>{{refundReason.Value}}</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="image_list">
+      <view class="image_title"><image class="img_flag" src='/image/img_flag.png'></image>上传图片：</view>
+      <view class="image_view">
+        <view class="image_item_view" wx:for="{{listImage}}" wx:for-index="i" wx:for-item="img" >
+        <image class="delete_flag" src='/image/delete_flag.png' catchtap='removeImage' data-index="{{i}}"></image>
+
+        <image class="image_item" src="{{img}}" mode='aspectFill' catchtap='removeImage' data-index="{{i}}"></image>
+        </view>
+        <image class="image_item image_add" mode='aspectFill' wx:if="{{listImage.length < 3}}" src='/image/imageadd.png' catchtap='addImage'></image>
+      </view>
+
+      <text class="image_memo">最多上传{{imageCount}}张，点击图片可删除</text>
+    </view>
+  </view>
+
+  <view wx:if="{{isIpx}}" class="ipx_empty"></view>
+  <!--底部结算-->
+  <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+        <button form-type="submit" class="submit_button">提交申请</button>
+  </view>
+  <!-- <view class="line_view"></view> -->
+
+  <!-- <view class="image_list">
+    <text class="image_title">问题描述</text>
+      <textarea class="reason_text" style="width:{{windowWidth-30}}px;" placeholder="请您再次描述详细问题" maxlength='300' bindinput="bindReasonInput" value='{{reasonValue}}' />
+  </view> -->
+
+  <!-- <button form-type="submit" class="submit_button">提交申请</button> -->
+
+</form>
+
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+

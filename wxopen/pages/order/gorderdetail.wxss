@@ -1,0 +1,328 @@
+/* pages/order/orderdetail.wxss */
+.order_detail
+{
+    background-color: #f3f3f3;
+    font-size: 13px;
+    color: #444;
+    padding-bottom: 50px;
+}
+
+.header
+{
+    background-color: #f3f3f3;
+    padding:15rpx 20rpx;
+}
+
+.rec_phone
+{
+  margin: 20rpx 0;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.detail_info
+{
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    /* padding: 10px 0; */
+    background-color: #fff;
+}
+
+/*.detail
+{
+    padding:20rpx 20rpx;
+    border-bottom: 1px #f3f3f3 solid;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+}*/
+
+.detail
+{
+    padding:10px 20rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px #f3f3f3 solid;
+}
+
+.detail_memo
+{
+    width: 140rpx;
+}
+
+.detail_memo1
+{
+    padding-top: 25rpx;
+}
+
+.detail_memo2
+{
+    padding-top: 38rpx;
+}
+
+.detail_text
+{
+    width:560rpx;
+    text-align:right;
+}
+
+.detail_text1 view{
+    padding-bottom: 6rpx;
+}
+
+.detail_price
+{
+    color:#F1521B;
+    font-size: 15px;
+    padding-bottom: 2rpx;
+}
+.callphone
+{
+    float: right;
+    height: 24px;
+    width: 24px;
+    margin: 10px 0
+}
+
+.callphone_margin1
+{
+    margin: 20rpx 16rpx
+}
+
+.callphone_margin2
+{
+    margin: 8rpx 20rpx
+}
+
+.status_header
+{
+    height: 200rpx;
+    background-color: #ff3333;
+    color:#fff;
+    padding: 0 0 0 15rpx;
+    display: block;
+}
+
+.status_text
+{
+  padding-top: 30rpx;
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+}
+
+.status_memo
+{
+    padding-top: 10rpx;
+    font-size: 13px;
+}
+
+.status_img
+{
+    float: right;
+    width: 135rpx;
+    height: 105rpx;
+    margin:48rpx 10rpx;
+}
+
+.data_info
+{
+    padding: 8px 20rpx;
+    line-height: 22px;
+    background-color: #fff;
+}
+
+.data_info1
+{
+    margin-top:20rpx;
+    padding: 8px 10px;
+    line-height: 22px;
+    background-color: #fff;
+}
+
+.info_icon
+{
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin: 10px 0;
+}
+
+.info_icon1
+{
+    float: left;
+    width: 22px;
+    height: 22px;
+}
+
+.info_view
+{
+    margin-left: 30px;
+}
+
+.info_view1
+{
+    margin:0 30px;
+}
+
+.reigth_text
+{
+    margin-left:10px;
+}
+
+.return_desc
+{
+  background-color: #FFF8CE;
+  margin: 0 10px 10px 10px;
+  width: 680rpx;
+  padding: 8px 5px;
+  font-size: 13px;
+  color: #444;
+  border: 1px #ccc solid;
+}
+
+.amt_info
+{
+    /*margin-top: 20rpx;*/
+    margin-top: 20rpx;
+    padding: 20rpx;
+    background-color: #fff;
+    line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px #f3f3f3 solid;
+}
+
+.amt_price
+{
+    color:#F1521B;
+    font-size: 14px;
+    /* padding-right: 6px;
+    text-align: right; */
+}
+
+.coupon_view
+{
+    width: 500rpx;
+    overflow: hidden;
+}
+
+.amt_view
+{
+    width: 210rpx;
+    text-align: right;
+}
+
+
+.list_view
+{
+     /* margin-bottom: 20rpx; */
+}
+
+.list_item
+{
+    padding:8px 10px;
+    border-bottom: 1px #f3f3f3 solid;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+.item_img
+{
+    width: 54px;
+    height: 54px;
+    margin-right: 10px;
+}
+
+.item_name
+{
+    margin: 3px 0;
+    height: 30px;
+    line-height: 15px;
+    overflow: hidden;
+}
+
+.item_price
+{
+    color:#F1521B;
+}
+
+.delivery_info
+{
+    margin-top: 20rpx;
+}
+
+.bottom{
+    position:fixed;
+    height: 48px;
+    background-color: #f3f3f3;
+    z-index: 50;
+    bottom: 0;
+    width: 715rpx;
+    /*border-top: 1px #C3C3C3 solid;*/
+    padding: 0 20rpx;
+    overflow: hidden;
+    /* display: flex;
+    flex-direction:row;*/
+}
+
+.btn_normal
+{
+    float: right;
+    margin: 10px 5px;
+    width:65px;
+    height: 26px;
+    line-height: 26px;
+    border:1px #C3C3C3 solid;
+    border-radius:2px;
+    text-align: center;
+    font-size: 14px;
+    color: #444;
+}
+
+.btn_strong
+{
+    float: right;
+    margin: 10px 5px;
+    width:65px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #F1521B;
+    border-radius:2px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.share_view
+{
+    position:fixed;
+    top: 0;
+    z-index:100;
+    background-color: #000;
+    filter: Alpha(Opacity=60, Style=0);
+    opacity: 0.60;
+    width:750rpx;
+}
+
+.share_info
+{
+    position:fixed;
+    top: 0;
+    z-index:120;
+    background-color: #fff;
+    width:750rpx;
+    height: 200px;
+    color:#444;
+}
+
+.share_text
+{
+    margin: 220rpx 40rpx;
+    font-size: 18px;
+    font-weight: 600;
+}

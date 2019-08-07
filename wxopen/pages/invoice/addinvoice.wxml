@@ -1,0 +1,180 @@
+<!--pages/invoice/addinvoice.wxml-->
+<form bindsubmit="submit" report-submit="true">
+  
+  <view wx:if="{{waitInvoiceInfo != null}}" class="pageInfo">
+
+    <view class="get_titleview" wx:if="{{canGetWXTitle}}" catchtap="getInvoiceTitle">
+      <image class ="get_titleicon" src="/image/rightarrow.png"></image>
+      <view class="get_titletext">获取微信发票抬头</view>
+    </view>
+
+    <!--
+    <view class="orderlist_title_memo" catchtap="showInvoiceDescView" wx:if="{{waitInvoiceInfo != null && waitInvoiceInfo.InvoiceDesc != null && waitInvoiceInfo.InvoiceDesc.ListDesc != null &&waitInvoiceInfo.InvoiceDesc.ListDesc.length > 0}}">开票说明
+      <view class="orderlist_title_memo1">?</view>  
+    </view>-->
+
+    <view class="invoice_title" wx:if="{waitInvoiceInfo.InvoiceTitles != null && waitInvoiceInfo.InvoiceTitles.length > 1}}">
+      <view class="invtype_view">
+
+        <view class="invtype_group" wx:if="{{selectInvType == invTypePersonal}}">
+          <view class="invtype_item invtype_item_select" catchtap="selectMyInvType" data-index="0">个人</view>
+          <view class="invtype_item" catchtap="selectMyInvType" data-index="1">单位</view>
+        </view>
+
+        <view class="invtype_group" wx:else>
+          <view class="invtype_item" catchtap="selectMyInvType" data-index="0">个人</view>
+          <view class="invtype_item invtype_item_select" catchtap="selectMyInvType" data-index="1">单位</view>
+        </view>
+      </view>
+    
+      <view class="title_item" style="width:{{windowWidth-20}}px" wx:if="{{selectInvType == invTypeCompany}}">
+        <text class="title_memo" style="width:60px">单位名称:</text>
+        <input class="title_detail" style="width:{{windowWidth-80}}px" bindinput="bindInvoiceNameInput" placeholder="请输入单位名称" value="{{waitInvoiceInfo.InvoiceTitles[selectIndex].InvoiceName}}" focus="{{invoiceNameFoucus}}" maxlength="50"/>
+      </view>
+
+      <view class="governmen_view" wx:if="{{selectInvType == invTypeCompany}}">
+        <view class="governmen_view_item" catchtap="governmenChange">
+          <image wx:if="{{!isGovernmen}}" src="/image/check2.png" class=".governmen_checkbox"></image>
+          <image wx:else src="/image/check1.png" class=".governmen_checkbox"></image>
+          <text>公司</text>
+        </view>
+        <view catchtap="governmenChange">
+          <image wx:if="{{isGovernmen}}" src="/image/check2.png" class=".governmen_checkbox"></image>
+          <image wx:else src="/image/check1.png" class=".governmen_checkbox"></image>
+          <text>政府部门、事业单位等</text>
+        </view>
+      </view>
+
+      <view class="title_item" style="width:{{windowWidth-20}}px" wx:if="{{selectInvType == invTypeCompany && !isGovernmen}}">
+
+        <view class="title_memo" style="width:60px">纳税号:</view>
+        <input class="title_detail" style="width:{{windowWidth-100}}px" bindinput="bindTaxNameInput" placeholder="请输入纳税号" value="{{waitInvoiceInfo.InvoiceTitles[selectIndex].TaxNum}}" maxlength="50"/>
+
+        <view class="TaxMemoButton" catchtap="showTaxMemo">?</view>
+      </view>
+
+      
+
+      <view class="title_item" style="width:{{windowWidth-20}}px" wx:if="{{selectInvType == invTypePersonal}}">
+        <text class="title_memo" style="width:60px">姓名:</text>
+        <input class="title_detail" style="width:{{windowWidth-80}}px" bindinput="bindInvoiceNameInput" placeholder="请输入姓名" value="{{waitInvoiceInfo.InvoiceTitles[selectIndex].InvoiceName}}" focus="{{invoicePersonalNameFoucus}}" maxlength="50"/>
+      </view>
+
+      <view class="title_item" style="width:{{windowWidth-20}}px">
+        <text class="title_memo" style="width:60px">手机号:</text>
+        <input class="title_detail" style="width:{{windowWidth-80}}px" type="number" bindinput="bindCompanyPhoneInput" placeholder="请输入手机号" value="{{waitInvoiceInfo.InvoiceTitles[selectIndex].CompanyPhone}}" maxlength="16"/>
+      </view>
+
+      <view class="title_item" style="width:{{windowWidth-20}}px">
+        <text class="title_memo" style="width:60px">联系邮箱:</text>
+        <input class="title_detail" style="width:{{windowWidth-80}}px" bindinput="bindEmailInput" placeholder="电子发票开具后，将发送至此邮箱" value="{{waitInvoiceInfo.InvoiceTitles[selectIndex].Email}}" maxlength="50"/>
+      </view>
+
+    </view>
+
+    <!--
+    <view class="orderlist_title">
+      <view class="orderlist_title_line"></view>
+      <view class="orderlist_title_text">选择需要开票的订单</view>
+    </view>-->
+
+  <!--
+  <view class="orderlist_title_line"></view>
+  <view class="tabtype_header">
+    <view class="tabtype_item" catchtap="submitTypeChange"
+        data-index="0">
+        <view class="tabtype_text" wx:if="{{submitType == 0}}" class="tabtype_select tabtype_text">选择订单开票</view>
+        <view wx:else class="tabtype_text">选择订单开票</view>
+    </view>
+    <view class="tabtype_line"></view>
+    <view class="tabtype_item" catchtap="submitTypeChange"
+        data-index="1">
+        <view wx:if="{{submitType == 1}}" class="tabtype_select tabtype_text">输入订单开票</view>
+        <view wx:else class="tabtype_text">输入订单开票</view>
+    </view>
+</view>-->
+ 
+    <view class="orderlist_title_line"></view>
+    <view class="submitType">
+      <view class="submitType_view">
+
+        <view class="submitType_group" wx:if="{{submitType == 0}}">
+          <view class="submitType_item submitType_item_select" catchtap="submitTypeChange" data-index="0">选择订单开票</view>
+          <view class="submitType_item" catchtap="submitTypeChange" data-index="1">填写订单开票</view>
+        </view>
+
+        <view class="submitType_group" wx:if="{{submitType == 1}}">
+          <view class="submitType_item" catchtap="submitTypeChange" data-index="0">选择订单开票</view>
+          <view class="submitType_item submitType_item_select" catchtap="submitTypeChange" data-index="1">填写订单开票</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="invoice_orderlist" wx:if="{{ submitType == 0 && waitInvoiceInfo.ListSOBriefs != null && waitInvoiceInfo.ListSOBriefs.length > 0}}">
+      <view class="order_item" wx:for="{{waitInvoiceInfo.ListSOBriefs}}" wx:for-index="i" wx:for-item="item" catchtap="selectItem" data-index="{{i}}">
+        <image wx:if="{{item.IsSelect == 1}}" src="/image/check2.png" class="order_item_checkbox"></image>
+            <image wx:else src="/image/check1.png" class="order_item_checkbox"></image>
+        
+        <view class="order_item_text">
+          <text class="order_item_soid"> 订单号:{{item.SOID}}</text>
+          <text class="order_item_date">{{item.OrderDate}}</text>
+        </view>
+        
+        <view class="order_item_text">可开票金额:<text class="order_item_price">¥{{item.TotalAmt/100.00}}</text><text class="order_item_count">(共{{item.ItemCount}}件)</text></view>
+      </view>
+    </view>
+
+    <view wx:if="{{submitType == 1}}" class="addorder_view">
+      <view class="title_item" style="width:{{windowWidth-40}}px">
+        <text class="title_memo" style="width:60px">订单号:</text>
+        <input class="title_detail" style="width:{{windowWidth-100}}px" bindinput="bindAddSoIDInput" placeholder="请输入订单号" value="{{addSoID}}" type="number" maxlength="10" confirm-type="next" />
+      </view>
+
+      <view class="title_item" style="width:{{windowWidth-40}}px">
+        <text class="title_memo" style="width:60px">订单金额:</text>
+        <input class="title_detail" style="width:{{windowWidth-100}}px" type="digit" bindinput="bindAddSoAmtInput" placeholder="请输入订单支付金额" value="{{addSoAmt}}" maxlength="7" confirm-type="done"/>
+      </view>
+    </view>
+
+
+    <view wx:if="{{isIpx}}" class="ipx_empty"></view>
+    <!--底部结算-->
+    <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+          <view class="button_amtview">
+              <view class="button_amt">
+                  <text>共:</text>
+                  <text class="amtprice">¥{{selectInvoiceAmt/100.00}}</text>
+              </view>
+              <view class="detail_memo">{{waitInvoiceInfo.InvoiceAmtDesc}}</view>
+          </view>
+
+          <view class="nvoiceDesc_button" catchtap="showInvoiceDescView" wx:if="{{waitInvoiceInfo != null && waitInvoiceInfo.InvoiceDesc != null && waitInvoiceInfo.InvoiceDesc.ListDesc != null &&waitInvoiceInfo.InvoiceDesc.ListDesc.length > 0}}">开票说明
+    </view>
+
+          <button form-type="submit" class="submit_button" wx:if="{{selectInvoiceAmt >= waitInvoiceInfo.MinInvoiceAmt}}">提交申请</button>
+          <button wx:else class="submit_disbutton">提交申请</button>
+      </view>
+  </view>
+</form>
+
+<!--Toast-->
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+
+<!--遮罩层2-->
+<view wx:if="{{showInvoiceDescView && waitInvoiceInfo != null && waitInvoiceInfo.InvoiceDesc != null && waitInvoiceInfo.InvoiceDesc.ListDesc != null &&waitInvoiceInfo.InvoiceDesc.ListDesc.length > 0}}" class="InvoiceDesc_Detailview" style="height:{{windowHeight}}px">
+</view>
+
+<!--开票说明-->
+<view wx:if="{{showInvoiceDescView && waitInvoiceInfo != null && waitInvoiceInfo.InvoiceDesc != null && waitInvoiceInfo.InvoiceDesc.ListDesc != null &&waitInvoiceInfo.InvoiceDesc.ListDesc.length > 0}}" class="InvoiceDesc_Detailinfo" catchtap="hideInvoiceDescView">
+    <view class="InvoiceDesc_Detailtitle">{{waitInvoiceInfo.InvoiceDesc.Title}}</view>
+    <image class="InvoiceDesc_Detailclose" src="/image/close2.png"></image>
+    <scroll-view  scroll-y="true" style="height:400px;">
+      <view class="InvoiceDesc_Detailitem" wx:for="{{waitInvoiceInfo.InvoiceDesc.ListDesc}}" wx:for-index="i" wx:for-item="item">
+      <!-- <image class="InvoiceDesc_Detailitemimage" src="/image/check3.png"></image> -->
+        <view class="InvoiceDesc_DetailitemView">
+            <view class="InvoiceDesc_DetailitemTitle">{{item.ItemTitle}}</view>
+            <view>{{item.ItemDesc}}</view>
+        </view>
+      </view>
+    </scroll-view>
+</view>

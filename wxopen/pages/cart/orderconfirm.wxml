@@ -1,0 +1,215 @@
+<!--pages/cart/orderconfirm.wxml-->
+<form bindsubmit="submit" report-submit="true" wx:if="{{confirmInfo != null}}">
+
+    <view wx:if="{{confirmInfo.VIPDiscountAmt}}" class="vip_tips"
+  style='height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px; background-image:url({{cartopenvipbg}});-webkit-background-size:100% 100%;background-size:100% 100%;'>
+    <view class='vip_tips_memo'>开通尊享会员，本单可省<text class="vip_tips_amt">{{confirmInfo.VIPDiscountAmt}}</text>元</view>
+    <view class="vip_button" catchtap='toAboutAPP'>去APP开通></view>
+  </view>
+
+
+    <!--原tips提示-->
+    <!--<view wx:else>
+      <view wx:if="{{confirmInfo.NewsTip!=null && confirmInfo.NewsTip.length>0}}" class="sett_header_tips" style="height:{{scrollPaddingTop}}px; line-height:{{scrollPaddingTop}}px;">{{confirmInfo.NewsTip}}</view>
+    </view>  -->
+
+ <view class="pageInfo" style="padding-top: {{scrollPaddingTop}}px;">
+
+  <!--多种配送方式-->
+  <view class='ship_view' wx:if="{{confirmInfo.ListShipTypes && confirmInfo.ListShipTypes.length > 1}}">
+    <view class='shiplist_view'>
+      <view class="ship_item" wx:for="{{confirmInfo.ListShipTypes}}" wx:for-index="i" wx:for-item="item" catchtap="selectShipType" data-index="{{i}}" data-sysno="{{item.SysNo}}" >
+        <view class='ship_item_select' wx:if="{{item.SysNo == selectShipTypeSysNo}}">{{item.ShipTypeName}}</view>
+        <view wx:else>{{item.ShipTypeName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!--送货上门-->
+  <view wx:if="{{selectShipTypeSysNo == ExpressDelivery}}" >
+    <view class="sel_addr_item item_line" catchtap="selectaddress">
+      <!--地址信息-->
+      <view class="item_title">收货信息</view>
+      <view class="address_view" wx:if="{{confirmInfo.Customer_Address != null && confirmInfo.Customer_Address.SysNo >0}}">
+            
+            <image class="address_icon address_icon2" src="/image/rightarrow2.png"></image>
+            <view class="address_text">{{confirmInfo.Customer_Address.Contact}}</view>
+            <view class="address_text">{{confirmInfo.Customer_Address.CellPhone}}</view>
+            <view class="address_text">{{confirmInfo.Customer_Address.Placemarks}}</view>
+            <view class="address_text">{{confirmInfo.Customer_Address.Address}}</view>
+        </view>
+        <view class="address_view address_view_empty" wx:else>
+
+        <image class="address_icon address_icon1" src="/image/rightarrow2.png"></image>请选择收货地址
+      </view>
+    </view>
+
+    <!--配送时段-->
+    <view class='node_view' wx:if="{{confirmInfo.ListTimeNodes != null && confirmInfo.ListTimeNodes.length > 0}}">
+      <view class='item_node' catchtap="showSelectTimeNode">
+          <view class="item_node_title" style="width:96px">预计送达时间</view>
+          <view class="nodeinfo" style="width:{{windowWidth-96}}px">
+            <view wx:if="{{selectNodeTime}}" class="nodeName">{{selectNodeTime.NodeName}}</view>
+            <view wx:else class="nodeName">请选择预计送达时间</view>
+            <!-- <picker bindchange="bindTimeNode" value="{{Provinceindex}}" range="{{confirmInfo.ListTimeNodes}}" range-key="NodeName" disabled="{{inputDisabled}}">
+              <view class="nodeName">{{selectNodeTime.NodeName}}</view>
+            </picker> -->
+        </view>
+        <image class="address_icon node_icon" src="/image/rightarrow2.png"></image>
+      </view>
+      <view class="bc_view" wx:if="{{confirmInfo.StartDMSChaoShiBuChang == 1 && confirmInfo.LabelTextInfo}}" catchtap="showTipsInfo">
+        <text class='bc_tag'>{{confirmInfo.LabelTextInfo.LabelText}}</text>
+        <text>{{confirmInfo.LabelTextInfo.Content}}</text>
+        <image class='bc_img' src="/image/question1.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!--自提信息-->
+  <view wx:if="{{selectShipTypeSysNo == HomeDelivery}}">
+    
+    <!--门店信息-->
+    <view class='store_item item_line' wx:if="{{storeInfo != null}}" catchtap="toSelectStore">
+      
+      <view class='store_distance'>{{confirmInfo.DistanceTips}}</view>
+      <view class='store_name'>妙生活（{{storeInfo.StoreName}}）</view>
+
+      <image class="address_icon store_sel_icon" src="/image/rightarrow2.png"></image>
+      <view class='store_address'>{{storeInfo.Address}}</view>
+
+      <view class="store_worktime">营业时间:{{storeInfo.WorkStartTime}}-{{storeInfo.WorkEndTime}}</view> 
+      <view class="store_tel">{{storeInfo.Tel}}</view>
+      
+      <!-- <view>
+        <view>{{storeInfo.Tel}}</view>
+        <view class="store_worktime">营业时间:{{storeInfo.WorkStartTime}}-{{storeInfo.WorkEndTime}}</view> 
+      </view> -->
+    </view>
+
+    <view class="item_phone item_line">
+      <view class="item_node_title">联系电话</view>
+      <!-- <view class='phone_view' style='width:{{windowWidth-96}}px;'> -->
+        <input class="receivePhone" style='width:{{windowWidth-160}}px;' type="number" bindinput="receivePhoneInput" placeholder="请输入您的联系电话" value="{{receivePhone}}" disabled="{{inputDisabled}}" maxlength="16"/>
+        
+        <button class='phone_btn' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取</button>
+      <!-- </view> -->
+    </view>
+
+    <!--自提时段-->
+    <view class='node_view' wx:if="{{confirmInfo.ListTimeNodes != null && confirmInfo.ListTimeNodes.length > 0}}">
+      <view class='item_node' catchtap="showSelectTimeNode">
+          <view class="item_node_title" style="width:96px">自提时间</view>
+          <view class="nodeinfo" style="width:{{windowWidth-96}}px">
+            <view wx:if="{{selectNodeTime}}" class="nodeName">{{selectNodeTime.NodeName}}</view>
+            <view wx:else class="nodeName">请选择自提时间</view>
+            <!-- <picker bindchange="bindTimeNode" value="{{Provinceindex}}" range="{{confirmInfo.ListTimeNodes}}" range-key="NodeName" disabled="{{inputDisabled}}">
+              <view class="nodeName">{{selectNodeTime.NodeName}}</view>
+            </picker> -->
+        </view>
+        <image class="address_icon node_icon" src="/image/rightarrow2.png"></image>
+      </view>
+    </view>
+
+  </view>
+
+  <view wx:if="{{confirmInfo.CardCouponV4}}" class="item item_line" catchtap="toSelectCoupon">
+    <view class="coupon_item">
+      <view class="item_title">红包卡券</view>
+      <view class="coupon_count">{{confirmInfo.CardCouponV4.ValiCouponCount}}张可用</view>
+      <view wx:if="{{confirmInfo.CouponAmt > 0}}" class="coupon_amtview">已优惠<text class="coupon_amt">¥{{confirmInfo.CouponAmt/100.00}}</text></view>
+    </view>
+    <view class="item_list" >
+      <image class="address_icon address_icon1" src="/image/rightarrow2.png"></image>
+      
+      <view class="useCoupon" catchtap="useCouponChange">
+        <image wx:if="{{useCoupon==0}}" src="/image/check2.png" class="list_checkbox"></image>
+        <image wx:else src="/image/check1.png" class="list_checkbox"></image>
+        <text>不使用红包卡券</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="item_trans item_line" wx:if="{{selectShipTypeSysNo == ExpressDelivery && confirmInfo.TransFeeInfo != null}}">
+    <view class="item_trans_title">运费信息</view>
+    <view class="transtips">{{confirmInfo.TransFeeInfo.TransFeeTips}}</view>
+  </view>
+
+  <!--订单备注-->
+  <view class="item" >
+    <view class="item_title">订单备注</view>
+      <input wx:if="{{confirmInfo.DefaultNoteShow != null && confirmInfo.DefaultNoteShow.length > 0}}" cursor-spacing="60" class="memo_input" style="width:{{windowWidth-32}}px" maxlength="200" placeholder="{{confirmInfo.DefaultNoteShow}}" bindinput="memoInput" disabled="{{inputDisabled}}" />
+      <input wx:else cursor-spacing="60" class="memo_input" style="width:{{windowWidth-32}}px" maxlength="200" placeholder="您对订单有什么特殊需求，请再此备注" bindinput="memoInput" disabled="{{inputDisabled}}" /> 
+  </view>
+
+ <!--提示-->
+  <view wx:if="{{confirmInfo.NewsTip!=null && confirmInfo.NewsTip.length>0}}" class="submit_tips" style="width:{{windowWidth-32}}px">{{confirmInfo.NewsTip}}</view>
+
+  <!--商品信息-->
+  <view class="item_product">
+    <view class="item_title" style="width:64px">订单信息</view>
+    <view class="productcount" style="width:{{windowWidth-85}}px">共{{confirmInfo.ProductCount}}件商品  预算价<text class="productprice">¥{{confirmInfo.ProductTotalPrice/100.00}}</text>
+    </view>
+  </view>
+
+  <view class="product_list" wx:if="{{confirmInfo.BuyProducts != null && confirmInfo.BuyProducts.length >0}}">
+
+    <view class="product_item" wx:for="{{confirmInfo.BuyProducts}}" wx:for-index="i" wx:for-item="item" data-index="{{i}}">
+      <image class="product_img" src="{{item.PictureUrl}}"></image>
+      <view class="product_name" style="width:{{windowWidth-148}}px">{{item.ProductName}}</view>
+      <view class="product_priceview" style="width:50px">
+        <view class="product_price">¥{{item.Price/100.00}}</view>
+        <view>×{{item.Num}}{{item.DenominatedUnit}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{isIpx}}" class="ipx_empty"></view>
+
+  <!--底部结算-->
+    <view class="bottom {{isIpx?'fix-iphonex-button':''}}">
+        <view class="button_amtview button_amt" wx:if="{{confirmInfo.TransFee == 0 && confirmInfo.CouponAmt == 0}}">
+            <text>需支付:</text>
+            <text class="amtprice">¥{{confirmInfo.TotalPrice/100.00}}</text>
+        </view>
+
+        <view class="button_amtview" wx:else>
+            <view class="button_amt1">
+                <text>需支付:</text>
+                <text class="amtprice">¥{{confirmInfo.TotalPrice/100.00}}</text>
+            </view>
+            <view class="detail_view">商品总价:¥{{confirmInfo.ProductTotalPrice/100.00}}<text wx:if="{{confirmInfo.CouponAmt > 0}}">-优惠¥{{confirmInfo.CouponAmt/100.00}}</text><text wx:if="{{confirmInfo.TransFee > 0}}">+运费¥{{confirmInfo.TransFee/100.00}}</text></view>
+        </view>
+
+        <!--<view catchtap="submit" class="submit">立即支付</view>-->
+        <button form-type="submit" class="submit_button">{{submitButtonName}}</button>
+    </view>
+
+  </view>   
+</form>
+
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>
+
+
+<view wx:if="{{showNodeTime && confirmInfo && confirmInfo.ListTimeNodes}}" class="nodeTime_bgView" style="height:{{windowHeight}}px">
+</view>
+
+
+<view wx:if="{{showNodeTime && confirmInfo && confirmInfo.ListTimeNodes}}" class='nodeTime_view'> 
+
+  <view class="noteTime_btnView">
+    <view class="noteTime_button" catchtap="selectTimeNodeCancel">取消</view>
+    <view class="noteTime_button noteTime_btnOK" catchtap="selectTimeNodeOK">确定</view>
+  </view>
+
+  <view class='nodeTime_memo' wx:if="{{confirmInfo.LessTransportDesc}}">{{confirmInfo.LessTransportDesc}}</view>
+
+  <picker-view
+    indicator-style="height: 40px;"
+    style="width: 100%; height: 240px;"
+    value='{{selectNodeValue}}'
+    bindchange="bindTimeNode">
+      <picker-view-column>
+        <view wx:for="{{confirmInfo.ListTimeNodes}}" style="height:40px;line-height: 40px;text-align:center">{{item.NodeName}}</view>
+      </picker-view-column>
+    </picker-view>
+</view>

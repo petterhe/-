@@ -1,0 +1,84 @@
+/* pages/people/about.wxss */
+.image_view image
+{
+  width: 750rpx;
+  outline-width:0; 
+  vertical-align:top;
+}
+
+
+.content {
+    padding:30rpx;
+    color:#666;
+    font-size:14px;
+    line-height:1.4;
+    /*background-color: #f3f3f3;*/
+}
+
+.title
+{
+    font-weight: 600;
+    font-size: 15px;
+    color:#222;
+    margin-bottom: 30rpx;
+}
+
+.content image{
+    width: 690rpx;
+}
+
+.content_main
+{
+    margin: 40rpx 0;
+    color: #222;
+}
+
+.group
+{
+    margin: 40rpx 0;
+}
+
+.group view{
+    margin: 8px 0;
+}
+
+.group_title
+{
+  color: #222;
+}
+
+.phone_group
+{
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20rpx 0;
+  color: #f29600;
+}
+
+.phone_detail
+{
+  margin-bottom: 60rpx;
+}
+
+.store_group
+{
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20rpx 0;
+  color: #f29600;
+}
+
+.store_District
+{
+   font-size: 15px;
+   font-weight: 600;
+   margin: 20rpx 0;
+   color: #f29600;
+}
+
+.store_info
+{
+    margin: 20rpx 0;
+    color:#444;
+    line-height:1.4;
+}

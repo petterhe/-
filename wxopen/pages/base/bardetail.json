@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "果吧详情",
+  "usingComponents": {
+  "sharedialog": "/components/active/sharedialog",
+  "floatcoupon": "/components/active/floatcoupon"
+  }
+}

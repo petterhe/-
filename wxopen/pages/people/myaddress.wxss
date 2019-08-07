@@ -1,0 +1,73 @@
+/* pages/people/myaddress.wxss */
+.address_view
+{
+}
+.address_addaddress
+{
+    text-align: center;
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom:1px #EBEBEB solid;
+    border-top: 1px #EBEBEB solid; 
+}
+.address_addicon
+{
+    position: absolute;
+    margin: -2px -22px;
+    width: 19px;
+    height: 19px;
+}
+
+.address_list
+{
+    display: block;
+    border-bottom:1px #EBEBEB solid;
+    font-size: 13px;
+    padding: 10px 20rpx;
+}
+
+.address_checkbox
+{
+    content:'';
+    position:absolute;
+    margin-top: 60rpx;
+    left:20rpx;
+    width:42rpx;
+    height:42rpx;
+    border:2rpx #C3C3C3 solid;
+    border-radius:42rpx;
+    background-color:#fff;
+}
+
+.address_text_view
+{
+    padding-left: 20rpx;
+}
+
+.address_text
+{
+    margin-bottom: 10rpx;
+}
+
+.edit_button
+{
+    float: right;
+    width:66px;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 32rpx;
+    border:1px #C3C3C3 solid;
+    border-radius:2px;
+    text-align: center;
+}
+
+.del_button
+{
+    float: right;
+    width:66px;
+    height: 26px;
+    line-height: 26px;
+    border:1px #C3C3C3 solid;
+    border-radius:2px;
+    text-align: center;
+}

@@ -1,0 +1,248 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wx3f786e322cdde149",
+	"projectname": "%E5%A6%99%E5%B0%BA",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": 0,
+					"name": "开票",
+					"pathName": "pages/invoice/myinvoice",
+					"query": "FromApp=1"
+				},
+				{
+					"id": 1,
+					"name": "红包",
+					"pathName": "pages/people/couponlist",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "首页-商品",
+					"pathName": "pages/home/index",
+					"query": "scene=T:3,PN:1823",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/order/orderlist",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "领红包",
+					"pathName": "pages/people/couponreceive",
+					"query": "ActiveSysNo=655&SOSysNo=42311378&fromApp=1",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "团商品详情",
+					"pathName": "pages/group/ptdetail",
+					"query": "PlanSysNo=1027",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "参团详情",
+					"pathName": "pages/group/ptgmdetail",
+					"query": "PlanSysNo=1027&GMSysNo=1675&SoSysNo=29144",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "首页-分类",
+					"pathName": "pages/home/index",
+					"query": "scene=T:0,ET:2:EC1:4"
+				},
+				{
+					"id": 8,
+					"name": "网页",
+					"pathName": "pages/base/webview",
+					"query": "Url=http://www.baidu.com"
+				},
+				{
+					"id": 9,
+					"name": "果吧",
+					"pathName": "pages/base/bardetail",
+					"query": "SysNo=24000003"
+				},
+				{
+					"id": 10,
+					"name": "首页参数-邀请码",
+					"pathName": "pages/home/index",
+					"query": "InvitationCode=800175",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "订单退款",
+					"pathName": "pages/refund/index",
+					"query": "soSysNo=9835"
+				},
+				{
+					"id": 12,
+					"name": "订单进度",
+					"pathName": "pages/order/orderprocess",
+					"query": "soSysNo=21636590"
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/setting/setting",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "首页-领红包",
+					"pathName": "pages/home/index",
+					"query": "scene=T:6,AN:383,BN:746",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "首页-退款",
+					"pathName": "pages/home/index",
+					"query": "scene=T:8"
+				},
+				{
+					"id": 16,
+					"name": "订单退款-APP",
+					"pathName": "pages/refund/orderrefund",
+					"query": "soSysNo=17574&FromApp=1&appUserSysNo=12",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "我的退款-APP",
+					"pathName": "pages/refund/myrefund",
+					"query": "FromApp=1&appUserSysNo=12"
+				},
+				{
+					"id": 18,
+					"name": "收银打开",
+					"pathName": "pages/home/index",
+					"query": "scene=T:9,PN:AAA"
+				},
+				{
+					"id": 19,
+					"name": "首页-开票",
+					"pathName": "pages/home/index",
+					"query": "scene=T:5"
+				},
+				{
+					"id": 20,
+					"name": "首页-团商品",
+					"pathName": "pages/home/index",
+					"query": "scene=T:1,PN:1027"
+				},
+				{
+					"id": 21,
+					"name": "首页-团单详情",
+					"pathName": "pages/home/index",
+					"query": "scene=T:2,PN:171,GN:1538"
+				},
+				{
+					"id": 22,
+					"name": "首页-果吧",
+					"pathName": "pages/home/index",
+					"query": "scene=T:7,SN:24000003"
+				},
+				{
+					"id": 23,
+					"name": "首页-邀请码",
+					"pathName": "pages/home/index",
+					"query": "scene=T:0,IC:00022",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页-拼团",
+					"pathName": "pages/home/index",
+					"query": "SelectECategoryType=6"
+				},
+				{
+					"id": 25,
+					"name": "商品详情",
+					"pathName": "pages/product/productdetail",
+					"query": "SysNo=24000053&fromApp=1&ActiveSysNo=617"
+				},
+				{
+					"id": 26,
+					"name": "助力红包",
+					"pathName": "pages/active/givehelp",
+					"query": "ActiveSysNo=1006&FromApp=1&fromUserSysNo=7220",
+					"scene": null
+				},
+				{
+					"id": 27,
+					"name": "粉丝群",
+					"pathName": "pages/group/fansgroup",
+					"query": ""
+				},
+				{
+					"id": 28,
+					"name": "首页-助力",
+					"pathName": "pages/home/index",
+					"query": "scene=T:10,AN:810"
+				},
+				{
+					"id": 29,
+					"name": "下载APP",
+					"pathName": "pages/about/aboutapp",
+					"query": "关于App"
+				},
+				{
+					"id": -1,
+					"name": "联系我们",
+					"pathName": "pages/about/contactus",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/people/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页-来源活动",
+					"pathName": "pages/home/index",
+					"query": "fromUserSysNo=7220",
+					"scene": null
+				}
+			]
+		}
+	}
+}

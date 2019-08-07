@@ -1,0 +1,18 @@
+<!--components/common/regcouponview.wxml-->
+<!--红包展示-->
+<view class="regc_bg_view" style='height:{{windowHeight}}px'>
+</view>
+
+<view class="coupon_view">
+
+  <image class="coupon_image" src='{{RegCouponImageUrl}}'></image>
+
+  <view class="coupon_button_view" catchtap='_buttonClick'>
+    <image class="coupon_button" src='{{RegCouponBtnUrl}}'></image>
+  </view>
+
+<view class='coupon_close_view' catchtap='_closeView'>
+  <image class="coupon_close" src="/image/close4.png"></image>
+</view>
+
+</view>

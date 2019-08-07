@@ -1,0 +1,33 @@
+<!--pages/store/selectshop.wxml-->
+<view class="location_message" wx:if="{{location_message!=null && location_message.length>0}}">{{locationMessage}}</view>
+<view  wx:if="{{listGisStore !=null && listGisStore.length>0}}">
+    <view class="store_list" wx:for="{{listGisStore}}" wx:for-index="i" wx:for-item="item" catchtap="selectshop" data-index="{{i}}" data-type="1">
+        <text class="store_distance">{{item.DistanceDesc}}</text>
+        <text class="store_name">{{item.StoreName}}</text>
+        <text class="store_tag" wx:if="{{item.StoreTag!=null && item.StoreTag.length>0}}">{{item.StoreTag}}</text>
+        <text class="store_tag" wx:if="{{item.DiliveryTag!=null && item.DiliveryTag.length>0}}">{{item.DiliveryTag}}</text>
+        <view class="store_address">{{item.Address}}</view>  
+    </view>
+</view>
+
+<view class="list_header">光临过门店</view>
+    <view  wx:if="{{listHisStore!=null && listHisStore.length>0}}">
+        <view class="store_list" wx:for="{{listHisStore}}" wx:for-index="i" wx:for-item="item" catchtap="selectshop" data-index="{{i}}" data-type="2">
+            <text class="store_name">{{item.StoreName}}</text>
+            <text class="store_tag" wx:if="{{item.StoreTag!=null && item.StoreTag.length>0}}">{{item.StoreTag}}</text>
+            <text class="store_tag" wx:if="{{item.DiliveryTag!=null && item.DiliveryTag.length>0}}">{{item.DiliveryTag}}</text>
+            <view class="store_address">{{item.Address}}</view>
+        
+    </view>
+</view>
+
+<view class="list_header">全部门店({{storeCount}})</view>
+    <view  wx:if="{{listAllStore!=null && listAllStore.length>0}}">
+        <view class="store_list" wx:for="{{listAllStore}}" wx:for-index="i" wx:for-item="item" catchtap="selectshop" data-index="{{i}}" data-type="3">
+            <text class="store_name">{{item.StoreName}}</text>
+            <text class="store_tag" wx:if="{{item.StoreTag!=null && item.StoreTag.length>0}}">{{item.StoreTag}}</text>
+            <text class="store_tag" wx:if="{{item.DiliveryTag!=null && item.DiliveryTag.length>0}}">{{item.DiliveryTag}}</text>
+            <view class="store_address">{{item.Address}}</view>
+        
+    </view>
+</view>

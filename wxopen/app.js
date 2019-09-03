@@ -2,7 +2,7 @@
 var that
 // var logincode
 // var userinfo
-// var failCount = 0
+// var failCount = 0  
 
 const util = require('/utils/util.js')
 const applogin = require('/utils/applogin.js')

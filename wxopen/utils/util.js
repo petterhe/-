@@ -123,7 +123,8 @@ module.exports = {
   //testPromise,
 }
 
-const isDevelop = true;
+
+const isDevelop = false;
 
 const appenum = require('/appenum.js')
 const appconst = require('/appconst.js')
